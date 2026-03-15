@@ -1,0 +1,26 @@
+---
+export interface TechBubbleData {
+  name: string;
+  img: string;
+}
+
+export interface Props {
+  data: TechBubbleData;
+}
+
+const { data } = Astro.props;
+const { name, img } = data;
+---
+
+<div
+  class:list={[
+    'js-tech-bubble',
+    'flex items-center h-15 gap-2 p-2 rounded-full',
+    'bg-white-transparence shadow-white-light',
+    'sm:last:odd:col-span-2',
+    'hover:shadow-white transition-shadow duration-300',
+  ]}
+>
+  <img src={img} width={50} height={50} alt="" class="rounded-full bg-white" />
+  <p class="text-lg font-semibold text-black">{name}</p>
+</div>

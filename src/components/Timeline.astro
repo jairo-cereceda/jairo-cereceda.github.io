@@ -1,0 +1,32 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface TimelineItem {
+  title: string;
+  position: string;
+}
+
+export interface Props {
+  items: TimelineItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="text-white mt-5 ml-2">
+  {
+    items.map((item) => (
+      <>
+        <div class="flex items-center gap-5">
+          <Icon name="circle" size={15} />
+          <div>
+            <h2>{item.title}</h2>
+            <p>{item.position}</p>
+          </div>
+        </div>
+
+        {item != items[items.length - 1] && <div class="h-20 w-0.5 bg-white ml-1.5" />}
+      </>
+    ))
+  }
+</div>

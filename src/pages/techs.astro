@@ -1,0 +1,126 @@
+---
+import MainLayout from '@layouts/MainLayout.astro';
+import TechBubbleList from '@components/TechBubbleList.astro';
+import Title from '@components/Title.astro';
+import Button from '@components/Button.astro';
+
+const techs = [
+  {
+    name: 'Astro',
+    img: '/img/techs/astro.png',
+  },
+  {
+    name: 'Accesibilidad',
+    img: '/img/techs/w3c.png',
+  },
+  {
+    name: 'CSS3',
+    img: '/img/techs/css3.png',
+  },
+  {
+    name: 'Git',
+    img: '/img/techs/git.png',
+  },
+  {
+    name: 'HTML',
+    img: '/img/techs/html.png',
+  },
+  {
+    name: 'Sass',
+    img: '/img/techs/sass.png',
+  },
+  {
+    name: 'Tailwind',
+    img: '/img/techs/tailwind.png',
+  },
+  {
+    name: 'JavaScript',
+    img: '/img/techs/js.png',
+  },
+  {
+    name: 'TypeScript',
+    img: '/img/techs/typescript.png',
+  },
+  {
+    name: 'React',
+    img: '/img/techs/react.png',
+  },
+  {
+    name: 'Angular',
+    img: '/img/techs/angular.png',
+  },
+  {
+    name: 'GSAP',
+    img: '/img/techs/gsap.png',
+  },
+  {
+    name: 'Jquery',
+    img: '/img/techs/jquery.png',
+  },
+  {
+    name: 'PHP',
+    img: '/img/techs/php.png',
+  },
+  {
+    name: 'Laravel',
+    img: '/img/techs/laravel.png',
+  },
+
+  {
+    name: 'Bootstrap',
+    img: '/img/techs/bootstrap.png',
+  },
+  {
+    name: 'Node',
+    img: '/img/techs/node.png',
+  },
+  {
+    name: 'MySQL',
+    img: '/img/techs/mysql.png',
+  },
+  {
+    name: 'MongoDB',
+    img: '/img/techs/mongodb.png',
+  },
+  {
+    name: 'Docker',
+    img: '/img/techs/docker.png',
+  },
+  {
+    name: 'Java',
+    img: '/img/techs/java.png',
+  },
+  {
+    name: 'Wordpress',
+    img: '/img/techs/wordpress.png',
+  },
+  {
+    name: 'ExpressJS',
+    img: '/img/techs/expressjs.png',
+  },
+  {
+    name: 'Drupal',
+    img: '/img/techs/drupal.png',
+  },
+];
+
+const experienceButton = {
+  text: 'Mi experiencia',
+  icon: 'arrow-down',
+  url: '/experience',
+};
+---
+
+<MainLayout title="Jairo Cereceda Berciano - Techs">
+  <div class="max-w-[800px] w-full my-0 mx-auto">
+    <section class="p-3 mb-5">
+      <Title first="Tecnolo" highlighted="g" final="ías" />
+      <p>Experiencia con:</p>
+      <TechBubbleList techs={techs} />
+    </section>
+
+    <div class="flex justify-center pb-5">
+      <Button data={experienceButton} />
+    </div>
+  </div>
+</MainLayout>

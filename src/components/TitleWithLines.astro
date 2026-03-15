@@ -1,0 +1,25 @@
+---
+export interface titleWithLinesData {
+  text: string;
+  subtext?: string;
+}
+
+export interface Props {
+  data: titleWithLinesData;
+}
+
+const { data } = Astro.props;
+const { text, subtext } = data;
+---
+
+<>
+  <div class="h-1 w-full bg-brand shadow-2xl"></div>
+  <div class="flex flex-col justify-end">
+    <h2 class="text-white text-center text-3xl whitespace-nowrap">
+      {text}
+    </h2>
+
+    {subtext && <p class="text-white text-center whitespace-nowrap">{subtext}</p>}
+  </div>
+  <div class="h-1 w-full bg-brand shadow-2xl"></div>
+</>

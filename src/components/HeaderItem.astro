@@ -1,0 +1,47 @@
+---
+import { Icon } from 'astro-icon/components';
+
+export interface headerItemData {
+  url: string;
+  icon: string;
+  text: string;
+}
+
+export interface Props {
+  data: headerItemData;
+}
+
+const { data } = Astro.props;
+const { text, url, icon } = data;
+
+const currentPath = Astro.url.pathname;
+const isActive = currentPath === url;
+---
+
+<li class="flex gap-1 items-center">
+  <a
+    href={url}
+    aria-label={text}
+    class="group/a flex gap-1 items-center transition-all duration-300 ease-in-out hover:px-[15px]"
+    ><Icon
+      name={icon}
+      size={25}
+      class={`transition-all duration-300 ease-in-out
+        ${
+          isActive
+            ? 'text-brand group-hover/nav:text-black group-hover/a:!text-brand'
+            : 'text-black group-hover/a:text-brand'
+        }
+      `}
+    />
+    <span
+      class={`hidden md:block transition-all duration-300 ease-in-out 
+        ${
+          isActive
+            ? 'font-semibold group-hover/nav:text-black group-hover/nav:font-normal hover:!font-semibold'
+            : 'group-hover:font-semibold '
+        }
+      `}>{text}</span
+    >
+  </a>
+</li>

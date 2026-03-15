@@ -1,0 +1,40 @@
+---
+import Title from '@components/Title.astro';
+import MainLayout from '@layouts/MainLayout.astro';
+import AppLink from '@components/AppLink.astro';
+import ContactForm from '@components/ContactForm.astro';
+import Button, { type ButtonData } from '@components/Button.astro';
+
+const linkedinData = {
+  url: 'https://www.linkedin.com/in/jairo-cereceda-berciano/',
+  text: 'Linkedin',
+  icon: 'linkedin',
+};
+
+const githubData = {
+  url: 'https://github.com/jairo-cereceda',
+  text: 'GitHub',
+  icon: 'github',
+};
+
+const homeButton: ButtonData = {
+  text: 'Inicio',
+  url: '/',
+  style: 'secondary',
+};
+---
+
+<MainLayout title="Contacto">
+  <section class="p-3 max-w-[800px] w-full my-0 mx-auto">
+    <Title first="Contac" highlighted="t" final="o" />
+
+    <AppLink data={linkedinData} />
+    <AppLink data={githubData} />
+
+    <ContactForm />
+
+    <div class="flex justify-center">
+      <Button data={homeButton} />
+    </div>
+  </section>
+</MainLayout>

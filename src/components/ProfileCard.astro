@@ -1,0 +1,40 @@
+---
+export interface ProfileCardData {
+  name: string;
+  surname: string;
+  secondSurname: string;
+  image: string;
+}
+
+export interface Props {
+  data: ProfileCardData;
+}
+
+const { data } = Astro.props;
+const { name, surname, secondSurname, image } = data;
+---
+
+<div
+  class="flex items-center justify-between mb-10 md:justify-center md:rounded-2xl md:max-w-[600px] md:p-5 md:mx-auto md:bg-white/5 md:backdrop-blur-md md:border md:border-white/20 md:mt-10"
+>
+  <div
+    class="relative flex items-center justify-center mt-15 md:mt-0 w-[260px] h-[260px] max-[399px]:w-[190px] max-[399px]:h-[190px] rotate-12 md:rotate-0 md:ml-5"
+  >
+    <div
+      class="glow-border animate-border-rotate bg-glow-gradient absolute inset-0 border-[0.5rem] border-transparent rounded-[2.5rem] md:rounded-full blur-[3px] shadow-[0px_2px_4px_rgba(0,0,0,0.25)]"
+    >
+    </div>
+
+    <img
+      src={image}
+      alt=""
+      class="relative z-10 w-[245px] h-[245px] max-[399px]:w-[175px] max-[399px]:h-[175px] rounded-4xl md:rounded-full object-cover"
+    />
+  </div>
+
+  <h1 class="text-white text-2xl text-end mr-5 mt-25 font-bold shadow-2xl flex flex-col">
+    <span>{name}</span>
+    <span>{surname}</span>
+    <span class="text-3xl opacity-90">{secondSurname}</span>
+  </h1>
+</div>

@@ -1,0 +1,49 @@
+---
+import Badge from './Badge.astro';
+import { Icon } from 'astro-icon/components';
+
+export interface AppCardData {
+  title: string;
+  techs: string;
+  imgSrc: string;
+  imgAlt?: string;
+  isStudentApp?: boolean;
+  url?: string;
+}
+
+export interface Props {
+  data: AppCardData;
+}
+
+const { data } = Astro.props;
+const { title, techs, imgSrc, imgAlt, isStudentApp, url } = data;
+---
+
+<div
+  class="bg-white/5 backdrop-blur-md border border-white/20 rounded-xl shadow-lg p-6 mt-5 relative"
+>
+  {isStudentApp && <Badge text="Proyecto de estudiante" />}
+
+  <h3 class="text-2xl font-semibold text-center">{title}</h3>
+
+  <div class="flex flex-col sm:flex-row justify-center items-center gap-2">
+    <p class="text-center">{techs}</p>
+    {
+      url && (
+        <a
+          href={url}
+          rel="noreferrer noopener"
+          target="_blank"
+          class="flex items-center gap-1 text-center sm:border-l-2 sm:pl-2 sm:leading-3 underline"
+        >
+          <Icon name="eye" size={15} /> Ver Proyecto
+        </a>
+      )
+    }
+  </div>
+  <img
+    src={imgSrc}
+    alt={imgAlt ? imgAlt : ''}
+    class="rounded-2xl shadow-[0_4px_10px_rgba(255,255,255,0.3)] mt-2"
+  />
+</div>

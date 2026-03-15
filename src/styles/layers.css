@@ -1,0 +1,13 @@
+@layer base {
+  body {
+    @apply bg-[#0a0a0a] relative h-screen font-primary text-white m-0 p-0;
+  }
+}
+
+@layer components {
+  .bg-glow-gradient {
+    background:
+      linear-gradient(var(--color-brand), var(--color-brand)) padding-box,
+      conic-gradient(from var(--border-angle), transparent 70%, var(--color-brand)) border-box;
+  }
+}

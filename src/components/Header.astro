@@ -1,0 +1,22 @@
+---
+import HeaderItem, { type headerItemData } from './HeaderItem.astro';
+
+export interface headerData {
+  items: headerItemData[];
+}
+
+export interface Props {
+  data: headerData;
+}
+
+const { data } = Astro.props;
+const { items } = data;
+---
+
+<header class="border-b-2 border-white-light pb-4">
+  <nav class="flex justify-center pt-4">
+    <ul class="group/nav flex rounded-full p-4 text-black gap-3 bg-white shadow-white">
+      {items.map((item: headerItemData) => <HeaderItem data={item} />)}
+    </ul>
+  </nav>
+</header>

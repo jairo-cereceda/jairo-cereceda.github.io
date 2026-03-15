@@ -1,0 +1,40 @@
+---
+import Icon from 'node_modules/astro-icon/components/Icon.astro';
+
+export interface ButtonData {
+  text: string;
+  icon?: string;
+  url: string;
+  style?: 'primary' | 'secondary';
+}
+
+export interface Props {
+  data: ButtonData;
+}
+
+const { data } = Astro.props;
+const { text, url, icon, style = 'primary' } = data;
+---
+
+<a
+  href={url}
+  class={`group transition-all duration-200 ease hover:shadow-yellow-light ${style === 'primary' && 'bg-brand text-black p-4'} ${style === 'secondary' && 'bg-brand/5 backdrop-blur-md border border-brand/10 shadow-lg px-10 py-3 mt-5 text-white'} rounded-full flex items-center gap-2 `}
+  >{text}
+  {
+    icon && (
+      <span class="relative overflow-hidden h-[25px] w-[25px]">
+        <Icon
+          name={icon}
+          size={25}
+          class="absolute transition-transform duration-300 group-hover:translate-y-full"
+        />
+
+        <Icon
+          name={icon}
+          size={25}
+          class="absolute -translate-y-full transition-transform duration-300 group-hover:translate-y-0"
+        />
+      </span>
+    )
+  }
+</a>

@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'NataSans';
+  src: url('/fonts/NataSans-Regular.woff2') format('woff2');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'NataSans';
+  src: url('/fonts/NataSans-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'NataSans';
+  src: url('/fonts/NataSans-Bold.woff2') format('woff2');
+  font-weight: 700;
+}

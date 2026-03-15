@@ -1,0 +1,21 @@
+@theme {
+  /*Fonts*/
+  --font-primary: 'NataSans', sans-serif;
+  --font-weight-normal: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /*Colors*/
+  --color-brand: #ffd700;
+  --color-black: #131313;
+  --color-white-light: rgba(255, 255, 255, 0.1);
+  --color-white-transparence: rgba(255, 255, 255, 0.7);
+
+  --shadow-white: 0 0 16px -2px white;
+  --shadow-white-light: 0 0 16px -7px white;
+  --shadow-yellow-light: 0 0 16px -7px var(--color-brand);
+
+  --animate-pulse-arc: pulseArc 6s ease-in-out infinite;
+  --animate-scroll-left: scroll-left 15s linear infinite;
+  --animate-border-rotate: border-angle-rotate 5s linear infinite;
+}

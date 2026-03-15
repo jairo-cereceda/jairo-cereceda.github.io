@@ -1,0 +1,28 @@
+---
+import { Icon } from 'astro-icon/components';
+import GlassWrapper from './GlassWrapper.astro';
+
+export interface AppLinkData {
+  url: string;
+  icon: string;
+  text: string;
+}
+
+export interface Props {
+  data: AppLinkData;
+}
+
+const { data } = Astro.props;
+const { url, icon, text } = data;
+---
+
+<GlassWrapper padding={false}>
+  <a href={url} rel="noreferrer noopener" target="_blank" class="flex justify-between w-full p-6">
+    <div class="flex gap-4 text-white">
+      <Icon name={icon} size={25} />
+      {text}
+    </div>
+
+    <Icon name="arrow-right" size={25} class="text-white" />
+  </a>
+</GlassWrapper>

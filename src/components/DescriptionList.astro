@@ -1,0 +1,31 @@
+---
+import DescriptionItem from './DescriptionItem.astro';
+
+export interface DescriptionListData {
+  text: string;
+  items: string[];
+}
+
+export interface Props {
+  data: DescriptionListData;
+}
+
+const { data } = Astro.props;
+const { items, text } = data;
+---
+
+<div class="text-white">
+  <p class="text-center text-xl font-bold">{text}</p>
+
+  <div class="flex justify-center">
+    <div class="grid grid-cols-2 p-4">
+      {
+        items.map((item: string) => (
+          <div class="pl-2">
+            <DescriptionItem content={item} />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+---
+import MainLayout from '@layouts/MainLayout.astro';
+import DescriptionList from '@components/DescriptionList.astro';
+import Button from '@components/Button.astro';
+import TitleWithLines from '@components/TitleWithLines.astro';
+import ProfileCard from '@components/ProfileCard.astro';
+
+const description = {
+  text: '¿Algo que me defina?',
+  items: [
+    'Comprometido',
+    'Autodidacta',
+    'Resolutivo',
+    'Proactivo',
+    'Crítico',
+    'Organizado',
+    'Flexible',
+    'Curioso',
+  ],
+};
+
+const profileCard = {
+  name: 'Jairo',
+  surname: 'Cereceda',
+  secondSurname: 'Berciano',
+  image: '/img/profile-img.jpg',
+};
+
+const aboutMeButton = {
+  text: 'Continúa conociéndome',
+  icon: 'arrow-down',
+  url: '/techs',
+};
+
+const position = {
+  text: 'Desarrollador Web',
+  subtext: 'Especializado en UI',
+};
+---
+
+<MainLayout title="Jairo Cereceda Berciano">
+  <section class="flex flex-col gap-4">
+    <ProfileCard data={profileCard} />
+
+    <div class="flex items-center gap-2">
+      <TitleWithLines data={position} />
+    </div>
+
+    <DescriptionList data={description} />
+
+    <div class="flex justify-center mt-15">
+      <Button data={aboutMeButton} />
+    </div>
+  </section>
+</MainLayout>

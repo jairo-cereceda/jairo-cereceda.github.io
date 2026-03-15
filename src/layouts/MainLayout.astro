@@ -1,0 +1,79 @@
+---
+import '@styles/main.css';
+import { ViewTransitions } from 'astro:transitions';
+import WaveEffect from '@components/WaveEffect.astro';
+import Header from '@components/Header.astro';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+
+const headerData = {
+  items: [
+    {
+      url: '/',
+      icon: 'home',
+      text: 'Inicio',
+    },
+    {
+      url: '/techs',
+      icon: 'tool',
+      text: 'Techs',
+    },
+    {
+      url: '/experience',
+      icon: 'project',
+      text: 'Proyectos',
+    },
+    {
+      url: '/contact',
+      icon: 'contact',
+      text: 'Contacto',
+    },
+  ],
+};
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon" />
+    <ViewTransitions />
+    <title>{title}</title>
+  </head>
+  <body>
+    <WaveEffect />
+    <Header data={headerData} />
+
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
+
+<script>
+  const setupLightEffect = () => {
+    const light = document.getElementById('light');
+
+    if (!light) return;
+
+    const moveLight = (e: MouseEvent) => {
+      const x = e.clientX;
+      const y = e.clientY;
+
+      light.style.background = `radial-gradient(
+          circle at ${x}px ${y}px,
+          rgba(255, 255, 255, 0.08) 0%,
+          rgba(255, 255, 255, 0) 100%
+        )`;
+    };
+
+    document.addEventListener('mousemove', moveLight);
+  };
+
+  document.addEventListener('astro:page-load', setupLightEffect);
+</script>

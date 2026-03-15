@@ -1,0 +1,111 @@
+---
+import Title from '@components/Title.astro';
+import MainLayout from '@layouts/MainLayout.astro';
+import Subheading from '@components/Subheading.astro';
+import CertificatesCarrousel from '@components/CertificatesCarrousel.astro';
+import Button from '@components/Button.astro';
+import Timeline from '@components/Timeline.astro';
+import AppCard from '@components/AppCard.astro';
+
+const certificatesCarrouselData = [
+  {
+    src: '/img/certificates/jquery-cert.png',
+    alt: 'Certificado de curso de JQuery',
+  },
+  {
+    src: '/img/certificates/php-cert.png',
+    alt: 'Certificado de curso de PHP y MySQL',
+  },
+  {
+    src: '/img/certificates/anonimato-cert.png',
+    alt: 'Certificado de curso de Anonimato',
+  },
+  {
+    src: '/img/certificates/hacking-cert.png',
+    alt: 'Certificado de curso de Hacking',
+  },
+  {
+    src: '/img/certificates/hacking-avanzado-cert.jpg',
+    alt: 'Certificado de curso de Hacking Avanzado',
+  },
+  {
+    src: '/img/certificates/bootstrap-cert.png',
+    alt: 'Certificado de curso de Bootstrap',
+  },
+  {
+    src: '/img/certificates/gsap-cert.png',
+    alt: 'Certificado de curso de GSAP',
+  },
+  {
+    src: '/img/certificates/desarrollo-ia.png',
+    alt: 'Certificado de Desarrollo con IA',
+  },
+  {
+    src: '/img/certificates/api-rest.png',
+    alt: 'Certificado de Diseño de Api Rest',
+  },
+  {
+    src: '/img/certificates/programacion-funcional.png',
+    alt: 'Certificado de Programación funcional',
+  },
+];
+
+const contactMe = {
+  text: 'Contáctame',
+  icon: 'arrow-down',
+  url: '/contact',
+};
+
+const timelineData = [
+  {
+    title: 'Marzo 2025 - Febrero 2026',
+    position: 'UI developer en Knowmad mood',
+  },
+  {
+    title: 'Septiembre 2023 - Junio 2025',
+    position: 'Estudiante de DAW en IES Mar de Cádiz',
+  },
+];
+
+const mychatData = {
+  title: 'MyChat - Chat de Ideas',
+  techs: 'PWA con React & Tailwind 4',
+  imgSrc: '/img/projects/mychat.png',
+  url: 'https://jairo-cereceda.github.io/MyChat/',
+  isStudentApp: false,
+};
+
+const ucoolData = {
+  title: 'Ucool - TPV online',
+  techs: 'MERN Stack',
+  imgSrc: '/img/projects/ucool.png',
+  isStudentApp: true,
+};
+
+const whiteRockData = {
+  title: 'White Rock - Inmobiliaria',
+  techs: 'Laravel & MySQL',
+  imgSrc: '/img/projects/whiterock.png',
+  isStudentApp: true,
+};
+---
+
+<MainLayout title="Projects">
+  <section class="p-3 max-w-[800px] w-full my-0 mx-auto">
+    <Title first="Time" highlighted="l" final="ine" />
+    <Timeline items={timelineData} />
+  </section>
+
+  <section class="p-3 mt-3 max-w-[1000px] w-full my-0 mx-auto">
+    <Subheading text="Projects" />
+    <AppCard data={mychatData} />
+    <AppCard data={ucoolData} />
+    <AppCard data={whiteRockData} />
+  </section>
+
+  <CertificatesCarrousel images={certificatesCarrouselData} />
+
+  <div class="flex justify-center pb-10">
+    <Button data={contactMe} />
+  </div>
+</MainLayout>

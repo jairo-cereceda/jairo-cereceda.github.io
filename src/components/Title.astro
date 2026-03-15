@@ -1,0 +1,16 @@
+---
+export interface Props {
+  first: string;
+  highlighted: string;
+  final: string;
+}
+
+const { first, highlighted, final } = Astro.props;
+---
+
+<div>
+  <h1 class="text-white text-3xl">
+    {first}<span class="text-brand">{highlighted}</span>{final}
+  </h1>
+  <div class="h-0.5 w-5 bg-brand shadow-2xl"></div>
+</div>
