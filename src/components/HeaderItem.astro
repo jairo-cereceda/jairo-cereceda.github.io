@@ -15,7 +15,8 @@ const { data } = Astro.props;
 const { text, url, icon } = data;
 
 const currentPath = Astro.url.pathname;
-const isActive = currentPath === url;
+
+const isActive = url === '/' ? currentPath === '/' : currentPath.startsWith(url);
 ---
 
 <li class="flex gap-1 items-center">
