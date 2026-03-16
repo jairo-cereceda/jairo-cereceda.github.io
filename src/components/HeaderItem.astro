@@ -14,9 +14,12 @@ export interface Props {
 const { data } = Astro.props;
 const { text, url, icon } = data;
 
-const currentPath = Astro.url.pathname;
+const normalize = (path: string) => path.replace(/\/$/, '');
 
-const isActive = url === '/' ? currentPath === '/' : currentPath.startsWith(url);
+const currentPath = normalize(Astro.url.pathname);
+const normalizedUrl = normalize(url);
+
+const isActive = normalizedUrl === '' ? currentPath === '' : currentPath.startsWith(normalizedUrl);
 ---
 
 <li class="flex gap-1 items-center">
