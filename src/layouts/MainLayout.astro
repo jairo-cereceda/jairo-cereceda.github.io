@@ -47,9 +47,12 @@ const headerData = {
   </head>
   <body>
     <WaveEffect />
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute"
+      >Saltar al contenido principal</a
+    >
     <Header data={headerData} />
 
-    <main>
+    <main id="main-content">
       <slot />
     </main>
   </body>
