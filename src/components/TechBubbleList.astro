@@ -20,9 +20,11 @@ const { techs } = Astro.props;
 
   const bubbles = document.querySelectorAll('.js-tech-bubble');
 
-  gsap.from(bubbles, {
-    y: 30,
-    opacity: 0,
+  gsap.set(bubbles, { opacity: 0, y: 30 });
+
+  gsap.to(bubbles, {
+    y: 0,
+    opacity: 1,
     duration: 0.8,
     stagger: 0.1,
     ease: 'back.out(1.7)',
