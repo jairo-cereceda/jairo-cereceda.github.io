@@ -18,17 +18,27 @@ const { techs } = Astro.props;
 
   gsap.registerPlugin(ScrollTrigger);
 
-  const bubbles = document.querySelectorAll('.js-tech-bubble');
+  function initAnimation() {
+    ScrollTrigger.getAll().forEach((t) => t.kill());
 
-  gsap.to(bubbles, {
-    y: 0,
-    opacity: 1,
-    duration: 0.8,
-    stagger: 0.1,
-    ease: 'back.out(1.7)',
-    scrollTrigger: {
-      trigger: '.js-tech-grid',
-      start: 'top 85%',
-    },
-  });
+    const bubbles = document.querySelectorAll('.js-tech-bubble');
+
+    gsap.set(bubbles, { opacity: 0, y: 30 });
+
+    gsap.to(bubbles, {
+      y: 0,
+      opacity: 1,
+      duration: 0.8,
+      stagger: 0.1,
+      ease: 'back.out(1.7)',
+      scrollTrigger: {
+        trigger: '.js-tech-grid',
+        start: 'top 85%',
+      },
+    });
+  }
+
+  initAnimation();
+
+  document.addEventListener('astro:page-load', initAnimation);
 </script>
