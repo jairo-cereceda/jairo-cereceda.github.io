@@ -67,6 +67,13 @@ const timelineData = [
   },
 ];
 
+const portfolioMabec = {
+  title: 'Portfolio de Ilustradora',
+  techs: 'Astro & Tailwind 4',
+  imgSrc: '/img/projects/portfolio-mabec.png',
+  isStudentApp: false,
+};
+
 const mychatData = {
   title: 'MyChat - Chat de Ideas',
   techs: 'PWA con React & Tailwind 4',
@@ -98,6 +105,7 @@ const whiteRockData = {
 
   <section class="p-3 mt-3 max-w-[1000px] w-full my-0 mx-auto">
     <Subheading text="Proyectos" />
+    <AppCard data={portfolioMabec} />
     <AppCard data={mychatData} />
     <AppCard data={ucoolData} />
     <AppCard data={whiteRockData} />
