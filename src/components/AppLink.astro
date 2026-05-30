@@ -14,15 +14,42 @@ export interface Props {
 
 const { data } = Astro.props;
 const { url, icon, text } = data;
+
+const isMailto = url.startsWith('mailto:');
+
+const mailtoId = isMailto
+  ? {
+      id: 'mailto-btn',
+    }
+  : undefined;
 ---
 
 <GlassWrapper padding={false}>
-  <a href={url} rel="noreferrer noopener" target="_blank" class="flex justify-between w-full p-6">
-    <div class="flex gap-4 text-white">
-      <Icon name={icon} size={25} />
-      {text}
-    </div>
+  {
+    (
+      <a
+        href={!isMailto ? url : null}
+        rel="noreferrer noopener"
+        target="_blank"
+        class="flex justify-between w-full p-6 cursor-pointer"
+        {...mailtoId}
+      >
+        <div class="flex gap-4 text-white">
+          <Icon name={icon} size={25} />
+          {text}
+        </div>
 
-    <Icon name="arrow-right" size={25} class="text-white" />
-  </a>
+        <Icon name="arrow-right" size={25} class="text-white" />
+      </a>
+    )
+  }
 </GlassWrapper>
+
+<script>
+  document.getElementById('mailto-btn')?.addEventListener('click', (e) => {
+    const user = 'jaiiro.cereceda';
+    const domain = 'gmail.com';
+
+    window.location.href = `mailto:${user}@${domain}`;
+  });
+</script>
