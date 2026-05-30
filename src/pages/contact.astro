@@ -23,6 +23,12 @@ const homeButton: ButtonData = {
   url: '/',
   style: 'secondary',
 };
+
+const mailtoData = {
+  url: 'mailto:',
+  text: 'Enviar Mail',
+  icon: 'mail',
+};
 ---
 
 <MainLayout title="Jairo Cereceda Berciano - Contacto">
@@ -31,6 +37,7 @@ const homeButton: ButtonData = {
 
     <AppLink data={linkedinData} />
     <AppLink data={githubData} />
+    <AppLink data={mailtoData} />
 
     <GlassWrapper padding={true}>
       <div class="flex gap-4 items-center">
