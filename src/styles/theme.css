@@ -1,0 +1,21 @@
+@theme {
+  /*Fonts*/
+  --font-primary: 'Open Sans', sans-serif;
+  --font-secondary: 'Play', sans-serif;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /*Measures*/
+  --spacing-small: 10rem;
+  --spacing-medium-small: 20rem;
+  --spacing-medium: 40rem;
+  --spacing-medium-big: 45rem;
+  --spacing-big: 70rem;
+
+  /*Colors*/
+  --color-primary: #2861c9;
+  --color-white: #ebefff;
+  --color-black: #0f0f0f;
+}
