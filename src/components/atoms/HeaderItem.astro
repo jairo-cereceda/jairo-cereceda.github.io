@@ -1,0 +1,27 @@
+---
+import HeaderItemList from '@components/molecules/HeaderItemList.astro';
+import { Icon } from 'astro-icon/components';
+
+export interface headerItemData {
+  url: string;
+  text: string;
+  icon?: string;
+  visibleText: boolean;
+}
+
+export interface Props {
+  data: headerItemData;
+}
+
+const { data } = Astro.props;
+const { text, url, icon, visibleText } = data;
+
+const itemAttrs = !visibleText ? { 'aria-label': text } : {};
+---
+
+<li>
+  <a href={url} {...itemAttrs}>
+    {icon && <Icon name={icon} size={16} />}
+    {visibleText && text}
+  </a>
+</li>

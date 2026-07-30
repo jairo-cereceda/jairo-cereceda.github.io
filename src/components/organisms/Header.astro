@@ -1,0 +1,78 @@
+---
+import HeaderItemList from '@components/molecules/HeaderItemList.astro';
+import { Icon } from 'astro-icon/components';
+
+const headerItemList = {
+  items: [
+    {
+      url: '/',
+      text: 'Ir a la vista principal',
+      icon: 'home',
+      visibleText: false,
+    },
+  ],
+};
+---
+
+<header
+  class="backdrop-blur-2xl bg-secondary/20 rounded-b-2xl w-[98%] p-2 px-6 shadow-2xl shadow-white/20 border border-white/10 border-t-0"
+>
+  <div class="text-white text-bold text-sm flex justify-between">
+    <p>14:45</p>
+    <div class="flex gap-4 items-center">
+      <div class="flex items-center">
+        <Icon name="volume1" size="16" />
+        <input
+          type="range"
+          name=""
+          id="volume"
+          min="0"
+          max="100"
+          value="50"
+          class="w-24 bottom-4 appearance-none rounded-sm
+          [&::-webkit-slider-runnable-track]:appearance-none
+          [&::-webkit-slider-runnable-track]:h-1
+          [&::-webkit-slider-runnable-track]:rounded-full
+        
+          [&::-webkit-slider-thumb]:appearance-none
+          [&::-webkit-slider-thumb]:relative
+          [&::-webkit-slider-thumb]:w-3
+          [&::-webkit-slider-thumb]:h-3
+          [&::-webkit-slider-thumb]:bg-primary
+          [&::-webkit-slider-thumb]:rounded-full
+          [&::-webkit-slider-thumb]:-top-1"
+          style="background: linear-gradient(
+          to right,
+          var(--color-primary) 0%,
+          var(--color-primary) var(--progress),
+          var(--color-white) var(--progress),
+          var(--color-white) 100%
+        );"
+        />
+      </div>
+
+      <HeaderItemList data={headerItemList} />
+    </div>
+  </div>
+</header>
+
+<script>
+  const volumeInput = document.getElementById(
+    'volume'
+  ) as HTMLInputElement | null;
+
+  if (volumeInput) {
+    const updateProgress = () => {
+      const min = Number(volumeInput.min);
+      const max = Number(volumeInput.max);
+      const value = Number(volumeInput.value);
+
+      const percent = ((value - min) * 100) / (max - min);
+
+      volumeInput.style.setProperty('--progress', `${percent}%`);
+    };
+
+    updateProgress();
+    volumeInput.addEventListener('input', updateProgress);
+  }
+</script>

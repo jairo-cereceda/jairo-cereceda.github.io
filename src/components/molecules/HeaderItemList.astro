@@ -1,0 +1,21 @@
+---
+import type { headerItemData } from '@components/atoms/HeaderItem.astro';
+import HeaderItem from '@components/atoms/HeaderItem.astro';
+
+export interface headerItemListData {
+  items: headerItemData[];
+}
+
+export interface Props {
+  data: headerItemListData;
+}
+
+const { data } = Astro.props;
+const { items } = data;
+---
+
+<nav>
+  <ul>
+    {items && items.map((item) => <HeaderItem data={item} />)}
+  </ul>
+</nav>
