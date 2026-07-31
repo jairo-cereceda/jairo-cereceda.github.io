@@ -1,7 +1,15 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import MainCard from '@components/organisms/MainCard.astro';
+import MainLayout from '@layouts/MainLayout.astro';
+
+const mainCard = {
+  img: 'img/pfp.png',
+  imgAlt: '',
+  name: 'Jairo Cereceda Berciano',
+  profession: 'UI/UX Developer',
+};
 ---
 
-<Layout>
-  <br />
-</Layout>
+<MainLayout>
+  <MainCard data={mainCard} />
+</MainLayout>
