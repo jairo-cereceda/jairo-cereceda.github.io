@@ -1,0 +1,27 @@
+---
+import DefaultCard from '@components/molecules/DefaultCard.astro';
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+
+export interface itemCardData {
+  url: string;
+  icon?: string;
+  text: string;
+}
+
+export interface Props {
+  data: itemCardData;
+}
+
+const { data } = Astro.props;
+const { url, icon, text } = data;
+---
+
+<a href={url}>
+  <DefaultCard>
+    <div class="flex flex-col gap-4">
+      <Icon name={icon} size="48" class="text-white" />
+      <h2 class="font-bold text-white">{text}</h2>
+    </div>
+  </DefaultCard>
+</a>

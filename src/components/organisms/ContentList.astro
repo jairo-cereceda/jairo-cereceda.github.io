@@ -1,0 +1,19 @@
+---
+import type { itemCardData } from '@components/molecules/ItemCard.astro';
+import ItemCard from '@components/molecules/ItemCard.astro';
+
+export interface contentListData {
+  items: itemCardData[];
+}
+
+export interface Props {
+  data: contentListData;
+}
+
+const { data } = Astro.props;
+const { items } = data;
+---
+
+<section class="w-full grid grid-cols-2 gap-4">
+  {items.map((item) => <ItemCard data={item} />)}
+</section>
