@@ -1,0 +1,20 @@
+---
+export interface sliderThumbData {
+  ariaLabel: string;
+  id: number;
+}
+
+export interface Props {
+  data: sliderThumbData;
+}
+
+const { data } = Astro.props;
+const { ariaLabel, id } = data;
+---
+
+<button
+  aria-label={ariaLabel}
+  class="bg-transparent rounded-full w-2 h-2 border border-white"
+  data-slider-thumb={id}
+>
+</button>

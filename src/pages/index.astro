@@ -1,5 +1,6 @@
 ---
 import ContentList from '@components/organisms/ContentList.astro';
+import FactSlider from '@components/organisms/FactSlider.astro';
 import MainCard from '@components/organisms/MainCard.astro';
 import MainLayout from '@layouts/MainLayout.astro';
 
@@ -34,9 +35,23 @@ const contentList = {
     },
   ],
 };
+
+const factSlider = {
+  items: [
+    {
+      title: 'Acerca de mis estudios',
+      text: 'En mis estudios de Desarrollo de Aplicaciones web conseguí obtener la mayor nota media posible, siendo esta un 10/10.',
+    },
+    {
+      title: 'Acerca de mis estudios 2',
+      text: 'En mis estudios de Desarrollo de Aplicaciones web conseguí obtener la mayor nota media posible, siendo esta un 10/10.',
+    },
+  ],
+};
 ---
 
 <MainLayout>
   <MainCard data={mainCard} />
   <ContentList data={contentList} />
+  <FactSlider data={factSlider} />
 </MainLayout>

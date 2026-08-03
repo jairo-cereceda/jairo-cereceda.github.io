@@ -1,0 +1,24 @@
+---
+export interface factCardData {
+  title: string;
+  text: string;
+}
+
+export interface Props {
+  data: factCardData;
+}
+
+const { data } = Astro.props;
+const { title, text } = data;
+---
+
+<div class="h-full w-full">
+  <div class="flex flex-col gap-4 items-center justify-center h-full p-1">
+    <h2 class="w-full text-lg font-extrabold">
+      {title}
+    </h2>
+    <p>
+      {text}
+    </p>
+  </div>
+</div>

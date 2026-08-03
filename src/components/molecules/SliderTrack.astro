@@ -1,0 +1,25 @@
+---
+import type { sliderThumbData } from '@components/atoms/SliderThumb.astro';
+import SliderThumb from '@components/atoms/SliderThumb.astro';
+
+export interface sliderTrackData {
+  quantity: number;
+}
+
+export interface Props {
+  data: sliderTrackData;
+}
+
+const { data } = Astro.props;
+const { quantity } = data;
+---
+
+<div
+  class="z-10 absolute bottom-0 right-0 backdrop-blur-md filter rounded-2xl px-2 py-1 shadow-2xl shadow-white/20 border border-white/10 flex gap-1 justify-center items-center"
+>
+  {
+    [...Array(quantity)].map((_, id) => (
+      <SliderThumb data={{ ariaLabel: `Ir a la diapositiva ${id}`, id: id }} />
+    ))
+  }
+</div>
