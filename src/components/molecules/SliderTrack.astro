@@ -1,9 +1,9 @@
 ---
-import type { sliderThumbData } from '@components/atoms/SliderThumb.astro';
 import SliderThumb from '@components/atoms/SliderThumb.astro';
 
 export interface sliderTrackData {
   quantity: number;
+  position: 'top' | 'bottomRight';
 }
 
 export interface Props {
@@ -11,11 +11,21 @@ export interface Props {
 }
 
 const { data } = Astro.props;
-const { quantity } = data;
+const { quantity, position } = data;
+
+let stylePosition;
+switch (position) {
+  case 'top':
+    stylePosition = 'top-0 left-1/2 -translate-x-1/2 -translate-y-2';
+    break;
+  case 'bottomRight':
+    stylePosition = 'bottom-0 right-0';
+    break;
+}
 ---
 
 <div
-  class="z-10 absolute bottom-0 right-0 backdrop-blur-md filter rounded-2xl px-2 py-1 shadow-2xl shadow-white/20 border border-white/10 flex gap-1 justify-center items-center"
+  class={`z-10 absolute ${stylePosition}  backdrop-blur-md filter rounded-2xl px-2 py-1 shadow-2xl shadow-white/20 border border-white/10 flex gap-1 justify-center items-center`}
 >
   {
     [...Array(quantity)].map((_, id) => (

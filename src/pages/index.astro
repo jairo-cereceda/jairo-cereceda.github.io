@@ -14,22 +14,22 @@ const mainCard = {
 const contentList = {
   items: [
     {
-      url: '#',
+      url: '/experience',
       icon: 'calendar',
       text: 'Experiencia',
     },
     {
-      url: '#',
+      url: '/projects',
       icon: 'branch',
       text: 'Proyectos',
     },
     {
-      url: '#',
+      url: '/techs',
       icon: 'tool',
       text: 'Tecnologías',
     },
     {
-      url: '#',
+      url: '/playground',
       icon: 'sandbox',
       text: 'Playground',
     },
@@ -55,3 +55,9 @@ const factSlider = {
   <ContentList data={contentList} />
   <FactSlider data={factSlider} />
 </MainLayout>
+
+<script>
+  import { createCarousel } from '@utils/carousel';
+
+  createCarousel();
+</script>

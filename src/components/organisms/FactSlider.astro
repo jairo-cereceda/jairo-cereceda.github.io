@@ -21,8 +21,13 @@ const track = { thumbs: [{ ariaLabel: 'Ir a 1' }, { ariaLabel: 'Ir a 2' }] };
 <section class="h-full w-full">
   <DefaultCard>
     <div class="overflow-hidden h-full relative">
-      <SliderTrack data={{ quantity: items.length }} />
-      <div class="w-full flex h-full touch-pan-y" id="fact-slider">
+      <SliderTrack data={{ quantity: items.length, position: 'bottomRight' }} />
+      <div
+        class="w-full flex h-full touch-pan-y"
+        data-slider
+        data-is-manegeable="true"
+        data-is-autoplayable="true"
+      >
         <article class="w-full shrink-0 flex justify-center" data-slide>
           <FactCard data={items[items.length - 1]} />
         </article>
@@ -40,133 +45,3 @@ const track = { thumbs: [{ ariaLabel: 'Ir a 1' }, { ariaLabel: 'Ir a 2' }] };
     </div>
   </DefaultCard>
 </section>
-
-<script>
-  const factSlider = document.querySelector('#fact-slider') as HTMLElement;
-  const factSliderThumbs = document.querySelectorAll(
-    '[data-slider-thumb]'
-  ) as NodeListOf<HTMLElement>;
-
-  let currentPosition = 1;
-  const slides = factSlider.querySelectorAll('[data-slide]');
-  const totalSlides = slides.length;
-  let intervalId: number | undefined;
-  let startX = 0;
-  let isAnimating = false;
-
-  function updateThumbs() {
-    let thumbIndex;
-
-    if (currentPosition === 0) {
-      thumbIndex = factSliderThumbs.length - 1;
-    } else if (currentPosition === totalSlides - 1) {
-      thumbIndex = 0;
-    } else {
-      thumbIndex = currentPosition - 1;
-    }
-
-    if (currentPosition < totalSlides - 1) {
-      factSliderThumbs.forEach((thumb) => {
-        thumb.classList.remove('bg-white');
-        thumb.classList.add('bg-transparent');
-      });
-
-      factSliderThumbs[thumbIndex].classList.add('bg-white');
-    }
-  }
-
-  function updateCarousel() {
-    const width = slides[0].clientWidth;
-    factSlider.style.transform = `translateX(-${currentPosition * width}px)`;
-
-    updateThumbs();
-  }
-
-  function moveSlide(position: number) {
-    if (isAnimating) return;
-    isAnimating = true;
-
-    factSlider.classList.add('transition-transform', 'duration-300');
-    currentPosition = position;
-    updateCarousel();
-  }
-
-  export function autoPlay() {
-    setTimeout(() => {
-      factSlider.classList.add('duration-300', 'transition-transform');
-    }, 100);
-
-    intervalId = window.setInterval(() => {
-      currentPosition++;
-      moveSlide(currentPosition);
-    }, 4000);
-  }
-
-  factSlider.addEventListener('transitionend', () => {
-    if (currentPosition === totalSlides - 1) {
-      factSlider.classList.remove('transition-transform', 'duration-300');
-      currentPosition = 1;
-      updateCarousel();
-
-      requestAnimationFrame(() => {
-        isAnimating = false;
-      });
-      isAnimating = false;
-    } else if (currentPosition === 0) {
-      factSlider.classList.remove('transition-transform', 'duration-300');
-      currentPosition = totalSlides - 2;
-      updateCarousel();
-
-      requestAnimationFrame(() => {
-        isAnimating = false;
-      });
-    } else {
-      isAnimating = false;
-    }
-  });
-
-  factSlider.addEventListener('pointerdown', (e) => {
-    startX = e.clientX;
-    stopAutoPlay();
-  });
-
-  factSlider.addEventListener('pointerup', (e) => {
-    if (isAnimating) return;
-
-    const distance = e.clientX - startX;
-
-    if (distance > 50) {
-      moveSlide(currentPosition - 1);
-    } else if (distance < -50) {
-      moveSlide(currentPosition + 1);
-    }
-
-    autoPlay();
-  });
-
-  factSliderThumbs.forEach((thumb) =>
-    thumb.addEventListener('click', () => {
-      const thumbId = Number(thumb.dataset.sliderThumb) + 1;
-
-      moveSlide(thumbId);
-    })
-  );
-
-  export function stopAutoPlay() {
-    if (intervalId) {
-      clearInterval(intervalId);
-      intervalId = undefined;
-    }
-  }
-
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      stopAutoPlay();
-    } else {
-      autoPlay();
-    }
-  });
-
-  updateCarousel();
-  autoPlay();
-</script>
