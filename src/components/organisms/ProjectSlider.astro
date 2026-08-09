@@ -1,0 +1,69 @@
+---
+import ProjectInfo from '@components/molecules/ProjectInfo.astro';
+import ProjectSlideImgs from '@components/molecules/ProjectSlideImgs.astro';
+import SliderTrack from '@components/molecules/SliderTrack.astro';
+
+const slides = [
+  {
+    imgs: [
+      {
+        img: 'img/pfp.png',
+        imgAlt: '',
+      },
+      {
+        img: 'img/mock.png',
+        imgAlt: '',
+      },
+    ],
+    info: {
+      title: 'Portfolio de Ilustradora',
+      description: 'lorem ipsum',
+    },
+  },
+  {
+    imgs: [
+      {
+        img: 'img/pfp.png',
+        imgAlt: '',
+      },
+      {
+        img: 'img/mock.png',
+        imgAlt: '',
+      },
+    ],
+    info: {
+      title: 'Portfolio de Ilustradora',
+      description: 'lorem ipsum',
+    },
+  },
+];
+---
+
+<section class="w-full h-full relative">
+  <SliderTrack data={{ quantity: slides.length, position: 'top' }} />
+  <div class="overflow-hidden h-full rounded-2xl">
+    <div
+      class="w-full flex h-full touch-pan-y"
+      data-slider
+      data-is-manegeable="true"
+      data-is-autoplayable="false"
+    >
+      <article class="w-full shrink-0 flex justify-center" data-slide>
+        <ProjectSlideImgs data={{ imgs: slides[slides.length - 1].imgs }} />
+        <ProjectInfo data={slides[slides.length - 1].info} />
+      </article>
+      {
+        slides.map((slide) => (
+          <article class="w-full shrink-0 flex justify-center" data-slide>
+            <ProjectSlideImgs data={{ imgs: slide.imgs }} />
+            <ProjectInfo data={slide.info} />
+          </article>
+        ))
+      }
+      <article class="w-full shrink-0 flex justify-center" data-slide>
+        <ProjectSlideImgs data={{ imgs: slides[0].imgs }} />
+        <ProjectInfo data={slides[0].info} />
+      </article>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,22 @@
+---
+import { Image } from 'astro:assets';
+import { getImageMetadata } from '@utils/getImage';
+
+export interface projectSlideImgData {
+  img: string;
+  imgAlt: string;
+}
+
+const { data } = Astro.props;
+const { img, imgAlt } = data;
+
+const metadata = await getImageMetadata(img);
+---
+
+<Image
+  src={metadata}
+  width={metadata.width}
+  height={metadata.height}
+  alt={imgAlt}
+  class="aspect-square"
+/>

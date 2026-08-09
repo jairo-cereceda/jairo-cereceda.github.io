@@ -1,0 +1,14 @@
+---
+import ProjectSlider from '@components/organisms/ProjectSlider.astro';
+import MainLayout from '@layouts/MainLayout.astro';
+---
+
+<MainLayout>
+  <ProjectSlider />
+</MainLayout>
+
+<script>
+  import { createCarousel } from '@utils/carousel';
+
+  createCarousel();
+</script>

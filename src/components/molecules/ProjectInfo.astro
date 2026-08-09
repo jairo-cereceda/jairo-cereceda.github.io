@@ -1,0 +1,22 @@
+---
+import DefaultCard from './DefaultCard.astro';
+
+export interface mainCardData {
+  title: string;
+  description: string;
+}
+
+export interface Props {
+  data: mainCardData;
+}
+
+const { data } = Astro.props;
+const { title, description } = data;
+---
+
+<div class="absolute w-full top-[40%] bottom-0">
+  <DefaultCard>
+    <h1 class="font-extrabold text-lg">{title}</h1>
+    <p>{description}</p>
+  </DefaultCard>
+</div>
