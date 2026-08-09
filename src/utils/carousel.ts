@@ -49,7 +49,8 @@ export function createCarousel() {
     }
 
     function moveSlide(position: number) {
-      if (isAnimating) return;
+      if (isAnimating || position === currentPosition) return;
+
       isAnimating = true;
 
       slider.classList.add('transition-transform', 'duration-300');
