@@ -1,0 +1,21 @@
+---
+import BubbleItemList from '@components/molecules/BubbleItemList.astro';
+import MainLayout from '@layouts/MainLayout.astro';
+
+const techs = {
+  items: [
+    {
+      img: 'img/pfp.png',
+      text: 'Astro',
+    },
+    {
+      img: 'img/pfp.png',
+      text: 'TypeScript',
+    },
+  ],
+};
+---
+
+<MainLayout>
+  <BubbleItemList data={techs} />
+</MainLayout>

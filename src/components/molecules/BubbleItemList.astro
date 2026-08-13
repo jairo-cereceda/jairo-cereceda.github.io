@@ -1,0 +1,19 @@
+---
+import type { bubbleItemData } from '@components/atoms/BubbleItem.astro';
+import BubbleItem from '@components/atoms/BubbleItem.astro';
+
+export interface bubbleItemListData {
+  items: bubbleItemData[];
+}
+
+export interface Props {
+  data: bubbleItemListData;
+}
+
+const { data } = Astro.props;
+const { items } = data;
+---
+
+<div class="w-full flex flex-col gap-2">
+  {items.map((bubble) => <BubbleItem data={bubble} />)}
+</div>
