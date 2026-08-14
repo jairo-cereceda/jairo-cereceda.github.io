@@ -1,0 +1,28 @@
+---
+import DefaultCard from '@components/molecules/DefaultCard.astro';
+import type { timelineDotData } from '@components/molecules/TimelineDot.astro';
+import TimelineDot from '@components/molecules/TimelineDot.astro';
+
+export interface timelineData {
+  items: timelineDotData[];
+}
+
+export interface Props {
+  data: timelineData;
+}
+
+const { data } = Astro.props;
+const { items } = data;
+---
+
+<DefaultCard isFullheight={false}>
+  <div class="my-5 ml-2">
+    {
+      items.map((item) => (
+        <>
+          <TimelineDot data={item} hasDot={item != items[items.length - 1]} />
+        </>
+      ))
+    }
+  </div>
+</DefaultCard>

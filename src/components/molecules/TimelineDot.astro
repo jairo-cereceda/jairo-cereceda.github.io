@@ -1,0 +1,28 @@
+---
+import { Icon } from 'astro-icon/components';
+
+export interface timelineDotData {
+  title: string;
+  position: string;
+}
+
+export interface Props {
+  data: timelineDotData;
+  hasDot: boolean;
+}
+
+const { data, hasDot } = Astro.props;
+const { title, position } = data;
+---
+
+<div class="flex items-center gap-5">
+  <Icon name="circle" size={15} />
+  <div>
+    <h2 class="font-extrabold drop-shadow-[0_0_1px_rgba(255,255,255,1)] filter">
+      {title}
+    </h2>
+    <p>{position}</p>
+  </div>
+</div>
+
+{hasDot && <div class="h-20 w-0.5 bg-white ml-1.5" />}

@@ -1,0 +1,26 @@
+---
+import BubbleItemList from '@components/molecules/BubbleItemList.astro';
+import Timeline from '@components/organisms/Timeline.astro';
+import MainLayout from '@layouts/MainLayout.astro';
+
+const timelineData = {
+  items: [
+    {
+      title: 'Febrero 2026 - Actualidad',
+      position: 'Proyectos personales y aprendizaje',
+    },
+    {
+      title: 'Marzo 2025 - Febrero 2026',
+      position: 'UI developer en Knowmad mood',
+    },
+    {
+      title: 'Septiembre 2023 - Junio 2025',
+      position: 'Estudiante de DAW en IES Mar de Cádiz',
+    },
+  ],
+};
+---
+
+<MainLayout>
+  <Timeline data={timelineData} />
+</MainLayout>
