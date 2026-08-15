@@ -64,8 +64,7 @@ export function createCarousel() {
       }, 100);
 
       intervalId = window.setInterval(() => {
-        currentPosition++;
-        moveSlide(currentPosition);
+        moveSlide(currentPosition + 1);
       }, 4000);
     }
 
