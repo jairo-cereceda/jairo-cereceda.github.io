@@ -1,0 +1,60 @@
+---
+import { Icon } from 'astro-icon/components';
+
+export interface appLinkData {
+  url: string;
+  icon: string;
+  text: string;
+}
+
+export interface Props {
+  data: appLinkData;
+}
+
+const { data } = Astro.props;
+const { url, icon, text } = data;
+
+const isMailto = url.startsWith('mailto:');
+
+const mailtoId = isMailto
+  ? {
+      id: 'mailto-btn',
+    }
+  : undefined;
+---
+
+<div
+  class="px-3 py-2 bg-white/20 shadow-secondary/20 font-bold border border-white/20 rounded-2xl text-sm"
+>
+  {
+    (
+      <a
+        href={!isMailto ? url : null}
+        rel="noreferrer noopener"
+        target="_blank"
+        class="flex justify-between w-full p-6 cursor-pointer"
+        {...mailtoId}
+      >
+        <div class="flex gap-4 text-white font-bold drop-shadow-[0_0_1px_rgba(0,0,0,1)] filter">
+          <Icon name={icon} size={25} />
+          {text}
+        </div>
+
+        <Icon
+          name="arrow-right"
+          size={25}
+          class="text-white drop-shadow-[0_0_1px_rgba(0,0,0,1)] filter"
+        />
+      </a>
+    )
+  }
+</div>
+
+<script>
+  document.getElementById('mailto-btn')?.addEventListener('click', (e) => {
+    const user = 'jaiiro.cereceda';
+    const domain = 'gmail.com';
+
+    window.location.href = `mailto:${user}@${domain}`;
+  });
+</script>

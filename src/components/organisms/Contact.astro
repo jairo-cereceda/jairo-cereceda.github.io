@@ -1,0 +1,22 @@
+---
+import AppLink from '@components/molecules/AppLink.astro';
+import type { appLinkData } from '@components/molecules/AppLink.astro';
+import ActionSheet from '@components/molecules/ActionSheet.astro';
+
+export interface contactData {
+  items: appLinkData[];
+}
+
+export interface Props {
+  data: contactData;
+}
+
+const { data } = Astro.props;
+const { items } = data;
+---
+
+<ActionSheet title="Contacto">
+  <div class="flex flex-col gap-2">
+    {items.map((item) => <AppLink data={item} />)}
+  </div>
+</ActionSheet>

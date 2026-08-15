@@ -1,4 +1,5 @@
 ---
+import Contact from '@components/organisms/Contact.astro';
 import ContentList from '@components/organisms/ContentList.astro';
 import FactSlider from '@components/organisms/FactSlider.astro';
 import MainCard from '@components/organisms/MainCard.astro';
@@ -48,16 +49,40 @@ const factSlider = {
     },
   ],
 };
+
+const contactData = {
+  items: [
+    {
+      url: 'https://www.linkedin.com/in/jairo-cereceda-berciano/',
+      text: 'Linkedin',
+      icon: 'linkedin',
+    },
+
+    {
+      url: 'https://github.com/jairo-cereceda',
+      text: 'GitHub',
+      icon: 'github',
+    },
+    {
+      url: 'mailto:',
+      text: 'Enviar Mail',
+      icon: 'mail',
+    },
+  ],
+};
 ---
 
 <MainLayout>
   <MainCard data={mainCard} />
   <ContentList data={contentList} />
   <FactSlider data={factSlider} />
+  <Contact data={contactData} />
 </MainLayout>
 
 <script>
   import { createCarousel } from '@utils/carousel';
+  import { controlActionSheets } from '@utils/actionSheet';
 
   createCarousel();
+  controlActionSheets();
 </script>
