@@ -1,0 +1,46 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  title?: string;
+}
+
+const { title } = Astro.props;
+
+const titleAriaAttribute = title
+  ? { 'aria-labelledby': 'action-sheet-title' }
+  : '';
+---
+
+<div
+  id="action-sheet-wrapper"
+  aria-hidden="true"
+  class="fixed inset-0 backdrop-blur-xs z-50 opacity-0 pointer-events-none transition"
+>
+  <div
+    class="px-2 py-5 fixed bottom-0 w-full bg-transparent border border-white/20 rounded-t-3xl shadow-background-thin translate-y-full transition duration-200 z-100"
+    id="action-sheet"
+    role="dialog"
+    aria-modal="false"
+    {...titleAriaAttribute}
+  >
+    <h2
+      id="action-sheet-title"
+      class="text-lg font-bold ml-1 drop-shadow-[0_0_1px_rgba(255,255,255,0.25)] filter"
+    >
+      {title}
+    </h2>
+    <button
+      id="action-sheet-closer"
+      class="absolute top-2 right-2 cursor-pointer"
+      aria-label="Cerrar panel de información"
+      tabindex="-1"
+      ><Icon
+        name="close"
+        size="24"
+        class="drop-shadow-[0_0_1px_rgba(0,0,0,1)] filter"
+      /></button
+    >
+    <slot />
+  </div>
+</div>
