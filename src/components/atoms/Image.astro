@@ -2,9 +2,13 @@
 import { Image } from 'astro:assets';
 import { getImageMetadata } from '@utils/getImage';
 
-export interface projectSlideImgData {
+export interface imageData {
   img: string;
   imgAlt: string;
+}
+
+interface Props {
+  data: imageData;
 }
 
 const { data } = Astro.props;
