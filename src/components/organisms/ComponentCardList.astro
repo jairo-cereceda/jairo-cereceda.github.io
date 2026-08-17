@@ -1,0 +1,19 @@
+---
+import type { componentCardData } from '@components/molecules/ComponentCard.astro';
+import ComponentCard from '@components/molecules/ComponentCard.astro';
+
+export interface componentCardListData {
+  items: componentCardData[];
+}
+
+interface Props {
+  data: componentCardListData;
+}
+
+const { data } = Astro.props;
+const { items } = data;
+---
+
+<section class="w-full flex flex-col gap-2">
+  {items.map((component) => <ComponentCard data={component} />)}
+</section>
