@@ -1,10 +1,12 @@
 ---
 import { getImageMetadata } from '@utils/getImage';
 import { Image } from 'astro:assets';
+import Button from './Button.astro';
 
 export interface bubbleItemData {
   img: string;
   text: string;
+  description: string;
 }
 
 export interface Props {
@@ -12,20 +14,30 @@ export interface Props {
 }
 
 const { data } = Astro.props;
-const { img, text } = data;
+const { img, text, description } = data;
 
 const metadata = await getImageMetadata(img);
+
+const actionSheetButton = {
+  text: 'Ver más',
+  isActionSheet: true,
+  actionSheetTitle: text,
+  actionSheetDescription: description,
+};
 ---
 
 <div
-  class="w-full px-4 py-2 backdrop-blur-md bg-secondary/20 rounded-2xl shadow-2xl shadow-white/20 border border-white/10 flex gap-2 items-center"
+  class="w-full px-4 py-2 backdrop-blur-md bg-secondary/20 rounded-2xl shadow-2xl shadow-white/20 border border-white/10 flex gap-2 justify-between items-center"
 >
-  <Image
-    src={metadata}
-    width={metadata.width}
-    height={metadata.height}
-    alt=""
-    class="rounded-full w-16 h-16"
-  />
-  <p>{text}</p>
+  <div class="flex gap-2 items-center">
+    <Image
+      src={metadata}
+      width={metadata.width}
+      height={metadata.height}
+      alt=""
+      class="rounded-full w-16 h-16"
+    />
+    <p>{text}</p>
+  </div>
+  <Button data={actionSheetButton} />
 </div>

@@ -1,5 +1,6 @@
 ---
 import Heading from '@components/atoms/Heading.astro';
+import ActionSheet from '@components/molecules/ActionSheet.astro';
 import BubbleItemList from '@components/organisms/BubbleItemList.astro';
 import MainLayout from '@layouts/MainLayout.astro';
 
@@ -8,10 +9,14 @@ const techs = {
     {
       img: 'img/pfp.png',
       text: 'Astro',
+      description:
+        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet laudantium recusandae perspiciatis et, ipsam repellat? Recusandae rem numquam adipisci voluptatem! Quibusdam doloribus autem architecto assumenda dicta officiis enim vitae iure!',
     },
     {
       img: 'img/pfp.png',
       text: 'TypeScript',
+      description:
+        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet laudantium recusandae perspiciatis et, ipsam repellat? Recusandae rem numquam adipisci voluptatem! Quibusdam doloribus autem architecto assumenda dicta officiis enim vitae iure!',
     },
   ],
 };
@@ -20,4 +25,5 @@ const techs = {
 <MainLayout>
   <Heading text="Tecnologías" />
   <BubbleItemList data={techs} />
+  <ActionSheet hasTitle={true} hasDescription={true} />
 </MainLayout>
