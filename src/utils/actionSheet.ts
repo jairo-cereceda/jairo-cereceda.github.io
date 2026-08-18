@@ -4,6 +4,10 @@ export function controlActionSheets() {
   document.addEventListener('DOMContentLoaded', () => {
     const actionSheet = document.getElementById('action-sheet');
     const actionSheetWrapper = document.getElementById('action-sheet-wrapper');
+    const actionSheetTitle = document.getElementById('action-sheet-title');
+    const actionSheetDescription = document.getElementById(
+      'action-sheet-description'
+    );
     const actionSheetCloser = document.getElementById('action-sheet-closer');
 
     let slideMoreInfoBtn = null as HTMLButtonElement | null;
@@ -54,6 +58,14 @@ export function controlActionSheets() {
 
       slideMoreInfoBtn = btn;
       openAction();
+
+      if (actionSheetTitle) {
+        actionSheetTitle.textContent = btn.dataset.title ?? '';
+      }
+
+      if (actionSheetDescription) {
+        actionSheetDescription.textContent = btn.dataset.description ?? '';
+      }
     });
 
     document.addEventListener('keydown', (e) => {

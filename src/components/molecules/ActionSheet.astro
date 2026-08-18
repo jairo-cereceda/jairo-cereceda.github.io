@@ -2,12 +2,17 @@
 import { Icon } from 'astro-icon/components';
 
 interface Props {
-  title?: string;
+  hasTitle?: boolean;
+  hasDescription?: boolean;
 }
 
-const { title } = Astro.props;
+const { hasTitle, hasDescription } = Astro.props;
 
-const titleAriaAttribute = title
+const titleAriaAttribute = hasTitle
+  ? { 'aria-labelledby': 'action-sheet-title' }
+  : '';
+
+const descriptionAriaAttribute = hasDescription
   ? { 'aria-labelledby': 'action-sheet-title' }
   : '';
 ---
@@ -23,13 +28,16 @@ const titleAriaAttribute = title
     role="dialog"
     aria-modal="false"
     {...titleAriaAttribute}
+    {...descriptionAriaAttribute}
   >
-    <h2
-      id="action-sheet-title"
-      class="text-lg font-bold ml-1 drop-shadow-[0_0_1px_rgba(255,255,255,0.25)] filter"
-    >
-      {title}
-    </h2>
+    {
+      hasTitle && (
+        <h2
+          id="action-sheet-title"
+          class="text-lg font-bold ml-1 drop-shadow-[0_0_1px_rgba(255,255,255,0.25)] filter"
+        />
+      )
+    }
     <button
       id="action-sheet-closer"
       class="absolute top-2 right-2 cursor-pointer"
@@ -41,6 +49,11 @@ const titleAriaAttribute = title
         class="drop-shadow-[0_0_1px_rgba(0,0,0,1)] filter"
       /></button
     >
+    {
+      hasDescription && (
+        <p id="action-sheet-description" class="max-h-[40vh] overflow-y-auto" />
+      )
+    }
     <slot />
   </div>
 </div>
