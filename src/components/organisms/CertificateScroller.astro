@@ -1,0 +1,62 @@
+---
+import type { imageData } from '@components/atoms/Image.astro';
+import DefaultCard from '@components/molecules/DefaultCard.astro';
+import SliderTrack from '@components/molecules/SliderTrack.astro';
+import { getImageMetadata } from '@utils/getImage';
+import { Image } from 'astro:assets';
+
+export interface certificateScrollerData {
+  imgs: imageData[];
+  title?: string;
+}
+
+export interface Props {
+  data: certificateScrollerData;
+}
+
+const { data } = Astro.props;
+const { imgs, title } = data;
+
+const imgMetadatas: any[] = [];
+
+for (const img of imgs) {
+  imgMetadatas.push({
+    img: await getImageMetadata(img.img),
+    imgAlt: img.imgAlt,
+  });
+}
+---
+
+<section class="w-full">
+  <DefaultCard isFullheight={false}>
+    {
+      title ? (
+        <h2 class="font-bold drop-shadow-[0_0_1px_rgba(255,255,255,0.5)] filter text-lg">
+          {title}
+        </h2>
+      ) : (
+        ''
+      )
+    }
+    <div class="overflow-hidden">
+      <SliderTrack
+        data={{ quantity: imgMetadatas.length, position: 'verticalMiddle' }}
+      />
+      <div class="flex w-full h-full touch-none" data-scroller>
+        {
+          imgMetadatas.map((img) => (
+            <div class="flex-none w-full" data-slide>
+              <Image
+                src={img.img}
+                width={img.img.width}
+                height={img.img.height}
+                alt={img.imgAlt}
+                class="rounded-xl w-full"
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </DefaultCard>
+</section>

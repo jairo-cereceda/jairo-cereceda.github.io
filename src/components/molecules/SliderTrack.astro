@@ -3,7 +3,7 @@ import SliderThumb from '@components/atoms/SliderThumb.astro';
 
 export interface sliderTrackData {
   quantity: number;
-  position: 'top' | 'bottomRight';
+  position: 'top' | 'bottomRight' | 'verticalMiddle';
 }
 
 export interface Props {
@@ -16,16 +16,19 @@ const { quantity, position } = data;
 let stylePosition;
 switch (position) {
   case 'top':
-    stylePosition = 'top-0 left-1/2 -translate-x-1/2 -translate-y-2';
+    stylePosition = 'top-0 left-1/2 -translate-x-1/2 -translate-y-2 px-2 py-1';
     break;
   case 'bottomRight':
-    stylePosition = 'bottom-0 right-0';
+    stylePosition = 'bottom-0 right-0 px-2 py-1';
     break;
+  case 'verticalMiddle':
+    stylePosition =
+      'flex-col top-1/2 -translate-y-1/2 right-2 px-0.5 py-2  bg-secondary/50';
 }
 ---
 
 <div
-  class={`z-10 absolute ${stylePosition}  backdrop-blur-md filter rounded-2xl px-2 py-1 shadow-2xl shadow-white/20 border border-white/10 flex gap-1 justify-center items-center`}
+  class={`z-10 absolute ${stylePosition} backdrop-blur-md filter rounded-2xl shadow-2xl shadow-white/20 border border-white/10 flex gap-1 justify-center items-center`}
 >
   {
     [...Array(quantity)].map((_, id) => (

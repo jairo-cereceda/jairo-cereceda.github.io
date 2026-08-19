@@ -1,5 +1,6 @@
 ---
 import Heading from '@components/atoms/Heading.astro';
+import CertificateScroller from '@components/organisms/CertificateScroller.astro';
 import Timeline from '@components/organisms/Timeline.astro';
 import MainLayout from '@layouts/MainLayout.astro';
 
@@ -19,9 +20,28 @@ const timelineData = {
     },
   ],
 };
+
+const certificateScroller = {
+  title: 'Certificaciones',
+  imgs: [
+    {
+      img: 'img/pfp.png',
+      imgAlt: 'prueba',
+    },
+    {
+      img: 'img/mock.png',
+      imgAlt: 'prueba',
+    },
+    {
+      img: 'img/pfp.png',
+      imgAlt: 'prueba',
+    },
+  ],
+};
 ---
 
 <MainLayout>
   <Heading text="Experiencia" />
   <Timeline data={timelineData} />
+  <CertificateScroller data={certificateScroller} />
 </MainLayout>
