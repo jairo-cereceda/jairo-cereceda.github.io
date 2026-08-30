@@ -21,8 +21,12 @@ import '@styles/main.css';
   import { createCarousel } from '@utils/carousel';
   import { controlActionSheets } from '@utils/actionSheet';
   import { createScroller } from '@utils/scroller';
+  import { musicControl } from '@utils/music';
+  import { workingClock } from '@utils/clock';
 
+  musicControl();
   createCarousel();
   controlActionSheets();
   createScroller();
+  workingClock();
 </script>

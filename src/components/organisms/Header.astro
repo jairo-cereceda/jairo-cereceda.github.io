@@ -18,10 +18,14 @@ const headerItemList = {
   class="backdrop-blur-2xl bg-secondary/20 rounded-b-2xl w-[98%] p-2 px-6 shadow-2xl shadow-white/20 border border-white/10 border-t-0"
 >
   <div class="text-bold text-sm flex justify-between">
-    <p>14:45</p>
+    <p id="clock"></p>
     <div class="flex gap-4 items-center">
-      <div class="flex items-center">
-        <Icon name="volume1" size="16" />
+      <div class="flex gap-1 items-center">
+        <button id="volume-button">
+          <Icon name="volumex" size="16" id="volume-off" />
+          <Icon name="volume1" size="16" class="hidden" id="volume-on" />
+          <Icon name="volume2" size="16" class="hidden" id="volume-max" />
+        </button>
         <input
           type="range"
           name=""
@@ -54,25 +58,6 @@ const headerItemList = {
       <HeaderItemList data={headerItemList} />
     </div>
   </div>
+
+  <audio id="music" src="/media/audio/2-am-lucid-dusqk.mp3" loop></audio>
 </header>
-
-<script>
-  const volumeInput = document.getElementById(
-    'volume'
-  ) as HTMLInputElement | null;
-
-  if (volumeInput) {
-    const updateProgress = () => {
-      const min = Number(volumeInput.min);
-      const max = Number(volumeInput.max);
-      const value = Number(volumeInput.value);
-
-      const percent = ((value - min) * 100) / (max - min);
-
-      volumeInput.style.setProperty('--progress', `${percent}%`);
-    };
-
-    updateProgress();
-    volumeInput.addEventListener('input', updateProgress);
-  }
-</script>
