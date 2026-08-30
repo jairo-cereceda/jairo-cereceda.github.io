@@ -32,38 +32,49 @@ const slides = [
       },
     ],
     info: {
-      title: 'Portfolio de Ilustradora',
+      title: 'Portfolio de Ilustradora 2',
       description: 'lorem ipsum',
     },
   },
 ];
 ---
 
-<section class="w-full h-full relative">
+<section class="w-full h-full relative" data-slider-wrapper>
   <SliderTrack data={{ quantity: slides.length, position: 'top' }} />
-  <div class="overflow-hidden h-full rounded-2xl">
-    <div
-      class="w-full flex h-full touch-pan-y"
-      data-slider
-      data-is-manegeable="true"
-      data-is-autoplayable="false"
-    >
-      <article class="w-full shrink-0 flex justify-center" data-slide>
-        <ProjectSlideImgs data={{ imgs: slides[slides.length - 1].imgs }} />
-        <ProjectInfo data={slides[slides.length - 1].info} />
-      </article>
-      {
-        slides.map((slide) => (
-          <article class="w-full shrink-0 flex justify-center" data-slide>
-            <ProjectSlideImgs data={{ imgs: slide.imgs }} />
-            <ProjectInfo data={slide.info} />
-          </article>
-        ))
-      }
-      <article class="w-full shrink-0 flex justify-center" data-slide>
-        <ProjectSlideImgs data={{ imgs: slides[0].imgs }} />
-        <ProjectInfo data={slides[0].info} />
-      </article>
+  <div class="w-full h-full overflow-hidden relative">
+    <div class="overflow-hidden min-w-0 h-full rounded-2xl">
+      <div
+        class="overflow-x-auto snap-x snap-mandatory scrollbar-none [&::-webkit-scrollbar]:hidden h-full w-full flex"
+        data-slider
+        data-is-manegeable="true"
+        data-is-autoplayable="false"
+      >
+        <article
+          class="w-full relative shrink-0 snap-center snap-always flex justify-center"
+          data-slide
+        >
+          <ProjectSlideImgs data={{ imgs: slides[slides.length - 1].imgs }} />
+          <ProjectInfo data={slides[slides.length - 1].info} />
+        </article>
+        {
+          slides.map((slide) => (
+            <article
+              class="w-full relative shrink-0 snap-center snap-always flex justify-center"
+              data-slide
+            >
+              <ProjectSlideImgs data={{ imgs: slide.imgs }} />
+              <ProjectInfo data={slide.info} />
+            </article>
+          ))
+        }
+        <article
+          class="w-full relative shrink-0 snap-center snap-always flex justify-center"
+          data-slide
+        >
+          <ProjectSlideImgs data={{ imgs: slides[0].imgs }} />
+          <ProjectInfo data={slides[0].info} />
+        </article>
+      </div>
     </div>
   </div>
 </section>

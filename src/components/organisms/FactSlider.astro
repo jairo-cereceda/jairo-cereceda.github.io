@@ -18,30 +18,38 @@ const { items } = data;
 const track = { thumbs: [{ ariaLabel: 'Ir a 1' }, { ariaLabel: 'Ir a 2' }] };
 ---
 
-<section class="h-full w-full">
+<section class="h-full w-full" data-slider-wrapper>
   <DefaultCard>
-    <div class="overflow-hidden h-full relative">
-      <SliderTrack data={{ quantity: items.length, position: 'bottomRight' }} />
-      <div
-        class="w-full flex h-full touch-pan-y"
-        data-slider
-        data-is-manegeable="true"
-        data-is-autoplayable="true"
+    <SliderTrack data={{ quantity: items.length, position: 'bottomRight' }} />
+
+    <div
+      class="overflow-x-auto snap-x snap-mandatory scrollbar-none [&::-webkit-scrollbar]:hidden h-full w-full flex"
+      data-slider
+      data-is-manegeable="true"
+      data-is-autoplayable="true"
+    >
+      <article
+        class="w-full shrink-0 snap-center snap-always flex justify-center"
+        data-slide
       >
-        <article class="w-full shrink-0 flex justify-center" data-slide>
-          <FactCard data={items[items.length - 1]} />
-        </article>
-        {
-          items.map((card) => (
-            <article class="w-full shrink-0 flex justify-center" data-slide>
-              <FactCard data={card} />
-            </article>
-          ))
-        }
-        <article class="w-full shrink-0 flex justify-center" data-slide>
-          <FactCard data={items[0]} />
-        </article>
-      </div>
+        <FactCard data={items[items.length - 1]} />
+      </article>
+      {
+        items.map((card) => (
+          <article
+            class="w-full shrink-0 snap-center snap-always flex justify-center"
+            data-slide
+          >
+            <FactCard data={card} />
+          </article>
+        ))
+      }
+      <article
+        class="w-full shrink-0 snap-center snap-always flex justify-center"
+        data-slide
+      >
+        <FactCard data={items[0]} />
+      </article>
     </div>
   </DefaultCard>
 </section>

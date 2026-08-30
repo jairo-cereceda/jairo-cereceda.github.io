@@ -1,25 +1,28 @@
 export function createCarousel() {
-  const sliders = document.querySelectorAll(
-    '[data-slider]'
+  const sliderWrappers = document.querySelectorAll(
+    '[data-slider-wrapper]'
   ) as NodeListOf<HTMLElement>;
 
-  sliders.forEach((slider) => {
+  sliderWrappers.forEach((sliderWrapper) => {
+    const slider = sliderWrapper.querySelector('[data-slider]') as HTMLElement;
+
+    if (!slider) return;
+
     const slides = slider.querySelectorAll(':scope > [data-slide]');
     const totalSlides = slides.length;
-
-    let currentPosition = 1;
+    let currentPosition = 0;
     let intervalId: number | undefined;
-    let startX = 0;
-    let isAnimating = false;
+
     const isManegeable = slider.dataset.isManegeable === 'true' ? true : false;
     const isAutoplayable =
       slider.dataset.isAutoplayable === 'true' ? true : false;
-    const thumbs = document.querySelectorAll(
+
+    const thumbs = sliderWrapper.querySelectorAll(
       '[data-slider-thumb]'
     ) as NodeListOf<HTMLElement>;
 
     function updateThumbs() {
-      if (!thumbs) return;
+      if (thumbs.length === 0) return;
 
       let thumbIndex;
 
@@ -41,74 +44,58 @@ export function createCarousel() {
       }
     }
 
-    function updateCarousel() {
+    function moveSlide(position: number) {
+      if (position === currentPosition) return;
+
+      currentPosition = position;
+
       const width = slides[0].clientWidth;
-      slider.style.transform = `translateX(-${currentPosition * width}px)`;
+
+      slider.scrollTo({
+        left: position * width,
+        behavior: 'smooth',
+      });
 
       updateThumbs();
     }
 
-    function moveSlide(position: number) {
-      if (isAnimating || position === currentPosition) return;
-
-      isAnimating = true;
-
-      slider.classList.add('transition-transform', 'duration-300');
-      currentPosition = position;
-      updateCarousel();
-    }
-
     function autoPlay() {
-      setTimeout(() => {
-        slider.classList.add('duration-300', 'transition-transform');
-      }, 100);
+      stopAutoPlay();
 
       intervalId = window.setInterval(() => {
         moveSlide(currentPosition + 1);
       }, 4000);
     }
 
-    slider.addEventListener('transitionend', () => {
-      if (currentPosition === totalSlides - 1) {
-        slider.classList.remove('transition-transform', 'duration-300');
-        currentPosition = 1;
-        updateCarousel();
-
-        requestAnimationFrame(() => {
-          isAnimating = false;
-        });
-        isAnimating = false;
-      } else if (currentPosition === 0) {
-        slider.classList.remove('transition-transform', 'duration-300');
-        currentPosition = totalSlides - 2;
-        updateCarousel();
-
-        requestAnimationFrame(() => {
-          isAnimating = false;
-        });
-      } else {
-        isAnimating = false;
-      }
-    });
-
     if (isManegeable) {
-      slider.addEventListener('pointerdown', (e) => {
-        startX = e.clientX;
-        if (isAutoplayable) stopAutoPlay();
-      });
+      slider.addEventListener('scrollend', () => {
+        stopAutoPlay();
 
-      slider.addEventListener('pointerup', (e) => {
-        if (isAnimating) return;
+        const width = slides[0].clientWidth;
 
-        const distance = e.clientX - startX;
+        currentPosition = Math.round(slider.scrollLeft / width);
 
-        if (distance > 50) {
-          moveSlide(currentPosition - 1);
-        } else if (distance < -50) {
-          moveSlide(currentPosition + 1);
+        if (currentPosition === totalSlides - 1) {
+          currentPosition = 1;
+
+          slider.scrollTo({
+            left: width,
+            behavior: 'instant',
+          });
         }
 
-        if (isAutoplayable) autoPlay();
+        if (currentPosition === 0) {
+          currentPosition = totalSlides - 2;
+
+          slider.scrollTo({
+            left: currentPosition * width,
+            behavior: 'instant',
+          });
+        }
+
+        updateThumbs();
+
+        setTimeout(autoPlay, 4000);
       });
 
       if (isAutoplayable) {
@@ -122,7 +109,7 @@ export function createCarousel() {
       }
     }
 
-    if (thumbs) {
+    if (thumbs.length > 0) {
       thumbs.forEach((thumb) =>
         thumb.addEventListener('click', () => {
           const thumbId = Number(thumb.dataset.sliderThumb) + 1;
@@ -139,9 +126,30 @@ export function createCarousel() {
       }
     }
 
-    updateCarousel();
+    function initializeCarousel() {
+      const width = slides[0].clientWidth;
+
+      currentPosition = 1;
+
+      slider.scrollTo({
+        left: width,
+        behavior: 'instant',
+      });
+
+      updateThumbs();
+    }
+
+    initializeCarousel();
     if (isAutoplayable) {
       autoPlay();
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      slider.classList.add('hidden');
+
+      setTimeout(() => {
+        slider.classList.remove('hidden');
+      }, 100);
+    });
   });
 }

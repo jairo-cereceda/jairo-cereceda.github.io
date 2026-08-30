@@ -14,7 +14,7 @@ const { data } = Astro.props;
 const { title, description } = data;
 ---
 
-<div class="absolute w-full top-[40%] bottom-0">
+<div class="absolute z-10 w-full top-[40%] bottom-0">
   <DefaultCard>
     <h1 class="font-extrabold text-lg">{title}</h1>
     <p>{description}</p>
