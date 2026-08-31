@@ -1,9 +1,12 @@
 ---
+import { Icon } from 'astro-icon/components';
+
 export interface buttonData {
-  text: string;
+  text?: string;
   isActionSheet?: boolean;
   actionSheetTitle?: string;
   actionSheetDescription?: string;
+  isBackButton?: boolean;
 }
 
 interface Props {
@@ -11,7 +14,14 @@ interface Props {
 }
 
 const { data } = Astro.props;
-const { text, isActionSheet, actionSheetTitle, actionSheetDescription } = data;
+
+const {
+  text,
+  isActionSheet,
+  actionSheetTitle,
+  actionSheetDescription,
+  isBackButton,
+} = data;
 
 const isActionSheetAttributes = isActionSheet
   ? { 'data-action-sheet-btn': '' }
@@ -24,13 +34,39 @@ const hasActionSheetDescription =
   actionSheetDescription && isActionSheet
     ? { 'data-description': actionSheetDescription }
     : {};
+
+const backButtonAttributes = isBackButton ? { onclick: 'history.back()', id: "back-button" } : {};
+
+const baseStyles = "px-3 py-2 bg-white/20 shadow-secondary/20 font-bold border border-white/20 rounded-2xl text-sm cursor-pointer"
 ---
 
-<button
-  class="px-3 py-2 bg-white/20 shadow-secondary/20 font-bold border border-white/20 rounded-2xl text-sm cursor-pointer"
-  {...isActionSheetAttributes}
-  {...hasActionSheetTitle}
-  {...hasActionSheetDescription}
->
-  {text}
-</button>
+{
+!isBackButton ? 
+  <button
+    class=`${baseStyles}`
+    {...isActionSheetAttributes}
+    {...hasActionSheetTitle}
+    {...hasActionSheetDescription}
+  >
+
+    {text}
+  </button> 
+  : 
+  <a
+  class=`${baseStyles} mx-2 flex items-center justify-center left-0 absolute`
+  {...backButtonAttributes}
+  >
+  <Icon name="arrow-left"/>
+  </a>
+
+  <script>
+    const backButton = document.getElementById("back-button");
+
+    if(backButton){
+      const path = window.location.pathname;
+
+      backButton.setAttribute('href', path.substring(0, path.lastIndexOf('/')) || "/");
+    }
+  </script>
+}
+
