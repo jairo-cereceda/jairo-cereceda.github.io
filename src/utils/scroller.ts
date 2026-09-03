@@ -1,14 +1,16 @@
 export function createScroller() {
-  const scrollers = document.querySelectorAll(
-    '[data-scroller]'
+  const scrollerWrappers = document.querySelectorAll(
+    '[data-scroller-wrapper]'
   ) as NodeListOf<HTMLElement>;
 
-  scrollers.forEach((scroller) => {
+  scrollerWrappers.forEach((wrapper) => {
+    const scroller = wrapper.querySelector('[data-scroller]') as HTMLElement;
+
     const slides = scroller.querySelectorAll(':scope > [data-slide]');
     const totalSlides = slides.length;
 
     let currentPosition = 0;
-    const thumbs = document.querySelectorAll(
+    const thumbs = wrapper.querySelectorAll(
       '[data-slider-thumb]'
     ) as NodeListOf<HTMLElement>;
     let cursorInside = false;
@@ -38,7 +40,8 @@ export function createScroller() {
 
     function updateScroller() {
       const width = slides[0].clientWidth;
-      scroller.style.transform = `translateX(-${currentPosition * width}px)`;
+
+      scroller.style.transform = `translate3d(-${currentPosition * width}px, 0, 0)`;
 
       updateThumbs();
     }
@@ -49,6 +52,25 @@ export function createScroller() {
       currentPosition = position;
       updateScroller();
     }
+
+    const handleResize = () => {
+      scroller.style.transition = 'none';
+      updateScroller();
+
+      void scroller.offsetHeight;
+
+      scroller.style.transition = '';
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    document.addEventListener(
+      'astro:before-swap',
+      () => {
+        window.removeEventListener('resize', handleResize);
+      },
+      { once: true }
+    );
 
     scroller.addEventListener('mouseenter', () => {
       cursorInside = true;
@@ -150,6 +172,8 @@ export function createScroller() {
       );
     }
 
-    updateScroller();
+    requestAnimationFrame(() => {
+      updateScroller();
+    });
   });
 }

@@ -5,18 +5,18 @@ export function createCarousel() {
 
   sliderWrappers.forEach((sliderWrapper) => {
     const slider = sliderWrapper.querySelector('[data-slider]') as HTMLElement;
-
     if (!slider) return;
+
+    let intervalId: number | undefined;
+    let scrollTimeout: number | undefined;
 
     const slides = slider.querySelectorAll(':scope > [data-slide]');
     const totalSlides = slides.length;
     let currentPosition = 0;
-    let intervalId: number | undefined;
 
     const isManegeable = slider.dataset.isManegeable === 'true' ? true : false;
     const isAutoplayable =
       slider.dataset.isAutoplayable === 'true' ? true : false;
-
     const thumbs = sliderWrapper.querySelectorAll(
       '[data-slider-thumb]'
     ) as NodeListOf<HTMLElement>;
@@ -50,6 +50,7 @@ export function createCarousel() {
       currentPosition = position;
 
       const width = slides[0].clientWidth;
+      if (width === 0) return;
 
       slider.scrollTo({
         left: position * width,
@@ -59,13 +60,42 @@ export function createCarousel() {
       updateThumbs();
     }
 
+    function stopAutoPlay() {
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = undefined;
+      }
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = undefined;
+      }
+    }
+
     function autoPlay() {
+      if (!isAutoplayable) return;
       stopAutoPlay();
 
       intervalId = window.setInterval(() => {
         moveSlide(currentPosition + 1);
       }, 4000);
     }
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) stopAutoPlay();
+      else autoPlay();
+    };
+
+    document.addEventListener(
+      'astro:before-swap',
+      () => {
+        stopAutoPlay();
+        document.removeEventListener(
+          'visibilitychange',
+          handleVisibilityChange
+        );
+      },
+      { once: true }
+    );
 
     if (isManegeable) {
       slider.addEventListener('scrollend', () => {
@@ -97,16 +127,6 @@ export function createCarousel() {
 
         setTimeout(autoPlay, 4000);
       });
-
-      if (isAutoplayable) {
-        document.addEventListener('visibilitychange', () => {
-          if (document.hidden) {
-            stopAutoPlay();
-          } else {
-            autoPlay();
-          }
-        });
-      }
     }
 
     if (thumbs.length > 0) {
@@ -117,13 +137,6 @@ export function createCarousel() {
           moveSlide(thumbId);
         })
       );
-    }
-
-    function stopAutoPlay() {
-      if (intervalId) {
-        clearInterval(intervalId);
-        intervalId = undefined;
-      }
     }
 
     function initializeCarousel() {
@@ -140,16 +153,11 @@ export function createCarousel() {
     }
 
     initializeCarousel();
-    if (isAutoplayable) {
-      autoPlay();
-    }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      slider.classList.add('hidden');
+    autoPlay();
 
-      setTimeout(() => {
-        slider.classList.remove('hidden');
-      }, 100);
+    requestAnimationFrame(() => {
+      initializeCarousel();
     });
   });
 }

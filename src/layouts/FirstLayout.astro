@@ -1,5 +1,7 @@
 ---
 import '@styles/main.css';
+
+import { ClientRouter } from 'astro:transitions';
 ---
 
 <!doctype html>
@@ -11,22 +13,25 @@ import '@styles/main.css';
     <link rel="icon" href="/favicon.png" />
     <meta name="generator" content={Astro.generator} />
     <title>Portfolio</title>
+    <ClientRouter />
   </head>
   <body class="flex flex-col justify-between items-center h-screen gap-4">
     <slot />
+
+    <script>
+      import { createCarousel } from '@utils/carousel';
+      import { controlActionSheets } from '@utils/actionSheet';
+      import { createScroller } from '@utils/scroller';
+      import { musicControl } from '@utils/music';
+      import { workingClock } from '@utils/clock';
+
+      document.addEventListener('astro:page-load', () => {
+        controlActionSheets();
+        workingClock();
+        musicControl();
+        createCarousel();
+        createScroller();
+      });
+    </script>
   </body>
 </html>
-
-<script>
-  import { createCarousel } from '@utils/carousel';
-  import { controlActionSheets } from '@utils/actionSheet';
-  import { createScroller } from '@utils/scroller';
-  import { musicControl } from '@utils/music';
-  import { workingClock } from '@utils/clock';
-
-  musicControl();
-  createCarousel();
-  controlActionSheets();
-  createScroller();
-  workingClock();
-</script>

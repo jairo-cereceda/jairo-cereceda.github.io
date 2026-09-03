@@ -1,4 +1,8 @@
+let isFirstLoad = true;
+let previousVolumeState = 50;
+
 export function musicControl() {
+  const music = document.getElementById('music') as HTMLAudioElement;
   const volumeInput = document.getElementById(
     'volume'
   ) as HTMLInputElement | null;
@@ -6,74 +10,81 @@ export function musicControl() {
   const volumeOnIcon = document.getElementById('volume-on');
   const volumeMaxIcon = document.getElementById('volume-max');
   const volumeOffIcon = document.getElementById('volume-off');
-  const music = document.getElementById('music') as HTMLAudioElement;
 
-  if (!volumeInput || !volumeButton || !music) return;
+  if (!music || !volumeInput || !volumeButton) return;
 
-  let currentVolumeState = 0;
-  let previousVolumeState = Number(volumeInput.value);
+  if (isFirstLoad) {
+    music.volume = 0;
+    music.pause();
+    volumeInput.value = '50';
+    isFirstLoad = false;
+  } else {
+    volumeInput.value = String(Math.round(music.volume * 100));
+
+    if (music.volume > 0) {
+      previousVolumeState = music.volume * 100;
+    }
+  }
 
   const updateProgress = () => {
-    const min = Number(volumeInput.min);
-    const max = Number(volumeInput.max);
-    const value = Number(volumeInput.value);
-
-    const percent = ((value - min) * 100) / (max - min);
-
+    const val = Number(volumeInput.value);
+    const min = Number(volumeInput.min) || 0;
+    const max = Number(volumeInput.max) || 100;
+    const percent = ((val - min) * 100) / (max - min);
     volumeInput.style.setProperty('--progress', `${percent}%`);
   };
 
-  volumeInput.addEventListener('input', () => {
-    const volume = Number(volumeInput.value);
-
-    if (volume > 0) {
-      previousVolumeState = volume;
-    }
-
-    music.volume = volume / 100;
-
-    currentVolumeState = music.volume * 100;
-
-    updateProgress();
-    toggleIcons();
-  });
-
-  volumeButton.addEventListener('click', volumeControl);
-
-  function toggleIcons() {
+  const syncIcons = () => {
     if (!volumeOnIcon || !volumeOffIcon || !volumeMaxIcon) return;
 
-    if (currentVolumeState >= 75) {
+    const vol = music.volume * 100;
+
+    volumeMaxIcon.classList.add('hidden');
+    volumeOnIcon.classList.add('hidden');
+    volumeOffIcon.classList.add('hidden');
+
+    if (vol >= 75) {
       volumeMaxIcon.classList.remove('hidden');
-      volumeOffIcon.classList.add('hidden');
-      volumeOnIcon.classList.add('hidden');
-    } else if (currentVolumeState > 0) {
-      volumeMaxIcon.classList.add('hidden');
+    } else if (vol > 0) {
       volumeOnIcon.classList.remove('hidden');
-      volumeOffIcon.classList.add('hidden');
     } else {
-      volumeMaxIcon.classList.add('hidden');
-      volumeOnIcon.classList.add('hidden');
+      // Si el volumen es 0, icono OFF
       volumeOffIcon.classList.remove('hidden');
     }
-  }
-
-  function volumeControl() {
-    if (currentVolumeState > 0) {
-      previousVolumeState = currentVolumeState;
-      volumeInput!.value = '0';
-      music.volume = 0;
-    } else {
-      volumeInput!.value = String(previousVolumeState);
-      music.volume = previousVolumeState / 100;
-
-      music.play();
-    }
-
-    currentVolumeState = music.volume * 100;
-    updateProgress();
-    toggleIcons();
-  }
+  };
 
   updateProgress();
+  syncIcons();
+
+  if (volumeInput.dataset.initialized === 'true') return;
+
+  volumeInput.addEventListener('input', () => {
+    const val = Number(volumeInput.value);
+    music.volume = val / 100;
+
+    if (val > 0) {
+      previousVolumeState = val;
+      music.play().catch(() => {});
+    }
+
+    updateProgress();
+    syncIcons();
+  });
+
+  volumeButton.addEventListener('click', () => {
+    if (music.volume > 0) {
+      previousVolumeState = music.volume * 100;
+      music.volume = 0;
+      volumeInput.value = '0';
+    } else {
+      const restoreVol = previousVolumeState || 50;
+      music.volume = restoreVol / 100;
+      volumeInput.value = String(restoreVol);
+      music.play().catch(() => {});
+    }
+    updateProgress();
+    syncIcons();
+  });
+
+  volumeInput.dataset.initialized = 'true';
 }
