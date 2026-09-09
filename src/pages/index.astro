@@ -3,6 +3,7 @@ import Contact from '@components/organisms/Contact.astro';
 import ContentList from '@components/organisms/ContentList.astro';
 import FactSlider from '@components/organisms/FactSlider.astro';
 import MainCard from '@components/organisms/MainCard.astro';
+import SectionsWindow from '@components/organisms/SectionsWindow.astro';
 import MainLayout from '@layouts/MainLayout.astro';
 
 const mainCard = {
@@ -65,7 +66,7 @@ const contactData = {
     },
     {
       url: 'mailto:',
-      text: 'Enviar Mail',
+      text: 'Mail',
       icon: 'mail',
     },
   ],
@@ -73,8 +74,75 @@ const contactData = {
 ---
 
 <MainLayout>
-  <MainCard data={mainCard} />
-  <ContentList data={contentList} />
-  <FactSlider data={factSlider} />
-  <Contact data={contactData} />
+  <div class="w-full flex gap-4 flex-col md:flex-row lg:justify-between">
+    <div class="lg:flex lg:flex-col lg:gap-4">
+      <MainCard data={mainCard} />
+      <Contact data={contactData} />
+      <div class="hidden lg:block">
+        <FactSlider data={factSlider} />
+      </div>
+    </div>
+    <SectionsWindow />
+    <ContentList data={contentList} />
+  </div>
+  <div class="lg:hidden h-full w-full">
+    <FactSlider data={factSlider} />
+  </div>
 </MainLayout>
+
+<script>
+  import { startPage } from '@utils/startPage';
+
+  const links: NodeListOf<HTMLAnchorElement> =
+    document.querySelectorAll<HTMLAnchorElement>('[data-page]');
+
+  const desktopWindow = document.querySelector<HTMLElement>('#main-window');
+
+  if (!desktopWindow) {
+    throw new Error('No se encontró #desktop-window');
+  }
+
+  links.forEach((link: HTMLAnchorElement) => {
+    link.addEventListener('click', async (event: MouseEvent) => {
+      if (window.innerWidth < 768) {
+        return;
+      }
+
+      event.preventDefault();
+
+      const url: string = link.href;
+
+      try {
+        const response: Response = await fetch(url);
+
+        if (!response.ok) {
+          throw new Error(`Error cargando la página: ${response.status}`);
+        }
+
+        const html: string = await response.text();
+
+        const parser: DOMParser = new DOMParser();
+
+        const page: Document = parser.parseFromString(html, 'text/html');
+
+        const content: HTMLElement | null =
+          page.querySelector<HTMLElement>('#page-content');
+
+        if (!content) {
+          throw new Error(`No se encontró #page-content en ${url}`);
+        }
+
+        desktopWindow.replaceChildren();
+        desktopWindow.appendChild(content);
+
+        startPage();
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          console.error(error.message);
+        } else {
+          console.error('Ha ocurrido un error desconocido');
+        }
+      }
+    });
+  });
+</script>

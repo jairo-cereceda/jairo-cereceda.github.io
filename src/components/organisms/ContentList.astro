@@ -14,6 +14,8 @@ const { data } = Astro.props;
 const { items } = data;
 ---
 
-<section class="w-full grid grid-cols-2 gap-4">
+<section
+  class="w-full grid grid-cols-2 gap-4 lg:w-auto lg:flex lg:flex-col lg:h-full"
+>
   {items.map((item) => <ItemCard data={item} />)}
 </section>
