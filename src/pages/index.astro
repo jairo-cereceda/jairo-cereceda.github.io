@@ -74,11 +74,13 @@ const contactData = {
 ---
 
 <MainLayout>
-  <div class="w-full flex gap-4 flex-col md:flex-row lg:justify-between">
-    <div class="lg:flex lg:flex-col lg:gap-4">
+  <div
+    class="w-full lg:h-[98%] flex gap-4 flex-col md:flex-row lg:justify-between"
+  >
+    <div class="lg:flex lg:flex-col lg:h-full lg:gap-4">
       <MainCard data={mainCard} />
       <Contact data={contactData} />
-      <div class="hidden lg:block">
+      <div class="hidden h-full lg:block">
         <FactSlider data={factSlider} />
       </div>
     </div>
