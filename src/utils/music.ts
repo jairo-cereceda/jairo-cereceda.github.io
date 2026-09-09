@@ -1,5 +1,5 @@
 let isFirstLoad = true;
-let previousVolumeState = 50;
+let previousVolumeState = 0;
 
 export function musicControl() {
   const music = document.getElementById('music') as HTMLAudioElement;
@@ -16,7 +16,7 @@ export function musicControl() {
   if (isFirstLoad) {
     music.volume = 0;
     music.pause();
-    volumeInput.value = '50';
+    volumeInput.value = '0';
     isFirstLoad = false;
   } else {
     volumeInput.value = String(Math.round(music.volume * 100));
