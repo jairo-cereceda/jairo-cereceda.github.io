@@ -4,7 +4,7 @@ let isInitialized = false;
 let lastActiveButton: HTMLButtonElement | null = null;
 
 export function controlActionSheets() {
-  if (isInitialized) {
+  if (!isInitialized) {
     document.addEventListener('click', (e) => {
       const target = e.target as HTMLElement;
       const btn = target.closest(
@@ -22,6 +22,12 @@ export function controlActionSheets() {
         closeAction();
       }
     });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeAction();
+    });
+
+    isInitialized = true;
   }
 
   const openAction = (btn: HTMLButtonElement) => {
