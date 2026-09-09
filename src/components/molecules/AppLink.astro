@@ -32,10 +32,10 @@ const mailtoId = isMailto
         href={!isMailto ? url : null}
         rel="noreferrer noopener"
         target="_blank"
-        class="flex justify-between w-full p-6 cursor-pointer"
+        class="flex justify-between items-center w-full p-6 cursor-pointer lg:p-0 lg:py-3"
         {...mailtoId}
       >
-        <div class="flex gap-4 text-white font-bold drop-shadow-[0_0_1px_rgba(0,0,0,1)] filter">
+        <div class="flex items-center gap-4 text-white font-bold drop-shadow-[0_0_1px_rgba(0,0,0,1)] filter">
           <Icon name={icon} size={25} />
           {text}
         </div>

@@ -27,7 +27,7 @@ const contactButton = {
 };
 ---
 
-<section class="w-full">
+<section class="w-full lg:max-w-medium-small">
   <DefaultCard>
     <div class="flex items-center justify-between">
       <Image
@@ -43,14 +43,16 @@ const contactButton = {
           {name}
         </h1>
 
-        <div class="flex gap-2 items-center">
+        <div class="flex gap-2 items-center lg:justify-end">
           <p
             class="font-extrabold text-sm tracking-tighter drop-shadow-[0_0_.5px_rgba(255,255,255,1)] filter"
           >
             {profession}
           </p>
 
-          <Button data={contactButton}> Contacto </Button>
+          <div class="lg:hidden">
+            <Button data={contactButton}> Contacto </Button>
+          </div>
         </div>
       </div>
     </div>
