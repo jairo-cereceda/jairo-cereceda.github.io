@@ -3,50 +3,52 @@ import { Icon } from 'astro-icon/components';
 
 export interface buttonData {
   text?: string;
-  isActionSheet?: boolean;
-  actionSheetTitle?: string;
-  actionSheetDescription?: string;
+  isMoreInfo?: boolean;
+  moreInfoTitle?: string;
+  moreInfoDescription?: string;
   isBackButton?: boolean;
 }
 
 interface Props {
   data: buttonData;
+  buttonId?: string;
 }
 
-const { data } = Astro.props;
+const { data, buttonId } = Astro.props;
 
 const {
   text,
-  isActionSheet,
-  actionSheetTitle,
-  actionSheetDescription,
+  isMoreInfo,
+  moreInfoTitle,
+  moreInfoDescription,
   isBackButton,
 } = data;
 
-const isActionSheetAttributes = isActionSheet
-  ? { 'data-action-sheet-btn': '' }
+const isMoreInfoAttributes = isMoreInfo
+  ? { 'data-more-info-btn': '' }
   : {};
 
-const hasActionSheetTitle =
-  actionSheetTitle && isActionSheet ? { 'data-title': actionSheetTitle } : {};
+const hasMoreInfoTitle =
+  moreInfoTitle && isMoreInfo ? { 'data-title': moreInfoTitle } : {};
 
-const hasActionSheetDescription =
-  actionSheetDescription && isActionSheet
-    ? { 'data-description': actionSheetDescription }
+const hasMoreInfoDescription =
+  moreInfoDescription && isMoreInfo
+    ? { 'data-description': moreInfoDescription }
     : {};
 
 const backButtonAttributes = isBackButton ? { onclick: 'history.back()', id: "back-button" } : {};
 
-const baseStyles = "px-3 py-2 bg-white/20 shadow-secondary/20 font-bold border border-white/20 rounded-2xl text-sm cursor-pointer"
+const baseStyles = "self-center px-3 py-2 bg-white/20 shadow-secondary/20 font-bold border border-white/20 rounded-2xl text-sm cursor-pointer"
 ---
 
 {
 !isBackButton ? 
   <button
+  id={buttonId}
     class=`${baseStyles}`
-    {...isActionSheetAttributes}
-    {...hasActionSheetTitle}
-    {...hasActionSheetDescription}
+    {...isMoreInfoAttributes}
+    {...hasMoreInfoTitle}
+    {...hasMoreInfoDescription}
   >
 
     {text}

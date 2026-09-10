@@ -3,34 +3,43 @@ import { focusTrap } from './focusTrap';
 let isInitialized = false;
 let lastActiveButton: HTMLButtonElement | null = null;
 
-export function controlActionSheets() {
+export function controlMoreInfo() {
   if (!isInitialized) {
     document.addEventListener('click', (e) => {
       const target = e.target as HTMLElement;
-      const btn = target.closest(
-        '[data-action-sheet-btn]'
-      ) as HTMLButtonElement;
-
-      if (btn) {
-        openAction(btn);
-      }
 
       if (
         target.closest('#action-sheet-closer') ||
         target.id === 'action-sheet-wrapper'
       ) {
-        closeAction();
+        closeActionSheet();
+        return;
       }
+
+      const btn = target.closest(
+        '[data-more-info-btn]'
+      ) as HTMLButtonElement | null;
+
+      if (!btn) return;
+
+      if (window.innerWidth > 768) {
+        toggleAccordion(btn);
+        return;
+      }
+
+      openActionSheet(btn);
     });
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeAction();
+      if (e.key === 'Escape') {
+        closeActionSheet();
+      }
     });
 
     isInitialized = true;
   }
 
-  const openAction = (btn: HTMLButtonElement) => {
+  const openActionSheet = (btn: HTMLButtonElement) => {
     const { actionSheet, wrapper, closer, title, description } = getElements();
 
     if (!actionSheet || !wrapper || !closer) return;
@@ -46,16 +55,13 @@ export function controlActionSheets() {
     closer.setAttribute('tabindex', '0');
 
     document.body.classList.add('overflow-y-hidden');
-    if (window.matchMedia('(pointer: fine)').matches) {
-      document.body.classList.add('mr-[10px]');
-    }
 
     focusTrap(wrapper);
 
     lastActiveButton = btn;
   };
 
-  const closeAction = () => {
+  const closeActionSheet = () => {
     const { actionSheet, wrapper, closer } = getElements();
 
     if (!actionSheet || !wrapper || !closer) return;
@@ -85,8 +91,33 @@ export function controlActionSheets() {
   }
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeAction();
+    if (e.key === 'Escape') closeActionSheet();
   });
 
   isInitialized = true;
+
+  function toggleAccordion(btn: HTMLButtonElement) {
+    const accordion = btn.closest('[data-more-info]');
+    const content = accordion?.querySelector(
+      '[data-more-info-content]'
+    ) as HTMLElement | null;
+
+    if (!content) return;
+
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+    if (isOpen) {
+      content.classList.add('max-h-0');
+      content.classList.remove('max-h-96');
+
+      btn.setAttribute('aria-expanded', 'false');
+      btn.textContent = 'Ver más';
+    } else {
+      content.classList.remove('max-h-0');
+      content.classList.add('max-h-96');
+
+      btn.setAttribute('aria-expanded', 'true');
+      btn.textContent = 'Ver menos';
+    }
+  }
 }
