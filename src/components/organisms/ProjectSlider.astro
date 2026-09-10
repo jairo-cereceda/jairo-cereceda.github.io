@@ -2,6 +2,7 @@
 import ProjectInfo from '@components/molecules/ProjectInfo.astro';
 import ProjectSlideImgs from '@components/molecules/ProjectSlideImgs.astro';
 import SliderTrack from '@components/molecules/SliderTrack.astro';
+import ProjectsTrack from '@components/molecules/ProjectsTrack.astro';
 
 const slides = [
   {
@@ -37,11 +38,32 @@ const slides = [
     },
   },
 ];
+
+const projectsTrackData = {
+  items: [
+    {
+      img: 'img/pfp.png',
+      title: 'MyChat',
+    },
+    {
+      img: 'img/pfp.png',
+      title: 'MyChat',
+    },
+  ],
+};
 ---
 
-<section class="w-full h-full relative" data-slider-wrapper>
-  <SliderTrack data={{ quantity: slides.length, position: 'top' }} />
-  <div class="w-full h-full overflow-hidden relative">
+<section
+  class="w-full h-full relative lg:grid lg:grid-cols-[30%_70%]"
+  data-slider-wrapper
+>
+  <div class="lg:hidden">
+    <SliderTrack data={{ quantity: slides.length, position: 'top' }} />
+  </div>
+  <div class="hidden lg:block">
+    <ProjectsTrack data={projectsTrackData} />
+  </div>
+  <div class="w-full h-full overflow-hidden relative lg:col-start-2">
     <div class="overflow-hidden min-w-0 h-full rounded-2xl">
       <div
         class="overflow-x-auto snap-x snap-mandatory scrollbar-none [&::-webkit-scrollbar]:hidden h-full w-full flex"
