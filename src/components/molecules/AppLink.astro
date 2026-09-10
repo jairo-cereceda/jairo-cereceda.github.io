@@ -19,6 +19,7 @@ const isMailto = url.startsWith('mailto:');
 const mailtoId = isMailto
   ? {
       id: 'mailto-btn',
+      tabindex: '0',
     }
   : undefined;
 ---
