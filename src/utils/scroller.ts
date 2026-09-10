@@ -165,7 +165,7 @@ export function createScroller() {
     if (thumbs) {
       thumbs.forEach((thumb) =>
         thumb.addEventListener('click', () => {
-          const thumbId = Number(thumb.dataset.sliderThumb) + 1;
+          const thumbId = Number(thumb.dataset.sliderThumb);
 
           moveSlide(thumbId);
         })
