@@ -1,7 +1,7 @@
 ---
 import Heading from '@components/atoms/Heading.astro';
 import ComponentCardList from '@components/organisms/ComponentCardList.astro';
-import MainLayout from '@layouts/MainLayout.astro';
+import PortfolioLayout from '@layouts/PortfolioLayout.astro';
 
 const components = {
   items: [
@@ -19,7 +19,7 @@ const components = {
 };
 ---
 
-<MainLayout>
+<PortfolioLayout>
   <Heading text="Playground" type="bubble" />
   <ComponentCardList data={components} />
-</MainLayout>
+</PortfolioLayout>

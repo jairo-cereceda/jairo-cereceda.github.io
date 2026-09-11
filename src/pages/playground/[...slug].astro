@@ -1,6 +1,6 @@
 ---
 import Heading from '@components/atoms/Heading.astro';
-import MainLayout from '@layouts/MainLayout.astro';
+import PortfolioLayout from '@layouts/PortfolioLayout.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -22,13 +22,15 @@ const { doc } = Astro.props;
 const { Content } = await render(doc);
 ---
 
-<MainLayout>
-  <Heading text={doc.data.title} type="full" />
-  <div
-    class="rounded-2xl p-2 border border-white/20 backdrop-blur-md w-full h-full shadow-secondary/20"
-  >
-    <div class="rounded-2xl bg-white/60 w-full h-full">
-      <Content />
+<PortfolioLayout>
+  <div class="w-full h-full flex flex-col gap-2" id="page-content">
+    <Heading text={doc.data.title} type="full" />
+    <div
+      class="rounded-2xl p-2 border border-white/20 backdrop-blur-md w-full h-full shadow-secondary/20"
+    >
+      <div class="rounded-2xl bg-white/60 w-full h-full">
+        <Content />
+      </div>
     </div>
   </div>
-</MainLayout>
+</PortfolioLayout>

@@ -2,7 +2,7 @@
 import Heading from '@components/atoms/Heading.astro';
 import CertificateScroller from '@components/organisms/CertificateScroller.astro';
 import Timeline from '@components/organisms/Timeline.astro';
-import MainLayout from '@layouts/MainLayout.astro';
+import PortfolioLayout from '@layouts/PortfolioLayout.astro';
 
 const timelineData = {
   items: [
@@ -40,8 +40,12 @@ const certificateScroller = {
 };
 ---
 
-<MainLayout>
+<PortfolioLayout>
   <Heading text="Experiencia" type="bubble" />
-  <Timeline data={timelineData} />
-  <CertificateScroller data={certificateScroller} />
-</MainLayout>
+  <div
+    class="w-full flex-1 min-h-0 flex flex-col gap-4 lg:flex-row lg:justify-between"
+  >
+    <Timeline data={timelineData} />
+    <CertificateScroller data={certificateScroller} />
+  </div>
+</PortfolioLayout>

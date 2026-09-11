@@ -1,9 +1,9 @@
 ---
-import Contact from '@components/organisms/Contact.astro';
-import ContentList from '@components/organisms/ContentList.astro';
-import FactSlider from '@components/organisms/FactSlider.astro';
+import MainLayout from '@layouts/MainLayout.astro';
 import MainCard from '@components/organisms/MainCard.astro';
-import PortfolioLayout from '@layouts/PortfolioLayout.astro';
+import Contact from '@components/organisms/Contact.astro';
+import FactSlider from '@components/organisms/FactSlider.astro';
+import ContentList from '@components/organisms/ContentList.astro';
 
 const mainCard = {
   img: 'img/pfp.png',
@@ -72,11 +72,27 @@ const contactData = {
 };
 ---
 
-<PortfolioLayout>
-  <div class="w-full h-full lg:hidden flex gap-4 flex-col">
-    <MainCard data={mainCard} />
-    <Contact data={contactData} platform="mobile" />
-    <ContentList data={contentList} />
-    <FactSlider data={factSlider} />
+<MainLayout>
+  <div
+    class="w-full h-full lg:h-[98%] flex gap-4 flex-col lg:flex-row lg:justify-between"
+  >
+    <div
+      class="hidden lg:flex lg:flex-col lg:h-full lg:gap-4"
+      transition:persist="sidebar"
+    >
+      <MainCard data={mainCard} />
+      <Contact data={contactData} platform="desktop" />
+      <FactSlider data={factSlider} />
+    </div>
+
+    <div
+      class="w-full min-h-0 h-full lg:h-auto flex-1 lg:rounded-2xl lg:overflow-y-auto lg:shadow-2xl lg:border lg:border-white/80 flex flex-col gap-2"
+    >
+      <slot />
+    </div>
+
+    <div class="hidden lg:block" transition:persist="menu">
+      <ContentList data={contentList} />
+    </div>
   </div>
-</PortfolioLayout>
+</MainLayout>

@@ -10,24 +10,29 @@ export interface contactData {
 
 export interface Props {
   data: contactData;
+  platform: 'desktop' | 'mobile';
 }
 
-const { data } = Astro.props;
+const { data, platform } = Astro.props;
 const { items } = data;
 ---
 
-<div class="lg:hidden">
-  <ActionSheet hasTitle={true}>
-    <div class="flex flex-col gap-2">
-      {items.map((item) => <AppLink data={item} />)}
-    </div>
-  </ActionSheet>
-</div>
-
-<div class="hidden lg:block">
-  <DefaultCard padding="medium">
-    <article class="flex gap-2 justify-between">
-      {items.map((item) => <AppLink data={item} />)}
-    </article>
-  </DefaultCard>
-</div>
+{
+  platform === 'mobile' ? (
+    <ActionSheet hasTitle={true}>
+      <div class="flex flex-col gap-2">
+        {items.map((item) => (
+          <AppLink data={item} />
+        ))}
+      </div>
+    </ActionSheet>
+  ) : (
+    <DefaultCard padding="medium" isFullheight={false}>
+      <article class="flex gap-2 justify-between">
+        {items.map((item) => (
+          <AppLink data={item} />
+        ))}
+      </article>
+    </DefaultCard>
+  )
+}

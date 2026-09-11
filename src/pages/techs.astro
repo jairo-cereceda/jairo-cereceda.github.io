@@ -2,7 +2,7 @@
 import Heading from '@components/atoms/Heading.astro';
 import ActionSheet from '@components/molecules/ActionSheet.astro';
 import BubbleItemList from '@components/organisms/BubbleItemList.astro';
-import MainLayout from '@layouts/MainLayout.astro';
+import PortfolioLayout from '@layouts/PortfolioLayout.astro';
 
 const techs = {
   items: [
@@ -22,10 +22,10 @@ const techs = {
 };
 ---
 
-<MainLayout>
+<PortfolioLayout>
   <Heading text="Tecnologías" type="bubble" />
   <BubbleItemList data={techs} />
   <div class="lg:hidden">
     <ActionSheet hasTitle={true} hasDescription={true} />
   </div>
-</MainLayout>
+</PortfolioLayout>
