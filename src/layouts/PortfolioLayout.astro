@@ -86,13 +86,12 @@ const contactData = {
   <div
     class="w-full h-full lg:h-[98%] flex gap-4 flex-col lg:flex-row lg:justify-between"
   >
-    <div
-      class="hidden lg:flex lg:flex-col lg:h-full lg:gap-4"
-      transition:persist="sidebar"
-    >
+    <div class="hidden lg:flex lg:flex-col lg:h-full lg:gap-4">
       <MainCard data={mainCard} />
       <Contact data={contactData} platform="desktop" />
-      <FactSlider data={factSlider} />
+      <div class="contents" transition:persist="factslider">
+        <FactSlider data={factSlider} />
+      </div>
     </div>
 
     <div
