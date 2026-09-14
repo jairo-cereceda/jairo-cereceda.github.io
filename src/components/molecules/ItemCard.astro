@@ -17,9 +17,11 @@ const { url, icon, text } = data;
 ---
 
 <a href={url} class="rounded-2xl">
-  <DefaultCard>
-    <div class="flex flex-col justify-between lg:p-1">
-      <Icon name={icon} size="48" class="lg:w-10" is:inline />
+  <DefaultCard class="sm:px-2 sm:py-4 lg:px-4 lg:py-8">
+    <div
+      class="flex flex-col sm:items-center sm:flex-row sm:gap-1 lg:items-start lg:flex-col lg:gap-0 justify-between"
+    >
+      <Icon name={icon} size="48" class="sm:w-10" is:inline />
       <h2 class="font-bold">{text}</h2>
     </div>
   </DefaultCard>

@@ -75,8 +75,18 @@ const contactData = {
 <PortfolioLayout>
   <div class="w-full h-full lg:hidden flex gap-4 flex-col">
     <MainCard data={mainCard} />
-    <Contact data={contactData} platform="mobile" />
-    <ContentList data={contentList} />
-    <FactSlider data={factSlider} />
+    <div class="lg:hidden">
+      <Contact data={contactData} platform="mobile" />
+    </div>
+
+    <div
+      class="h-full sm:h-auto flex flex-col gap-4 sm:justify-between sm:flex-row lg:flex-col"
+    >
+      <ContentList data={contentList} />
+      <FactSlider data={factSlider} />
+      <div class="hidden md:block">
+        <Contact data={contactData} platform="desktop" />
+      </div>
+    </div>
   </div>
 </PortfolioLayout>

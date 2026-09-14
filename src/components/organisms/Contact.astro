@@ -27,10 +27,14 @@ const { items } = data;
       </div>
     </ActionSheet>
   ) : (
-    <DefaultCard padding="medium" isFullheight={false}>
-      <article class="flex gap-2 justify-between">
-        {items.map((item) => (
-          <AppLink data={item} />
+    <DefaultCard
+      padding="medium"
+      isFullheight={false}
+      class="max-w-small xl:max-w-none h-full lg:h-auto"
+    >
+      <article class="flex flex-col h-full lg:grid lg:grid-cols-2 xl:flex xl:flex-row gap-2 justify-between">
+        {items.map((item, index) => (
+          <AppLink data={item} span={index === 2 ? true : false} />
         ))}
       </article>
     </DefaultCard>

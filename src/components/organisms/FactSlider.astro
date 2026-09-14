@@ -18,7 +18,10 @@ const { items } = data;
 const track = { thumbs: [{ ariaLabel: 'Ir a 1' }, { ariaLabel: 'Ir a 2' }] };
 ---
 
-<section class="h-full w-full lg:max-w-medium-small" data-slider-wrapper>
+<section
+  class="h-full w-full md:min-w-0 md:flex-1 lg:max-w-small xl:max-w-medium-small"
+  data-slider-wrapper
+>
   <DefaultCard>
     <SliderTrack data={{ quantity: items.length, position: 'bottomRight' }} />
 

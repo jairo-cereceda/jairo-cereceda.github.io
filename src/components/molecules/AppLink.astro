@@ -9,9 +9,10 @@ export interface appLinkData {
 
 export interface Props {
   data: appLinkData;
+  span?: boolean;
 }
 
-const { data } = Astro.props;
+const { data, span } = Astro.props;
 const { url, icon, text } = data;
 
 const isMailto = url.startsWith('mailto:');
@@ -22,34 +23,31 @@ const mailtoId = isMailto
       tabindex: '0',
     }
   : undefined;
+
+const colSpan = span ? 'col-span-2' : '';
 ---
 
-<div
-  class="px-3 py-2 bg-white/20 shadow-secondary/20 font-bold border border-white/20 rounded-2xl text-sm"
+<a
+  href={!isMailto ? url : null}
+  rel="noreferrer noopener"
+  target="_blank"
+  class=`bg-white/20 shadow-secondary/20 font-bold border border-white/20 rounded-2xl text-sm ${colSpan}
+        flex justify-between items-center w-full p-6 cursor-pointer lg:px-2 lg:py-2 xl:py-3`
+  {...mailtoId}
 >
-  {
-    (
-      <a
-        href={!isMailto ? url : null}
-        rel="noreferrer noopener"
-        target="_blank"
-        class="flex justify-between items-center w-full p-6 cursor-pointer lg:p-0 lg:py-3"
-        {...mailtoId}
-      >
-        <div class="flex items-center gap-4 text-white font-bold drop-shadow-[0_0_1px_rgba(0,0,0,1)] filter">
-          <Icon name={icon} size={25} />
-          {text}
-        </div>
+  <div
+    class="flex items-center gap-4 lg:gap-0.5 xl:gap-4 text-white font-bold drop-shadow-[0_0_1px_rgba(0,0,0,1)] filter"
+  >
+    <Icon name={icon} size={25} />
+    {text}
+  </div>
 
-        <Icon
-          name="arrow-right"
-          size={25}
-          class="text-white drop-shadow-[0_0_1px_rgba(0,0,0,1)] filter"
-        />
-      </a>
-    )
-  }
-</div>
+  <Icon
+    name="arrow-right"
+    size={25}
+    class="text-white drop-shadow-[0_0_1px_rgba(0,0,0,1)] filter"
+  />
+</a>
 
 <script>
   document.getElementById('mailto-btn')?.addEventListener('click', (e) => {

@@ -54,13 +54,13 @@ const projectsTrackData = {
 ---
 
 <section
-  class="w-full h-full relative lg:grid lg:grid-cols-[30%_70%]"
+  class="w-full h-full relative md:grid md:grid-cols-[30%_70%]"
   data-slider-wrapper
 >
-  <div class="lg:hidden">
+  <div class="md:hidden">
     <SliderTrack data={{ quantity: slides.length, position: 'top' }} />
   </div>
-  <div class="hidden lg:block">
+  <div class="hidden md:block">
     <ProjectsTrack data={projectsTrackData} />
   </div>
   <div class="w-full h-full overflow-hidden relative lg:col-start-2">
