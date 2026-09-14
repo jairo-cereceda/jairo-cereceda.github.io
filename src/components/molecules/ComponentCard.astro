@@ -19,33 +19,27 @@ const { url, text, img } = data;
 const metadata = await getImageMetadata(img);
 ---
 
-<div
-  class="px-4 py-3 bg-white/20 shadow-secondary/20 font-bold border border-white/20 rounded-2xl text-sm w-full"
+<a
+  href={url}
+  rel="noreferrer noopener"
+  class="px-4 py-3 bg-white/20 shadow-secondary/20 font-bold border border-white/20 rounded-2xl text-sm flex justify-between w-full items-center cursor-pointer"
 >
-  {
-    (
-      <a
-        href={url}
-        rel="noreferrer noopener"
-        class="flex justify-between w-full items-center cursor-pointer"
-      >
-        <div class="flex items-center gap-4 text-white font-bold drop-shadow-[0_0_1px_rgba(0,0,0,1)] filter">
-          <Image
-            src={metadata}
-            width={metadata.width}
-            height={metadata.height}
-            alt=""
-            class="aspect-square h-16 w-16 rounded-lg"
-          />
-          {text}
-        </div>
+  <div
+    class="flex items-center gap-4 text-white font-bold drop-shadow-[0_0_1px_rgba(0,0,0,1)] filter"
+  >
+    <Image
+      src={metadata}
+      width={metadata.width}
+      height={metadata.height}
+      alt=""
+      class="aspect-square h-16 w-16 rounded-lg"
+    />
+    {text}
+  </div>
 
-        <Icon
-          name="arrow-right"
-          size={25}
-          class="text-white drop-shadow-[0_0_1px_rgba(0,0,0,1)] filter"
-        />
-      </a>
-    )
-  }
-</div>
+  <Icon
+    name="arrow-right"
+    size={25}
+    class="text-white drop-shadow-[0_0_1px_rgba(0,0,0,1)] filter"
+  />
+</a>
