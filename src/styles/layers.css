@@ -4,17 +4,31 @@
   }
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-}
+@layer components {
+  .scrollbar-aero {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-white-alpha) transparent;
+  }
 
-::-webkit-scrollbar-track {
-  background: transparent;
-}
+  .scrollbar-aero::-webkit-scrollbar {
+    width: 10px;
+  }
 
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #424242, #c7c7c7, #343434);
-  border-radius: 3px;
-  border: 2px solid transparent;
-  background-clip: content-box;
+  .scrollbar-aero::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 9999px;
+  }
+
+  .scrollbar-aero::-webkit-scrollbar-thumb {
+    background: var(--color-white-alpha);
+    border-radius: 9999px;
+  }
+
+  .scrollbar-aero::-webkit-scrollbar-thumb:hover {
+    background: var(--color-white-alpha);
+  }
+
+  .scrollbar-aero::-webkit-scrollbar-thumb:active {
+    background: var(--color-white-alpha);
+  }
 }
