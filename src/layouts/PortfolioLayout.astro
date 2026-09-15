@@ -15,6 +15,10 @@ const scrollStyling = isScrollable
   ? 'rounded-2xl overflow-y-auto shadow-2xl border border-white/80'
   : 'lg:rounded-2xl lg:overflow-y-auto lg:shadow-2xl lg:border lg:border-white/80';
 
+const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
+
+const windowVisibility = isHome ? 'hidden' : '';
+
 const mainCard = {
   img: 'img/pfp.png',
   imgAlt: '',
@@ -95,7 +99,7 @@ const contactData = {
     </div>
 
     <div
-      class=`w-full min-h-0 h-full lg:h-auto flex-1 ${scrollStyling} flex flex-col gap-2 scrollbar-aero`
+      class=`${windowVisibility} w-full min-h-0 h-full lg:h-auto flex-1 ${scrollStyling} flex flex-col gap-2 scrollbar-aero`
       id="main-window"
     >
       <slot />
