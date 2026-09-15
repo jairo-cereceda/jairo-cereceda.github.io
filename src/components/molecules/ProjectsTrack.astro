@@ -15,9 +15,11 @@ const { data } = Astro.props;
 const { items } = data;
 ---
 
-<div class="absolute inset-0 overflow-hidden">
-  <div class="perspective-[1000px] h-full absolute top-0 left-0 w-[32%] z-20">
-    <div class="transform-[rotateY(16deg)_rotateX(2deg)] h-full">
+<div class="not-firefox:absolute firefox:h-full inset-0 overflow-hidden">
+  <div
+    class="not-firefox:perspective-[1000px] h-full not-firefox:absolute top-0 left-0 w-[32%] firefox:w-full firefox:h-full z-20"
+  >
+    <div class="not-firefox:transform-[rotateY(16deg)_rotateX(2deg)] h-full">
       <DefaultCard isFullheight={true}>
         <div class="flex flex-col gap-4">
           {items.map((item, id) => <ProjectCover data={item} id={id} />)}

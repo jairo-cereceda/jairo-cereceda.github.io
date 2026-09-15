@@ -4,6 +4,12 @@
   }
 }
 
+@custom-variant firefox {
+  @supports (-moz-appearance: none) {
+    @slot;
+  }
+}
+
 @layer components {
   .scrollbar-aero {
     scrollbar-width: thin;
