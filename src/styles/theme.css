@@ -38,6 +38,10 @@
   --color-secondary: #5d5d5d;
   --color-white: #ebefff;
   --color-black: #0f0f0f;
-
   --color-white-alpha: rgb(from var(--color-white) r g b / 80%);
+
+  /*Transforms*/
+  --scale-title: 0.88;
+  --scale-window: 0.98;
+  --translate-animation: 120%;
 }

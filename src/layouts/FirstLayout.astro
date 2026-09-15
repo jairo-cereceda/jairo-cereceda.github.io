@@ -22,8 +22,32 @@ import { ClientRouter } from 'astro:transitions';
 
     <script>
       import { startPage } from '@utils/startPage';
+      import { generateAnimations } from '@utils/animation';
+
+      document.addEventListener(
+        'click',
+        (event) => {
+          const target = event.target;
+
+          if (!(target instanceof Element)) return;
+
+          const link = target.closest('a');
+
+          if (!(link instanceof HTMLAnchorElement)) return;
+
+          const currentUrl = new URL(window.location.href);
+          const targetUrl = new URL(link.href);
+
+          if (currentUrl.href === targetUrl.href) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+          }
+        },
+        true
+      );
 
       document.addEventListener('astro:page-load', startPage);
+      document.addEventListener('DOMContentLoaded', generateAnimations);
     </script>
   </body>
 </html>

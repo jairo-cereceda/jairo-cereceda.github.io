@@ -4,6 +4,8 @@ import { createScroller } from '@utils/scroller';
 import { musicControl } from '@utils/music';
 import { workingClock } from '@utils/clock';
 import { handleFocusOnNavigate } from '@utils/focusWindow';
+import { generateWindowAnimation } from './animation';
+import { updateCurrentPage } from './currentPage';
 
 export function startPage() {
   controlMoreInfo();
@@ -12,4 +14,6 @@ export function startPage() {
   createCarousel();
   createScroller();
   handleFocusOnNavigate();
+  generateWindowAnimation();
+  updateCurrentPage();
 }

@@ -17,7 +17,7 @@ const scrollStyling = isScrollable
 
 const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
 
-const windowVisibility = isHome ? 'hidden' : '';
+const windowVisibility = isHome ? 'lg:hidden' : '';
 
 const mainCard = {
   img: 'img/pfp.png',
@@ -87,26 +87,39 @@ const contactData = {
 ---
 
 <MainLayout>
-  <div
-    class="w-full h-full lg:h-[98%] flex gap-4 flex-col lg:flex-row lg:justify-between"
-  >
-    <div class="hidden lg:flex lg:flex-col lg:h-full lg:gap-4">
-      <MainCard data={mainCard} />
-      <Contact data={contactData} platform="desktop" />
-      <div class="contents" transition:persist="factslider">
-        <FactSlider data={factSlider} />
-      </div>
-    </div>
-
+  <div class="w-full h-full overflow-x-clip flex justify-center">
     <div
-      class=`${windowVisibility} w-full min-h-0 h-full lg:h-auto flex-1 ${scrollStyling} flex flex-col gap-2 scrollbar-aero`
-      id="main-window"
+      class="h-full w-[98%] lg:h-[98%] flex gap-4 flex-col lg:flex-row lg:justify-between"
     >
-      <slot />
-    </div>
+      <div
+        class="hidden lg:flex lg:flex-col lg:h-full lg:gap-4 transition duration-400 -translate-x-animation"
+        transition:persist="sidebar"
+        data-left-animation
+      >
+        <MainCard data={mainCard} />
+        <Contact data={contactData} platform="desktop" />
+        <div class="contents">
+          <FactSlider data={factSlider} />
+        </div>
+      </div>
 
-    <div class="hidden lg:block" transition:persist="menu">
-      <ContentList data={contentList} />
+      <slot name="header-bubble" />
+
+      <div
+        class=`${windowVisibility} w-full min-h-0 h-full lg:h-auto flex-1 scale-window transition-all duration-400 ${scrollStyling} flex flex-col gap-2 scrollbar-aero`
+        id="main-window"
+        data-zoom-animation
+      >
+        <slot />
+      </div>
+
+      <div
+        class="hidden lg:block transition duration-400 translate-x-animation"
+        transition:persist="menu"
+        data-right-animation
+      >
+        <ContentList data={contentList} />
+      </div>
     </div>
   </div>
 </MainLayout>

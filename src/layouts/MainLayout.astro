@@ -5,9 +5,7 @@ import FirstLayout from '@layouts/FirstLayout.astro';
 
 <FirstLayout>
   <Header />
-  <main class="w-[98%] h-full min-h-0 flex-1">
-    <div class="h-full w-full flex flex-col gap-2 items-start">
-      <slot />
-    </div>
+  <main class="w-full h-full min-h-0 flex-1 flex flex-col gap-2 items-start">
+    <slot />
   </main>
 </FirstLayout>

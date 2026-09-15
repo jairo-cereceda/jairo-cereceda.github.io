@@ -15,7 +15,9 @@ const headerItemList = {
 ---
 
 <header
-  class="backdrop-blur-2xl bg-secondary/20 rounded-b-2xl w-[98%] p-2 px-6 shadow-2xl shadow-white/20 border border-white/10 border-t-0"
+  class="backdrop-blur-2xl bg-secondary/20 rounded-b-2xl w-[98%] p-2 px-6 shadow-2xl shadow-white/20 border border-white/10 border-t-0 transition duration-400 -translate-y-animation"
+  transition:persist="header"
+  data-top-animation
 >
   <div class="text-bold text-sm flex justify-between">
     <p id="clock"></p>
@@ -68,9 +70,5 @@ const headerItemList = {
     </div>
   </div>
 
-  <audio
-    id="music"
-    src="/media/audio/2-am-lucid-dusqk.mp3"
-    loop
-    transition:persist></audio>
+  <audio id="music" src="/media/audio/2-am-lucid-dusqk.mp3" loop></audio>
 </header>
