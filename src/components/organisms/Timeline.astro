@@ -2,6 +2,7 @@
 import DefaultCard from '@components/molecules/DefaultCard.astro';
 import type { timelineDotData } from '@components/molecules/TimelineDot.astro';
 import TimelineDot from '@components/molecules/TimelineDot.astro';
+import { Icon } from 'astro-icon/components';
 
 export interface timelineData {
   items: timelineDotData[];
@@ -15,8 +16,8 @@ const { data } = Astro.props;
 const { items } = data;
 ---
 
-<section class="w-full">
-  <DefaultCard isFullheight={false}>
+<section class="relative w-full lg:h-full xl:overflow-hidden">
+  <DefaultCard isFullheight={true}>
     <div class="my-5 ml-2">
       {
         items.map((item) => (
@@ -25,6 +26,42 @@ const { items } = data;
           </>
         ))
       }
+
+      <div class="w-full h-full group hidden lg:block">
+        <div
+          class="absolute left-1/2 bottom-1/4 -translate-x-1/2 z-20 flex items-center justify-center"
+        >
+          <span
+            class="absolute right-full w-0 group-hover:w-20 h-px bg-white transition-all duration-500"
+          ></span>
+
+          <Icon name="lock" size={24} class="mx-4" />
+
+          <span
+            class="absolute left-full w-0 group-hover:w-20 h-px bg-white transition-all duration-500"
+          ></span>
+        </div>
+
+        <p
+          class="opacity-0 absolute left-1/2 bottom-1/5 -translate-x-1/2 z-20 group-hover:opacity-100 transition duration-300"
+          id="potential-quote"
+        >
+          Desbloquea mi potencial
+        </p>
+
+        <div class="my-5 overflow-hidden blur" id="locked-timeline">
+          {
+            items.map((item) => (
+              <>
+                <TimelineDot
+                  data={item}
+                  hasDot={item != items[items.length - 1]}
+                />
+              </>
+            ))
+          }
+        </div>
+      </div>
     </div>
   </DefaultCard>
 </section>
