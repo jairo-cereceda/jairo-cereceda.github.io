@@ -1,6 +1,7 @@
 ---
 import Heading from '@components/atoms/Heading.astro';
 import CertificateScroller from '@components/organisms/CertificateScroller.astro';
+import ImageCard from '@components/organisms/ImageCard.astro';
 import Timeline from '@components/organisms/Timeline.astro';
 import PortfolioLayout from '@layouts/PortfolioLayout.astro';
 
@@ -38,14 +39,23 @@ const certificateScroller = {
     },
   ],
 };
+
+const imageCardData = {
+  img: 'img/mock.png',
+  imgAlt: 'Foto de cuando era pequeño con ordenadores',
+  text: 'Pasión por la tecnología desde pequeño',
+};
 ---
 
-<PortfolioLayout>
+<PortfolioLayout isScrollable={true}>
   <Heading slot="header-bubble" text="Experiencia" type="bubble" />
   <div
     class="w-full flex-1 min-h-0 flex flex-col gap-4 xl:flex-row xl:justify-between"
   >
     <Timeline data={timelineData} />
-    <CertificateScroller data={certificateScroller} />
+    <div class="w-full h-full flex flex-col gap-4 sm:flex-row lg:flex-col">
+      <CertificateScroller data={certificateScroller} />
+      <ImageCard data={imageCardData} />
+    </div>
   </div>
 </PortfolioLayout>

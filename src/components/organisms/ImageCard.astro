@@ -1,0 +1,35 @@
+---
+import DefaultCard from '@components/molecules/DefaultCard.astro';
+import { getImageMetadata } from '@utils/getImage';
+
+import { Image } from 'astro:assets';
+
+export interface imageCardData {
+  img: string;
+  imgAlt: string;
+  text: string;
+}
+
+export interface Props {
+  data: imageCardData;
+}
+
+const { data } = Astro.props;
+const { img, imgAlt, text } = data;
+
+const metadata = await getImageMetadata(img);
+---
+
+<DefaultCard isFullheight={true} class="relative flex flex-col gap-2 pt-4">
+  <p class="font-bold drop-shadow-[0_0_1px_rgba(255,255,255,0.5)] filter">
+    {text}
+  </p>
+
+  <Image
+    src={metadata}
+    width={metadata.width}
+    height={metadata.height}
+    alt={imgAlt}
+    class="w-full h-full object-cover aspect-video"
+  />
+</DefaultCard>
