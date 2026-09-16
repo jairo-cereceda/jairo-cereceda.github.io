@@ -4,6 +4,7 @@ import MainCard from '@components/organisms/MainCard.astro';
 import Contact from '@components/organisms/Contact.astro';
 import FactSlider from '@components/organisms/FactSlider.astro';
 import ContentList from '@components/organisms/ContentList.astro';
+import { mainCard, contentList, factSlider, contactData } from '@data/index.ts';
 
 export interface Props {
   isScrollable?: boolean;
@@ -18,72 +19,6 @@ const scrollStyling = isScrollable
 const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
 
 const windowVisibility = isHome ? 'lg:hidden' : '';
-
-const mainCard = {
-  img: 'img/pfp.png',
-  imgAlt: '',
-  name: 'Jairo Cereceda Berciano',
-  profession: 'UI/UX Developer',
-};
-
-const contentList = {
-  items: [
-    {
-      url: '/experience',
-      icon: 'calendar',
-      text: 'Experiencia',
-    },
-    {
-      url: '/projects',
-      icon: 'branch',
-      text: 'Proyectos',
-    },
-    {
-      url: '/techs',
-      icon: 'tool',
-      text: 'Tecnologías',
-    },
-    {
-      url: '/playground',
-      icon: 'sandbox',
-      text: 'Playground',
-    },
-  ],
-};
-
-const factSlider = {
-  items: [
-    {
-      title: 'Acerca de mis estudios',
-      text: 'En mis estudios de Desarrollo de Aplicaciones web conseguí obtener la mayor nota media posible, siendo esta un 10/10.',
-    },
-    {
-      title: 'Acerca de mis estudios 2',
-      text: 'En mis estudios de Desarrollo de Aplicaciones web conseguí obtener la mayor nota media posible, siendo esta un 10/10.',
-    },
-  ],
-};
-
-const contactData = {
-  items: [
-    {
-      url: 'https://www.linkedin.com/in/jairo-cereceda-berciano/',
-      text: 'Linkedin',
-      icon: 'linkedin',
-    },
-
-    {
-      url: 'https://github.com/jairo-cereceda',
-      text: 'GitHub',
-      icon: 'github',
-    },
-    {
-      url: 'mailto:',
-      text: 'Mail',
-      icon: 'mail',
-    },
-  ],
-};
 ---
 
 <MainLayout>

@@ -3,54 +3,7 @@ import ProjectInfo from '@components/molecules/ProjectInfo.astro';
 import ProjectSlideImgs from '@components/molecules/ProjectSlideImgs.astro';
 import SliderTrack from '@components/molecules/SliderTrack.astro';
 import ProjectsTrack from '@components/molecules/ProjectsTrack.astro';
-
-const slides = [
-  {
-    imgs: [
-      {
-        img: 'img/pfp.png',
-        imgAlt: '',
-      },
-      {
-        img: 'img/mock.png',
-        imgAlt: '',
-      },
-    ],
-    info: {
-      title: 'Portfolio de Ilustradora',
-      description: 'lorem ipsum',
-    },
-  },
-  {
-    imgs: [
-      {
-        img: 'img/pfp.png',
-        imgAlt: '',
-      },
-      {
-        img: 'img/mock.png',
-        imgAlt: '',
-      },
-    ],
-    info: {
-      title: 'Portfolio de Ilustradora 2',
-      description: 'lorem ipsum',
-    },
-  },
-];
-
-const projectsTrackData = {
-  items: [
-    {
-      img: 'img/pfp.png',
-      title: 'MyChat',
-    },
-    {
-      img: 'img/pfp.png',
-      title: 'MyChat',
-    },
-  ],
-};
+import { projectsTrackData, slides } from '@data/projects.ts';
 ---
 
 <section
