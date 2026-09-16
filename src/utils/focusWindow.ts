@@ -14,7 +14,7 @@ export function handleFocusOnNavigate() {
   if (!windowContainer) return;
 
   requestAnimationFrame(() => {
-    const heading = windowContainer.querySelector<HTMLElement>(
+    const heading = document.querySelector<HTMLElement>(
       'h1, [data-page-title]'
     );
     if (heading) {

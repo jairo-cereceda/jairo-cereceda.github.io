@@ -73,6 +73,8 @@ const projectsTrackData = {
         <article
           class="w-full relative shrink-0 snap-center snap-always flex justify-center"
           data-slide
+          inert
+          aria-hidden="true"
         >
           <ProjectSlideImgs data={{ imgs: slides[slides.length - 1].imgs }} />
           <ProjectInfo data={slides[slides.length - 1].info} />
@@ -91,6 +93,8 @@ const projectsTrackData = {
         <article
           class="w-full relative shrink-0 snap-center snap-always flex justify-center"
           data-slide
+          inert
+          aria-hidden="true"
         >
           <ProjectSlideImgs data={{ imgs: slides[0].imgs }} />
           <ProjectInfo data={slides[0].info} />
