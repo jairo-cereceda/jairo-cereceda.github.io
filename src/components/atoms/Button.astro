@@ -39,6 +39,14 @@ const hasMoreInfoDescription =
 const backButtonAttributes = isBackButton ? { id: "back-button" } : {};
 
 const baseStyles = "self-center px-3 py-2 bg-white/20 shadow-secondary/20 font-bold border border-white/20 rounded-2xl text-sm cursor-pointer"
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '');
+
+const isEn = Astro.currentLocale === 'en' || currentPath.startsWith('/en');
+
+const parentPath = currentPath.substring(0, currentPath.lastIndexOf('/'));
+
+const backHref = parentPath || (isEn ? '/en' : '/');
 ---
 
 {
@@ -55,20 +63,11 @@ const baseStyles = "self-center px-3 py-2 bg-white/20 shadow-secondary/20 font-b
   </button> 
   : 
   <a
+  href={backHref}
   class=`${baseStyles} mx-2 flex items-center justify-center left-0 absolute`
   {...backButtonAttributes}
   >
   <Icon name="arrow-left"/>
   </a>
-
-  <script>
-    const backButton = document.getElementById("back-button");
-
-    if(backButton){
-      const path = window.location.pathname;
-
-      backButton.setAttribute('href', path.substring(0, path.lastIndexOf('/')) || "/");
-    }
-  </script>
 }
 
