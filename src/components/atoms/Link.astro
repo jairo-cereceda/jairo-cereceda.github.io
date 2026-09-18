@@ -4,9 +4,10 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 
 interface Props extends HTMLAttributes<'a'> {
   href: string;
+  reload?: boolean;
 }
 
-const { href, ...attrs } = Astro.props;
+const { href, reload, ...attrs } = Astro.props;
 
 const lang =
   Astro.currentLocale ?? (Astro.url.pathname.startsWith('/en') ? 'en' : 'es');
@@ -15,8 +16,10 @@ const isExternal =
   href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('#');
 
 const finalHref = isExternal ? href : getRelativeLocaleUrl(lang, href);
+
+const reloadAttr = reload ? { 'data-astro-reload': true } : {};
 ---
 
-<a href={finalHref} {...attrs}>
+<a href={finalHref} {...attrs} {...reloadAttr}>
   <slot />
 </a>
