@@ -1,4 +1,5 @@
 ---
+// src/pages/[...lang]/playground/[...slug].astro
 import Heading from '@components/atoms/Heading.astro';
 import PortfolioLayout from '@layouts/PortfolioLayout.astro';
 import { getCollection, render } from 'astro:content';
@@ -7,9 +8,18 @@ export async function getStaticPaths() {
   const docs = await getCollection('playground');
 
   return docs.map((doc) => {
+    // doc.id suele ser "es/nombre.mdx" o "en/nombre.mdx"
+    const [lang, ...slugParts] = doc.id.split('/');
+
+    // Limpiamos la extensión para que la URL sea limpia (ej: "boton" en vez de "boton.mdx")
+    const cleanSlug = slugParts.join('/').replace(/\.mdx?$/, '');
+
     return {
       params: {
-        slug: doc.id,
+        // Si es español, 'undefined' lo deja en /playground/[slug]
+        // Si es inglés, genera /en/playground/[slug]
+        lang: lang === 'es' ? undefined : 'en',
+        slug: cleanSlug,
       },
       props: {
         doc,
