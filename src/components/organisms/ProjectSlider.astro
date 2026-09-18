@@ -1,9 +1,23 @@
 ---
 import ProjectInfo from '@components/molecules/ProjectInfo.astro';
+import type { projectInfoData } from '@components/molecules/ProjectInfo.astro';
 import ProjectSlideImgs from '@components/molecules/ProjectSlideImgs.astro';
+import type { imageData } from '@components/atoms/Image.astro';
 import SliderTrack from '@components/molecules/SliderTrack.astro';
+import type { ProjectTrackData } from '@components/molecules/ProjectsTrack.astro';
 import ProjectsTrack from '@components/molecules/ProjectsTrack.astro';
-import { projectsTrackData, slides } from '@data/projects.ts';
+
+export interface projectSliderData {
+  slides: { imgs: imageData[]; info: projectInfoData }[];
+  sliderTrack: ProjectTrackData;
+}
+
+export interface Props {
+  data: projectSliderData;
+}
+
+const { data } = Astro.props;
+const { slides, sliderTrack } = data;
 ---
 
 <section
@@ -14,7 +28,7 @@ import { projectsTrackData, slides } from '@data/projects.ts';
     <SliderTrack data={{ quantity: slides.length, position: 'top' }} />
   </div>
   <div class="hidden md:block">
-    <ProjectsTrack data={projectsTrackData} />
+    <ProjectsTrack data={sliderTrack} />
   </div>
   <div class="w-full h-full overflow-hidden relative lg:col-start-2">
     <div class="overflow-hidden min-w-0 h-full rounded-2xl">

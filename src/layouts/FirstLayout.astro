@@ -2,10 +2,15 @@
 import '@styles/main.css';
 
 import { ClientRouter } from 'astro:transitions';
+
+import type { Lang } from '../data';
+
+const lang = (Astro.currentLocale ??
+  (Astro.url.pathname.startsWith('/en') ? 'en' : 'es')) as Lang;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -14,6 +19,28 @@ import { ClientRouter } from 'astro:transitions';
     <meta name="generator" content={Astro.generator} />
     <title>Portfolio</title>
     <ClientRouter />
+
+    <script is:inline>
+      (function () {
+        if (window.location.pathname.startsWith('/en')) return;
+
+        const browserLang =
+          (navigator.languages && navigator.languages[0]) ||
+          navigator.language ||
+          '';
+        const isSpanish = browserLang.toLowerCase().startsWith('es');
+
+        if (!isSpanish) {
+          const currentPath = window.location.pathname;
+          const targetPath =
+            '/en' +
+            (currentPath === '/' ? '' : currentPath) +
+            window.location.search;
+
+          window.location.replace(targetPath);
+        }
+      })();
+    </script>
   </head>
   <body
     class="min-h-dvh h-screen flex flex-col lg:justify-between items-center gap-4"

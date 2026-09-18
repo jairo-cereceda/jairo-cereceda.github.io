@@ -3,7 +3,18 @@ import Heading from '@components/atoms/Heading.astro';
 import ActionSheet from '@components/molecules/ActionSheet.astro';
 import BubbleItemList from '@components/organisms/BubbleItemList.astro';
 import PortfolioLayout from '@layouts/PortfolioLayout.astro';
-import { techs } from '@data/techs';
+import { getTechsData, type Lang } from '@data/index';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined }, props: { lang: 'es' as Lang } },
+    { params: { lang: 'en' }, props: { lang: 'en' as Lang } },
+  ];
+}
+
+const { lang } = Astro.props;
+
+const techs = getTechsData(lang);
 ---
 
 <PortfolioLayout isScrollable={true}>

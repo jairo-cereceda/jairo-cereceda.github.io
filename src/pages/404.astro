@@ -1,6 +1,19 @@
 ---
 import DefaultCard from '@components/molecules/DefaultCard.astro';
 import MainLayout from '@layouts/MainLayout.astro';
+import { get404Data, type Lang } from '@data/index';
+import Link from '@components/atoms/Link.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined }, props: { lang: 'es' as Lang } },
+    { params: { lang: 'en' }, props: { lang: 'en' as Lang } },
+  ];
+}
+
+const { lang } = Astro.props;
+
+const info404 = get404Data(lang);
 ---
 
 <MainLayout>
@@ -8,20 +21,19 @@ import MainLayout from '@layouts/MainLayout.astro';
     <DefaultCard isFullheight={true} class="lg:max-w-medium-small">
       <div class="flex flex-col gap-4 w-full h-full items-center">
         <h1 class="text-2xl text-center font-bold">
-          Parece que te has perdido
+          {info404.title}
         </h1>
 
         <p
           class="text-center text-lg drop-shadow-[0_0_1px_rgba(255,255,255,0.5)] filter"
         >
-          ¡Oye! Mi portfolio creo que ya aporta suficiente valor como para
-          buscar por otras urls.
+          {info404.text}
         </p>
 
-        <a
+        <Link
           href="/"
           class="self-center px-3 py-2 bg-white/20 shadow-secondary/20 font-bold border border-white/20 rounded-2xl text-sm cursor-pointer"
-          >Visitar mi portfolio</a
+          >{info404.linkText}</Link
         >
       </div>
     </DefaultCard>

@@ -1,0 +1,22 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+interface Props extends HTMLAttributes<'a'> {
+  href: string;
+}
+
+const { href, ...attrs } = Astro.props;
+
+const lang =
+  Astro.currentLocale ?? (Astro.url.pathname.startsWith('/en') ? 'en' : 'es');
+
+const isExternal =
+  href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('#');
+
+const finalHref = isExternal ? href : getRelativeLocaleUrl(lang, href);
+---
+
+<a href={finalHref} {...attrs}>
+  <slot />
+</a>

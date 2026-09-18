@@ -4,7 +4,27 @@ import ContentList from '@components/organisms/ContentList.astro';
 import FactSlider from '@components/organisms/FactSlider.astro';
 import MainCard from '@components/organisms/MainCard.astro';
 import PortfolioLayout from '@layouts/PortfolioLayout.astro';
-import { mainCard, contentList, factSlider, contactData } from '@data/index.ts';
+import {
+  getMainCardData,
+  getContentListData,
+  getFactSliderData,
+  getContactData,
+  type Lang,
+} from '@data/index';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined }, props: { lang: 'es' as Lang } },
+    { params: { lang: 'en' }, props: { lang: 'en' as Lang } },
+  ];
+}
+
+const { lang } = Astro.props;
+
+const mainCard = getMainCardData(lang);
+const contentList = getContentListData(lang);
+const factSlider = getFactSliderData(lang);
+const contactData = getContactData(lang);
 ---
 
 <PortfolioLayout>

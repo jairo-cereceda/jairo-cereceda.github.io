@@ -1,13 +1,13 @@
 ---
 import DefaultCard from './DefaultCard.astro';
 
-export interface mainCardData {
+export interface projectInfoData {
   title: string;
   description: string;
 }
 
 export interface Props {
-  data: mainCardData;
+  data: projectInfoData;
 }
 
 const { data } = Astro.props;

@@ -2,7 +2,18 @@
 import Heading from '@components/atoms/Heading.astro';
 import ComponentCardList from '@components/organisms/ComponentCardList.astro';
 import PortfolioLayout from '@layouts/PortfolioLayout.astro';
-import { components } from '@data/playground';
+import { getComponentsData, type Lang } from '@data/index';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined }, props: { lang: 'es' as Lang } },
+    { params: { lang: 'en' }, props: { lang: 'en' as Lang } },
+  ];
+}
+
+const { lang } = Astro.props;
+
+const components = getComponentsData(lang);
 ---
 
 <PortfolioLayout isScrollable={true}>

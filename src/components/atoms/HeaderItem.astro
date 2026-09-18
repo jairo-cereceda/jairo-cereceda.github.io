@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+import Link from './Link.astro';
 
 export interface headerItemData {
   url: string;
@@ -19,8 +20,8 @@ const itemAttrs = !visibleText ? { 'aria-label': text } : {};
 ---
 
 <li>
-  <a href={url} {...itemAttrs}>
+  <Link href={url} {...itemAttrs}>
     {icon && <Icon name={icon} size={16} />}
     {visibleText && text}
-  </a>
+  </Link>
 </li>

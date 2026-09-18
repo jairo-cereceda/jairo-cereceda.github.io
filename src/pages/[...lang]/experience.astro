@@ -5,10 +5,24 @@ import ImageCard from '@components/organisms/ImageCard.astro';
 import Timeline from '@components/organisms/Timeline.astro';
 import PortfolioLayout from '@layouts/PortfolioLayout.astro';
 import {
-  timelineData,
-  certificateScroller,
-  imageCardData,
-} from '@data/experience';
+  getTimelineData,
+  getCertificateScrollerData,
+  getImageCardData,
+  type Lang,
+} from '@data/index';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined }, props: { lang: 'es' as Lang } },
+    { params: { lang: 'en' }, props: { lang: 'en' as Lang } },
+  ];
+}
+
+const { lang } = Astro.props;
+
+const timelineData = getTimelineData(lang);
+const certificateScroller = getCertificateScrollerData(lang);
+const imageCardData = getImageCardData(lang);
 ---
 
 <PortfolioLayout isScrollable={true}>

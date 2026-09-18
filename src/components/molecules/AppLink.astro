@@ -1,4 +1,5 @@
 ---
+import Link from '@components/atoms/Link.astro';
 import { Icon } from 'astro-icon/components';
 
 export interface appLinkData {
@@ -27,8 +28,8 @@ const mailtoId = isMailto
 const colSpan = span ? 'col-span-2' : '';
 ---
 
-<a
-  href={!isMailto ? url : null}
+<Link
+  href={!isMailto ? url : ''}
   rel="noreferrer noopener"
   target="_blank"
   class=`bg-white/20 shadow-secondary/20 font-bold border border-white/20 rounded-2xl text-sm ${colSpan}
@@ -47,7 +48,7 @@ const colSpan = span ? 'col-span-2' : '';
     size={25}
     class="text-white drop-shadow-[0_0_1px_rgba(0,0,0,1)] filter"
   />
-</a>
+</Link>
 
 <script>
   document.getElementById('mailto-btn')?.addEventListener('click', (e) => {
