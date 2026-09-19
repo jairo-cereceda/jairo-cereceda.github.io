@@ -1,0 +1,270 @@
+---
+import Slide from './Slide.astro';
+import { Icon } from 'astro-icon/components';
+import type { Lang } from '@data/index';
+
+/*Import images */
+import cadizImg from './img/cadiz.webp';
+import mobileImg from './img/mobile.webp';
+import oldUsingMobile from './img/old-using-mobile.webp';
+import ActionSheetCarousel from './ActionSheetCarousel.astro';
+
+const lang = (Astro.currentLocale ??
+  (Astro.url.pathname.startsWith('/en') ? 'en' : 'es')) as Lang;
+
+const slidesEs = [
+  {
+    title: 'El valor de tu identidad local',
+    imgSrc: cadizImg,
+    text: 'Cádiz cuenta con una magia y autenticidad únicas que diferencian a sus negocios de cualquier franquicia. Reflejamos la historia y el carácter de tu marca para que tanto turistas como residentes reconozcan tu calidad antes de cruzar la puerta.',
+  },
+  {
+    title: 'Contacto directo en un solo clic',
+    imgSrc: mobileImg,
+    text: 'La inmediatez es clave para no perder ventas. Integramos canales directos como WhatsApp, llamadas y sistemas de reserva al instante para que cualquier cliente interesado pueda comunicarse contigo al segundo y cerrar el trato sin rodeos.',
+  },
+  {
+    title: 'Confianza y cercanía ante todo',
+    imgSrc: oldUsingMobile,
+    text: 'La tecnología debe generar seguridad, nunca dudas. Creamos experiencias transparentes y cercanas que transmiten profesionalidad al instante, logrando que usuarios de cualquier generación sientan total tranquilidad al contratar tus servicios.',
+  },
+];
+
+const slidesEn = [
+  {
+    title: 'The Value of Your Local Identity',
+    imgSrc: cadizImg,
+    text: 'Cadiz has a unique charm and authenticity that sets its local businesses apart from standard franchises. We showcase your brand’s history and true character so both visitors and locals recognize your quality before even walking through the door.',
+  },
+  {
+    title: 'Direct Contact in a Single Click',
+    imgSrc: mobileImg,
+    text: 'Immediacy is essential to avoid losing potential sales. We integrate direct channels like WhatsApp, instant bookings, and one-tap calling so interested customers can reach out to you within seconds and close deals without hesitation.',
+  },
+  {
+    title: 'Trust and Reliability First',
+    imgSrc: oldUsingMobile,
+    text: 'Technology should inspire confidence, never confusion. We build transparent and welcoming digital experiences that immediately convey professionalism, making users of all generations feel completely comfortable choosing your services.',
+  },
+];
+
+const slides = lang === 'es' ? slidesEs : slidesEn;
+---
+
+<section class="shadow-main" id="about-us">
+  <div
+    class="bg-white text-black [box-shadow:0_0_0_100vmax_var(--color-black)] [clip-path:inset(0_-100vmax)]"
+  >
+    <div class="relative overflow-hidden w-full">
+      <button
+        class="absolute top-[50%] lg:left-2 z-10 rotate-180 cursor-pointer"
+        data-left-btn
+        aria-label="Anterior tarjeta"
+      >
+        <Icon name="arrow" size={32} />
+      </button>
+      <div class="flex transition-transform duration-300" data-carousel>
+        <div class="w-full shrink-0 flex justify-center">
+          <Slide data={slides[slides.length - 1]} />
+        </div>
+        {
+          slides &&
+            slides.map((slide) => (
+              <div class="w-full shrink-0 flex justify-center">
+                <Slide data={slide} />
+              </div>
+            ))
+        }
+        <div class="w-full shrink-0 flex justify-center">
+          <Slide data={slides[0]} />
+        </div>
+      </div>
+      <button
+        aria-label="Siguiente tarjeta"
+        class="absolute top-[50%] right-1 lg:right-2 z-10 cursor-pointer"
+        data-right-btn
+      >
+        <Icon name="arrow" size={32} />
+      </button>
+    </div>
+  </div>
+</section>
+
+<ActionSheetCarousel />
+
+<script>
+  import { focusTrap } from './utils/focusTrap';
+
+  let intervalId: number | undefined;
+
+  function stopAutoPlay() {
+    if (intervalId) {
+      clearInterval(intervalId);
+      intervalId = undefined;
+    }
+  }
+
+  function initCarousel() {
+    const carousel = document.querySelector(
+      '[data-carousel]'
+    ) as HTMLElement | null;
+    const nextBtn = document.querySelector('[data-right-btn]');
+    const prevBtn = document.querySelector('[data-left-btn]');
+    const moreInfoButtons = document.querySelectorAll(
+      '[data-slide-btn]'
+    ) as NodeListOf<HTMLButtonElement>;
+
+    if (!carousel) return;
+
+    let currentPosition = 1;
+    const slides = carousel.querySelectorAll(':scope > div');
+    const totalSlides = slides.length;
+
+    function removeTabs() {
+      if (moreInfoButtons.length === 0) return;
+      moreInfoButtons.forEach((btn) => btn.setAttribute('tabindex', '-1'));
+    }
+
+    function updateCarousel(withTransition = true) {
+      if (!carousel) return;
+      const width = carousel.clientWidth;
+
+      carousel.style.transition = withTransition ? 'transform 300ms' : 'none';
+      carousel.style.transform = `translateX(-${currentPosition * width}px)`;
+      removeTabs();
+      if (moreInfoButtons[currentPosition]) {
+        moreInfoButtons[currentPosition].setAttribute('tabindex', '0');
+      }
+    }
+
+    function startAutoPlay() {
+      stopAutoPlay();
+      intervalId = window.setInterval(() => {
+        next();
+      }, 10000);
+    }
+
+    function next() {
+      if (currentPosition >= totalSlides - 1) return;
+      currentPosition++;
+      updateCarousel();
+    }
+
+    function prev() {
+      if (currentPosition <= 0) return;
+      currentPosition--;
+      updateCarousel();
+    }
+
+    nextBtn?.addEventListener('click', () => {
+      next();
+      stopAutoPlay();
+    });
+
+    prevBtn?.addEventListener('click', () => {
+      prev();
+      stopAutoPlay();
+    });
+
+    carousel.addEventListener('transitionend', () => {
+      if (currentPosition === totalSlides - 1) {
+        currentPosition = 1;
+        updateCarousel(false);
+      }
+      if (currentPosition === 0) {
+        currentPosition = totalSlides - 2;
+        updateCarousel(false);
+      }
+    });
+
+    updateCarousel(false);
+    startAutoPlay();
+
+    const actionSheet = document.getElementById('action-sheet-carousel');
+    const actionSheetWrapper = document.getElementById(
+      'action-sheet-carousel-wrapper'
+    );
+    const actionSheetTitle = document.getElementById(
+      'action-sheet-carousel-title'
+    );
+    const actionSheetDescription = document.getElementById(
+      'action-sheet-carousel-description'
+    );
+    const actionSheetCloser = document.getElementById(
+      'action-sheet-carousel-closer'
+    );
+
+    let slideMoreInfoBtn: HTMLButtonElement | null = null;
+
+    const openAction = () => {
+      if (!actionSheet || !actionSheetWrapper || !actionSheetCloser) return;
+
+      actionSheet.classList.remove('translate-y-full');
+      actionSheet.setAttribute('aria-modal', 'true');
+
+      actionSheetWrapper.classList.remove('opacity-0', 'pointer-events-none');
+      actionSheetWrapper.classList.add('opacity-100');
+      actionSheetWrapper.setAttribute('aria-hidden', 'false');
+      actionSheetCloser.setAttribute('tabindex', '0');
+
+      stopAutoPlay();
+
+      setTimeout(() => {
+        actionSheetCloser.focus({ preventScroll: true });
+        focusTrap(actionSheetWrapper);
+      }, 50);
+    };
+
+    const closeAction = () => {
+      if (!actionSheet || !actionSheetWrapper || !actionSheetCloser) return;
+
+      actionSheet.classList.add('translate-y-full');
+      actionSheet.setAttribute('aria-modal', 'false');
+
+      actionSheetWrapper.classList.add('opacity-0', 'pointer-events-none');
+      actionSheetWrapper.classList.remove('opacity-100');
+      actionSheetWrapper.setAttribute('aria-hidden', 'true');
+      actionSheetCloser.setAttribute('tabindex', '-1');
+
+      slideMoreInfoBtn?.focus({ preventScroll: true });
+      startAutoPlay();
+    };
+
+    carousel.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      const btn = target.closest('[data-slide-btn]') as HTMLButtonElement;
+      if (!btn) return;
+
+      slideMoreInfoBtn = btn;
+
+      if (actionSheetTitle && actionSheetDescription) {
+        actionSheetTitle.textContent = btn.dataset.title ?? '';
+        actionSheetDescription.textContent = btn.dataset.description ?? '';
+      }
+
+      openAction();
+    });
+
+    actionSheetWrapper?.addEventListener('click', (e) => {
+      if (e.target === actionSheetWrapper) closeAction();
+    });
+
+    actionSheetCloser?.addEventListener('click', () => {
+      closeAction();
+    });
+  }
+
+  document.addEventListener('astro:page-load', () => {
+    initCarousel();
+  });
+
+  document.addEventListener('astro:before-swap', () => {
+    stopAutoPlay();
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      stopAutoPlay();
+    }
+  });
+</script>

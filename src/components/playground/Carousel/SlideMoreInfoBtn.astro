@@ -1,0 +1,21 @@
+---
+export interface slideMoreInfoBtnData {
+  title: string;
+  description: string;
+}
+
+export interface Props {
+  data: slideMoreInfoBtnData;
+}
+
+const { data } = Astro.props;
+const { title, description } = data;
+---
+
+<button
+  data-title={title}
+  data-description={description}
+  data-slide-btn
+  class="border border-black text-black px-2 rounded-2xl font-semibold cursor-pointer"
+  >Ver más</button
+>

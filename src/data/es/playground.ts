@@ -5,5 +5,10 @@ export const components = {
       text: 'Header',
       img: 'img/pfp.png',
     },
+    {
+      url: '/playground/carousel',
+      text: 'Carrusel',
+      img: 'img/pfp.png',
+    },
   ],
 };
