@@ -15,5 +15,10 @@ export const components = {
       text: 'Acordeón',
       img: 'img/pfp.png',
     },
+    {
+      url: '/playground/marquee',
+      text: 'Marquee',
+      img: 'img/pfp.png',
+    },
   ],
 };
