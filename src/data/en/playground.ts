@@ -20,5 +20,10 @@ export const components = {
       text: 'Marquee',
       img: 'img/pfp.png',
     },
+    {
+      url: '/playground/link-card',
+      text: 'Link with pictures',
+      img: 'img/pfp.png',
+    },
   ],
 };
