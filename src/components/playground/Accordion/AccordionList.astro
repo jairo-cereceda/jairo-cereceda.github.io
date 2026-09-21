@@ -1,0 +1,79 @@
+---
+import Accordion, { type accordionData } from './Accordion.astro';
+
+export interface headerItemData {
+  accordions: accordionData[];
+}
+
+export interface Props {
+  data: headerItemData;
+}
+
+const { data } = Astro.props;
+const { accordions } = data;
+---
+
+<section
+  class="flex flex-col gap-2 mx-5 md:max-w-[70%] xl:max-w-[50%] my-0 md:mx-auto md:gap-4"
+  id="faq"
+>
+  {
+    accordions &&
+      accordions.map((accordion: accordionData) => (
+        <Accordion data={accordion} />
+      ))
+  }
+</section>
+
+<script is:inline>
+  if (!window.__accordionInitialized) {
+    window.__accordionInitialized = true;
+
+    document.addEventListener('click', (e) => {
+      const target = e.target;
+
+      if (!(target instanceof Element)) return;
+
+      const btn = target.closest('[data-accordion-btn]');
+      if (!btn) return;
+
+      const accordion = btn.parentElement;
+      if (!accordion) return;
+
+      const content = accordion.querySelector('[data-accordion-content]');
+      const icon = accordion.querySelector('svg');
+
+      if (!content || !icon) return;
+
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+      if (isOpen) {
+        content.classList.add('max-h-0');
+        content.classList.remove('max-h-96');
+
+        icon.classList.remove('-rotate-90');
+        icon.classList.add('rotate-90');
+
+        btn.setAttribute('aria-expanded', 'false');
+
+        setTimeout(() => {
+          if (btn.getAttribute('aria-expanded') === 'false') {
+            btn.classList.remove('rounded-t-4xl');
+            btn.classList.add('rounded-4xl');
+          }
+        }, 400);
+      } else {
+        btn.classList.remove('rounded-4xl');
+        btn.classList.add('rounded-t-4xl');
+
+        content.classList.remove('max-h-0');
+        content.classList.add('max-h-96');
+
+        icon.classList.remove('rotate-90');
+        icon.classList.add('-rotate-90');
+
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  }
+</script>

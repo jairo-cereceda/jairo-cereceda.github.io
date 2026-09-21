@@ -1,0 +1,43 @@
+---
+import { Icon } from 'astro-icon/components';
+
+export interface accordionData {
+  btn: string;
+  text: string;
+}
+
+export interface Props {
+  data: accordionData;
+}
+
+const { data } = Astro.props;
+const { btn, text } = data;
+
+const panelId = crypto.randomUUID();
+const buttonId = crypto.randomUUID();
+---
+
+<article
+  class="w-full flex flex-col justify-center items-center rounded-4xl shadow-black text-black overflow-hidden"
+  data-accordion
+>
+  <button
+    id={buttonId}
+    aria-expanded="false"
+    aria-controls={panelId}
+    class="font-semibold text-lg rounded-4xl text-start p-4 bg-white w-full cursor-pointer flex justify-between items-center"
+    data-accordion-btn
+  >
+    {btn}
+    <Icon name="arrow" size="24" class="rotate-90 transition duration-200" />
+  </button>
+  <div
+    id={panelId}
+    role="region"
+    aria-labelledby={buttonId}
+    class="bg-white w-full rounded-b-4xl max-h-0 transition-[max-height] duration-400 overflow-hidden"
+    data-accordion-content
+  >
+    <p class="p-4">{text}</p>
+  </div>
+</article>

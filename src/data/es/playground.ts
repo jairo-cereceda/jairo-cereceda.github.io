@@ -10,5 +10,10 @@ export const components = {
       text: 'Carrusel',
       img: 'img/pfp.png',
     },
+    {
+      url: '/playground/accordion',
+      text: 'Acordeón',
+      img: 'img/pfp.png',
+    },
   ],
 };
