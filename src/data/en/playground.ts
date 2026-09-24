@@ -3,27 +3,27 @@ export const components = {
     {
       url: '/playground/header',
       text: 'Header',
-      img: 'img/pfp.png',
+      img: 'img/playground/gif/header.gif',
     },
     {
       url: '/playground/carousel',
       text: 'Carousel',
-      img: 'img/pfp.png',
+      img: 'img/playground/gif/carousel.gif',
     },
     {
       url: '/playground/accordion',
       text: 'Accordion',
-      img: 'img/pfp.png',
+      img: 'img/playground/gif/accordion.gif',
     },
     {
       url: '/playground/marquee',
       text: 'Marquee',
-      img: 'img/pfp.png',
+      img: 'img/playground/gif/marquee.gif',
     },
     {
       url: '/playground/link-card',
       text: 'Link with pictures',
-      img: 'img/pfp.png',
+      img: 'img/playground/gif/linkcard.gif',
     },
   ],
 };

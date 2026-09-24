@@ -18,6 +18,10 @@ const projects = getProjectsData(lang);
 ---
 
 <PortfolioLayout>
-  <Heading slot="header-bubble" text="Proyectos" type="bubble" />
+  <Heading
+    slot="header-bubble"
+    text={lang === 'es' ? 'Proyectos' : 'Projects'}
+    type="bubble"
+  />
   <ProjectSlider data={projects} />
 </PortfolioLayout>

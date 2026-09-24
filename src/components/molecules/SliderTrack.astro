@@ -1,5 +1,9 @@
 ---
 import SliderThumb from '@components/atoms/SliderThumb.astro';
+import type { Lang } from '@data/index';
+
+const lang = (Astro.currentLocale ??
+  (Astro.url.pathname.startsWith('/en') ? 'en' : 'es')) as Lang;
 
 export interface sliderTrackData {
   quantity: number;
@@ -32,7 +36,13 @@ switch (position) {
 >
   {
     [...Array(quantity)].map((_, id) => (
-      <SliderThumb data={{ ariaLabel: `Ir a la diapositiva ${id}`, id: id }} />
+      <SliderThumb
+        data={{
+          ariaLabel:
+            lang === 'es' ? `Ir a la diapositiva ${id}` : `Go to slide ${id}`,
+          id: id,
+        }}
+      />
     ))
   }
 </div>

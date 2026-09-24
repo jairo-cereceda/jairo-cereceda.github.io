@@ -1,16 +1,16 @@
 export const timelineData = {
   items: [
     {
-      title: 'Febrero 2026 - Actualidad',
-      position: 'Proyectos personales y aprendizaje',
+      title: 'Septiembre 2023 - Junio 2025',
+      position: 'Estudiante de DAW en IES Mar de Cádiz',
     },
     {
       title: 'Marzo 2025 - Febrero 2026',
       position: 'UI developer en Knowmad mood',
     },
     {
-      title: 'Septiembre 2023 - Junio 2025',
-      position: 'Estudiante de DAW en IES Mar de Cádiz',
+      title: 'Febrero 2026 - Actualidad',
+      position: 'Proyectos personales y aprendizaje',
     },
   ],
 };
@@ -19,16 +19,45 @@ export const certificateScroller = {
   title: 'Certificaciones',
   imgs: [
     {
-      img: 'img/pfp.png',
-      imgAlt: 'prueba',
+      img: 'img/certificates/bootstrap-cert.png',
+      imgAlt: 'Certificado en Bootstrap 5',
     },
     {
-      img: 'img/mock.png',
-      imgAlt: 'prueba',
+      img: 'img/certificates/gsap-cert.png',
+      imgAlt: 'Certificado en animaciones en JavaScript con Greensock',
     },
     {
-      img: 'img/pfp.png',
-      imgAlt: 'prueba',
+      img: 'img/certificates/desarrollo-ia.png',
+      imgAlt: 'Certificado de iniciación al desarrollo con IA',
+    },
+    {
+      img: 'img/certificates/jquery-cert.png',
+      imgAlt: 'Certificado en JQuery',
+    },
+    {
+      img: 'img/certificates/php-cert.png',
+      imgAlt: 'Certificado en PHP 8 y MySQL',
+    },
+    {
+      img: 'img/certificates/programacion-funcional.png',
+      imgAlt: 'Certificado en Programación Funcional',
+    },
+    {
+      img: 'img/certificates/hacking-cert.png',
+      imgAlt: 'Certificado en Hacking Ético y Ciberseguridad',
+    },
+    {
+      img: 'img/certificates/hacking-avanzado-cert.jpg',
+      imgAlt: 'Certificado en Hacking Ético y Ciberseguridad Avanzada',
+    },
+    {
+      img: 'img/certificates/anonimato-cert.png',
+      imgAlt:
+        'Certificado en Anonimato y privacidad para Hacking Ético y Ciberseguridad',
+    },
+    {
+      img: 'img/certificates/api-rest.png',
+      imgAlt: 'Certificado en Diseño de Api Rest y OpenApi',
     },
   ],
 };

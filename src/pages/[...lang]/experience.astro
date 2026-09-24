@@ -26,7 +26,11 @@ const imageCardData = getImageCardData(lang);
 ---
 
 <PortfolioLayout isScrollable={true}>
-  <Heading slot="header-bubble" text="Experiencia" type="bubble" />
+  <Heading
+    slot="header-bubble"
+    text={lang === 'es' ? 'Experiencia' : 'Experience'}
+    type="bubble"
+  />
   <div
     class="w-full flex-1 min-h-0 flex flex-col gap-4 xl:flex-row xl:justify-between"
   >

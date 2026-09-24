@@ -2,6 +2,7 @@ import { focusTrap } from './focusTrap';
 
 let isInitialized = false;
 let lastActiveButton: HTMLButtonElement | null = null;
+const lang = navigator.language;
 
 export function controlMoreInfo() {
   if (!isInitialized) {
@@ -111,13 +112,13 @@ export function controlMoreInfo() {
       content.classList.remove('max-h-96');
 
       btn.setAttribute('aria-expanded', 'false');
-      btn.textContent = 'Ver más';
+      btn.textContent = lang === 'es' ? 'Ver más' : 'Show more';
     } else {
       content.classList.remove('max-h-0');
       content.classList.add('max-h-96');
 
       btn.setAttribute('aria-expanded', 'true');
-      btn.textContent = 'Ver menos';
+      btn.textContent = lang === 'es' ? 'Ver menos' : 'Show less';
     }
   }
 }

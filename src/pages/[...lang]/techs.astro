@@ -18,7 +18,11 @@ const techs = getTechsData(lang);
 ---
 
 <PortfolioLayout isScrollable={true}>
-  <Heading slot="header-bubble" text="Tecnologías" type="bubble" />
+  <Heading
+    slot="header-bubble"
+    text={lang === 'es' ? 'Tecnologías' : 'Techs'}
+    type="bubble"
+  />
   <BubbleItemList data={techs} />
   <div class="lg:hidden">
     <ActionSheet hasTitle={true} hasDescription={true} />

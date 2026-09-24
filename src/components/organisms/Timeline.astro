@@ -3,6 +3,10 @@ import DefaultCard from '@components/molecules/DefaultCard.astro';
 import type { timelineDotData } from '@components/molecules/TimelineDot.astro';
 import TimelineDot from '@components/molecules/TimelineDot.astro';
 import { Icon } from 'astro-icon/components';
+import type { Lang } from '@data/index';
+
+const lang = (Astro.currentLocale ??
+  (Astro.url.pathname.startsWith('/en') ? 'en' : 'es')) as Lang;
 
 export interface timelineData {
   items: timelineDotData[];
@@ -46,7 +50,7 @@ const { items } = data;
           class="opacity-0 absolute left-1/2 bottom-1/5 -translate-x-1/2 z-20 group-hover:opacity-100 transition duration-300"
           id="potential-quote"
         >
-          Desbloquea mi potencial
+          {lang === 'es' ? 'Desbloquea mi potencial' : 'Unlock my potential'}
         </p>
 
         <div class="my-5 overflow-hidden blur" id="locked-timeline">

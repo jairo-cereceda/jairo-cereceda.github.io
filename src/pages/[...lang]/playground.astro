@@ -17,6 +17,10 @@ const components = getComponentsData(lang);
 ---
 
 <PortfolioLayout isScrollable={true}>
-  <Heading slot="header-bubble" text="Playground" type="bubble" />
+  <Heading
+    slot="header-bubble"
+    text={lang === 'es' ? 'Laboratorio' : 'Playground'}
+    type="bubble"
+  />
   <ComponentCardList data={components} />
 </PortfolioLayout>

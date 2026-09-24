@@ -1,5 +1,9 @@
 ---
 import { Icon } from 'astro-icon/components';
+import type { Lang } from '@data/index';
+
+const lang = (Astro.currentLocale ??
+  (Astro.url.pathname.startsWith('/en') ? 'en' : 'es')) as Lang;
 ---
 
 <div
@@ -18,7 +22,9 @@ import { Icon } from 'astro-icon/components';
     <button
       id="action-sheet-carousel-closer"
       class="absolute top-2 right-2 cursor-pointer"
-      aria-label="Cerrar panel de información"
+      aria-label={lang === 'es'
+        ? 'Cerrar panel de información'
+        : 'Close info pane'}
       tabindex="-1"
     >
       <Icon name="close" size="24" />

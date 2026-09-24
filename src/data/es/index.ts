@@ -2,7 +2,7 @@ export const mainCard = {
   img: 'img/pfp.png',
   imgAlt: '',
   name: 'Jairo Cereceda Berciano',
-  profession: 'UI/UX Developer',
+  profession: 'Desarrollador de UI/UX',
 };
 
 export const contentList = {
@@ -25,7 +25,7 @@ export const contentList = {
     {
       url: '/playground',
       icon: 'sandbox',
-      text: 'Playground',
+      text: 'Laboratorio',
     },
   ],
 };
@@ -34,11 +34,15 @@ export const factSlider = {
   items: [
     {
       title: 'Acerca de mis estudios',
-      text: 'En mis estudios de Desarrollo de Aplicaciones web conseguí obtener la mayor nota media posible, siendo esta un 10/10.',
+      text: 'Durante mis estudios de Desarrollo de Aplicaciones Web (DAW), conseguí una nota media de 10/10, alcanzando la máxima calificación posible.',
     },
     {
-      title: 'Acerca de mis estudios 2',
-      text: 'En mis estudios de Desarrollo de Aplicaciones web conseguí obtener la mayor nota media posible, siendo esta un 10/10.',
+      title: 'Mi curiosidad por la tecnología',
+      text: 'Desde pequeño me ha interesado la tecnología. Siempre he disfrutado trasteando con ordenadores, descubriendo cómo funcionan y aprendiendo por mi cuenta.',
+    },
+    {
+      title: 'Voluntariado',
+      text: 'Durante varios meses fui voluntario en una protectora de animales, colaborando en el cuidado de los animales y ayudando en las tareas del día a día.',
     },
   ],
 };

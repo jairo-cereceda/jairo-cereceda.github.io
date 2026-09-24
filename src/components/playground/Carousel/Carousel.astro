@@ -59,7 +59,7 @@ const slides = lang === 'es' ? slidesEs : slidesEn;
       <button
         class="absolute top-[50%] lg:left-2 z-10 rotate-180 cursor-pointer"
         data-left-btn
-        aria-label="Anterior tarjeta"
+        aria-label={lang === 'es' ? 'Anterior tarjeta' : 'Previous card'}
       >
         <Icon name="arrow" size={32} />
       </button>
@@ -80,7 +80,7 @@ const slides = lang === 'es' ? slidesEs : slidesEn;
         </div>
       </div>
       <button
-        aria-label="Siguiente tarjeta"
+        aria-label={lang === 'es' ? 'Siguiente tarjeta' : 'Next card'}
         class="absolute top-[50%] right-1 lg:right-2 z-10 cursor-pointer"
         data-right-btn
       >

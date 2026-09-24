@@ -1,6 +1,10 @@
 ---
 import HeaderItemList from './HeaderItemList.astro';
 import { Icon } from 'astro-icon/components';
+import type { Lang } from '@data/index';
+
+const lang = (Astro.currentLocale ??
+  (Astro.url.pathname.startsWith('/en') ? 'en' : 'es')) as Lang;
 
 export interface headerItemData {
   url: string;
@@ -28,7 +32,11 @@ const submenuAttrs = subUrls ? { 'data-submenu': subUrls.id } : {};
       subUrls && (
         <button
           data-submenu-btn={subUrls.id}
-          aria-label={`Desplegar submenú de ${text}`}
+          aria-label={
+            lang === 'es'
+              ? `Desplegar submenú de ${text}`
+              : `Expand ${text} subemnu`
+          }
           aria-haspopup="true"
           aria-expanded="false"
           aria-controls={subUrls.id}

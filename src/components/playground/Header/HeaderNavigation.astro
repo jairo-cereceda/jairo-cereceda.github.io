@@ -2,6 +2,10 @@
 import type { headerItemData } from './HeaderItem.astro';
 import { Icon } from 'astro-icon/components';
 import HeaderItemList from './HeaderItemList.astro';
+import type { Lang } from '@data/index';
+
+const lang = (Astro.currentLocale ??
+  (Astro.url.pathname.startsWith('/en') ? 'en' : 'es')) as Lang;
 
 export interface headerNavigationData {
   items: headerItemData[];
@@ -21,7 +25,9 @@ const { items } = data;
     data-action="open-nav"
     aria-controls="main-nav"
     aria-expanded="false"
-    aria-label="Abrir menú de navegación"
+    aria-label={lang === 'es'
+      ? 'Abrir menú de navegación'
+      : 'Open navigation menu'}
     class="cursor-pointer lg:hidden"
   >
     <Icon name="menu" size="32" />

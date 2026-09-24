@@ -2,6 +2,10 @@
 import { getImageMetadata } from '@utils/getImage';
 import { Image } from 'astro:assets';
 import Button from './Button.astro';
+import type { Lang } from '@data/index';
+
+const lang = (Astro.currentLocale ??
+  (Astro.url.pathname.startsWith('/en') ? 'en' : 'es')) as Lang;
 
 export interface bubbleItemData {
   img: string;
@@ -19,7 +23,7 @@ const { img, text, description } = data;
 const metadata = await getImageMetadata(img);
 
 const moreInfoButton = {
-  text: 'Ver más',
+  text: lang === 'es' ? 'Ver más' : 'Show more',
   isMoreInfo: true,
   moreInfoTitle: text,
   moreInfoDescription: description,
