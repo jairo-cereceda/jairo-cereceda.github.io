@@ -1,8 +1,9 @@
 ---
 import DefaultCard from '@components/molecules/DefaultCard.astro';
 import MainLayout from '@layouts/MainLayout.astro';
-import { get404Data, type Lang } from '@data/index';
+import { get404Data, get404Description, get404Title } from '@data/index';
 import Link from '@components/atoms/Link.astro';
+import type { Lang } from '@data/consts';
 
 export function getStaticPaths() {
   return [
@@ -14,9 +15,15 @@ export function getStaticPaths() {
 const { lang } = Astro.props;
 
 const info404 = get404Data(lang);
+const pageTitle = get404Title(lang);
+const pageDescription = get404Description(lang);
 ---
 
-<MainLayout>
+<MainLayout
+  pageTitle={pageTitle}
+  pageDescription={pageDescription}
+  noIndex={true}
+>
   <article class="w-full my-auto flex justify-center">
     <DefaultCard isFullheight={true} class="lg:max-w-medium-small">
       <div class="flex flex-col gap-4 w-full h-full items-center">

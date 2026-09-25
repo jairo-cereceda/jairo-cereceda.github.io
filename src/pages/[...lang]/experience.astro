@@ -8,8 +8,11 @@ import {
   getTimelineData,
   getCertificateScrollerData,
   getImageCardData,
-  type Lang,
+  getExperienceTitle,
+  getExperienceDescription,
+  getExperienceSchema,
 } from '@data/index';
+import type { Lang } from '@data/consts';
 
 export function getStaticPaths() {
   return [
@@ -23,9 +26,17 @@ const { lang } = Astro.props;
 const timelineData = getTimelineData(lang);
 const certificateScroller = getCertificateScrollerData(lang);
 const imageCardData = getImageCardData(lang);
+const pageTitle = getExperienceTitle(lang);
+const pageDescription = getExperienceDescription(lang);
+const schema = getExperienceSchema(lang);
 ---
 
-<PortfolioLayout isScrollable={true}>
+<PortfolioLayout
+  isScrollable={true}
+  pageTitle={pageTitle}
+  pageDescription={pageDescription}
+  schema={schema}
+>
   <Heading
     slot="header-bubble"
     text={lang === 'es' ? 'Experiencia' : 'Experience'}

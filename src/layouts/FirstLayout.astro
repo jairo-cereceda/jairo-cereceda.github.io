@@ -1,12 +1,48 @@
 ---
+import type { Lang } from '@data/consts';
 import '@styles/main.css';
 
 import { ClientRouter } from 'astro:transitions';
 
-import type { Lang } from '../data';
-
 const lang = (Astro.currentLocale ??
   (Astro.url.pathname.startsWith('/en') ? 'en' : 'es')) as Lang;
+
+export interface SchemaData {
+  '@context': 'https://schema.org' | string;
+  '@type'?: string;
+  name?: string;
+  description?: string;
+  image?: string;
+  artist?: {
+    '@type': 'Person';
+    name: string;
+  };
+  '@graph'?: any[];
+  [key: string]: any;
+}
+
+export interface Props {
+  pageTitle: string;
+  pageDescription?: string;
+  schema?: SchemaData;
+  noIndex?: boolean;
+}
+
+const { pageTitle, pageDescription, schema, noIndex } = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const ogImg = new URL('/profile.png', Astro.site); //ToDO (METER IMAGEN DE PERFIL)
+
+const currentPath = Astro.url.pathname;
+const cleanPath = currentPath.startsWith('/en')
+  ? currentPath.replace(/^\/en/, '') || '/'
+  : currentPath;
+
+const esHref = new URL(cleanPath, Astro.site).toString();
+const enHref = new URL(
+  cleanPath === '/' ? '/en' : `/en${cleanPath}`,
+  Astro.site
+).toString();
 ---
 
 <!doctype html>
@@ -17,7 +53,52 @@ const lang = (Astro.currentLocale ??
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
     <link rel="icon" href="/favicon.png" />
     <meta name="generator" content={Astro.generator} />
-    <title>Portfolio</title>
+    <title>{pageTitle || 'Jairo Cereceda Berciano | Portfolio de UI/UX'}</title>
+    <meta
+      name="description"
+      content={pageDescription ||
+        `Portfolio de Jairo Cereceda Berciano, diseñador y desarrollador de interfaces de usuario (UI/UX).`}
+    />
+
+    <link rel="canonical" href={canonicalUrl} />
+
+    <link rel="alternate" hreflang="es" href={esHref} />
+    <link rel="alternate" hreflang="en" href={enHref} />
+    <link rel="alternate" hreflang="x-default" href={esHref} />
+
+    <meta
+      property="og:title"
+      content={pageTitle || 'Jairo Cereceda Berciano | Portfolio de UI/UX'}
+    />
+    <meta
+      property="og:description"
+      content={pageDescription ||
+        `Portfolio de Jairo Cereceda Berciano, diseñador y desarrollador de interfaces de usuario (UI/UX).`}
+    />
+
+    <meta property="og:image" content={ogImg} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content={pageTitle || 'Jairo Cereceda Berciano | Portfolio de UI/UX'}
+    />
+    <meta
+      name="twitter:description"
+      content={pageDescription ||
+        `Portfolio de Jairo Cereceda Berciano, diseñador y desarrollador de interfaces de usuario (UI/UX).`}
+    />
+    <meta name="twitter:image" content={ogImg} />
+
+    {
+      schema && (
+        <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+      )
+    }
+    {noIndex && <meta name="robots" content="noindex, follow" />}
+
     <ClientRouter />
 
     <script is:inline>
@@ -30,7 +111,11 @@ const lang = (Astro.currentLocale ??
           '';
         const isSpanish = browserLang.toLowerCase().startsWith('es');
 
-        if (!isSpanish) {
+        const isBot = /bot|googlebot|crawler|spider|robot|crawling/i.test(
+          navigator.userAgent
+        );
+
+        if (!isSpanish && !isBot) {
           const currentPath = window.location.pathname;
           const targetPath =
             '/en' +

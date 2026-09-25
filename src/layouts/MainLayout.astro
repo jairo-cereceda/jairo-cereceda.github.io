@@ -1,9 +1,23 @@
 ---
 import Header from '@components/organisms/Header.astro';
-import FirstLayout from '@layouts/FirstLayout.astro';
+import FirstLayout, { type SchemaData } from '@layouts/FirstLayout.astro';
+
+export interface Props {
+  pageTitle: string;
+  pageDescription?: string;
+  schema?: SchemaData;
+  noIndex?: boolean;
+}
+
+const { pageTitle, pageDescription, schema, noIndex } = Astro.props;
 ---
 
-<FirstLayout>
+<FirstLayout
+  pageTitle={pageTitle}
+  pageDescription={pageDescription}
+  schema={schema}
+  noIndex={noIndex}
+>
   <Header />
   <main class="w-full h-full min-h-0 flex-1 flex flex-col gap-2 items-start">
     <slot />

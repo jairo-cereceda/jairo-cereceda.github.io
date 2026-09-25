@@ -9,14 +9,18 @@ import {
   getContentListData,
   getFactSliderData,
   getContactData,
-  type Lang,
 } from '@data/index';
+import { type SchemaData } from '@layouts/FirstLayout.astro';
+import type { Lang } from '@data/consts';
 
 export interface Props {
+  pageTitle: string;
+  pageDescription?: string;
+  schema?: SchemaData;
   isScrollable?: boolean;
 }
 
-const { isScrollable } = Astro.props;
+const { isScrollable, pageTitle, pageDescription, schema } = Astro.props;
 
 const lang = (Astro.currentLocale ??
   (Astro.url.pathname.startsWith('/en') ? 'en' : 'es')) as Lang;
@@ -39,7 +43,11 @@ const isHome =
 const windowVisibility = isHome ? 'lg:hidden' : '';
 ---
 
-<MainLayout>
+<MainLayout
+  pageTitle={pageTitle}
+  pageDescription={pageDescription}
+  schema={schema}
+>
   <div class="w-full h-full overflow-x-clip flex justify-center">
     <div
       class="h-full w-[98%] lg:h-[98%] flex gap-4 flex-col lg:flex-row lg:justify-between"

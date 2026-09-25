@@ -1,6 +1,7 @@
 ---
-// src/pages/[...lang]/playground/[...slug].astro
 import Heading from '@components/atoms/Heading.astro';
+import { getPlaygroundItemSchema } from '@data/es/playground';
+import { getPlaygroundDescription, getPlaygroundTitle } from '@data/index';
 import PortfolioLayout from '@layouts/PortfolioLayout.astro';
 import { getCollection, render } from 'astro:content';
 
@@ -8,31 +9,44 @@ export async function getStaticPaths() {
   const docs = await getCollection('playground');
 
   return docs.map((doc) => {
-    // doc.id suele ser "es/nombre.mdx" o "en/nombre.mdx"
     const [lang, ...slugParts] = doc.id.split('/');
 
-    // Limpiamos la extensión para que la URL sea limpia (ej: "boton" en vez de "boton.mdx")
     const cleanSlug = slugParts.join('/').replace(/\.mdx?$/, '');
 
     return {
       params: {
-        // Si es español, 'undefined' lo deja en /playground/[slug]
-        // Si es inglés, genera /en/playground/[slug]
         lang: lang === 'es' ? undefined : 'en',
         slug: cleanSlug,
       },
       props: {
         doc,
+        slug: cleanSlug,
       },
     };
   });
 }
 
-const { doc } = Astro.props;
+const { doc, slug } = Astro.props;
 const { Content } = await render(doc);
+
+const baseSectionTitle = getPlaygroundTitle(doc.data.lang);
+const pageTitle = `${doc.data.title} | ${baseSectionTitle}`;
+const pageDescription =
+  doc.data.description ?? getPlaygroundDescription(doc.data.lang);
+
+const schema = getPlaygroundItemSchema({
+  title: doc.data.title,
+  description: pageDescription,
+  slug,
+  lang: doc.data.lang,
+});
 ---
 
-<PortfolioLayout>
+<PortfolioLayout
+  pageTitle={pageTitle}
+  pageDescription={pageDescription}
+  schema={schema}
+>
   <div class="w-full h-full flex flex-col gap-2">
     <Heading text={doc.data.title} type="full" />
     <div

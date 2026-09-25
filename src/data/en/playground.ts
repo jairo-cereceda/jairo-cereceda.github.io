@@ -1,3 +1,5 @@
+import { siteUrl } from '@data/consts';
+
 export const components = {
   items: [
     {
@@ -26,4 +28,29 @@ export const components = {
       img: 'img/playground/gif/linkcard.gif',
     },
   ],
+};
+
+export const pageTitle =
+  'Playground | Jairo Cereceda Berciano - UI/UX Portfolio';
+
+export const pageDescription =
+  'Explore my playground of UI experiments and components, showcasing different techniques, ideas, and skills in web design and development.';
+
+export const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Playground | Jairo Cereceda Berciano - UI/UX Portfolio',
+  description:
+    'Explore my playground of UI experiments and components, showcasing different techniques, ideas, and skills in web design and development.',
+  url: `${siteUrl}/en/playground`,
+  inLanguage: 'en',
+  isPartOf: {
+    '@type': 'WebSite',
+    '@id': `${siteUrl}/#website`,
+  },
+  about: {
+    '@type': 'Person',
+    '@id': `${siteUrl}/#person`,
+    name: 'Jairo Cereceda Berciano',
+  },
 };

@@ -1,3 +1,5 @@
+import { siteUrl } from '@data/consts';
+
 export const techs = {
   items: [
     {
@@ -73,4 +75,29 @@ export const techs = {
         'Server-side language used to build dynamic web applications and connect interfaces with backend systems.',
     },
   ],
+};
+
+export const pageTitle =
+  'Technologies | Jairo Cereceda Berciano - UI/UX Portfolio';
+
+export const pageDescription =
+  'Discover the technologies and tools I use to design and develop accessible, engaging, and functional digital experiences.';
+
+export const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Technologies | Jairo Cereceda Berciano - UI/UX Portfolio',
+  description:
+    'Discover the technologies and tools I use to design and develop accessible, engaging, and functional digital experiences.',
+  url: `${siteUrl}/en/technologies`,
+  inLanguage: 'en',
+  isPartOf: {
+    '@type': 'WebSite',
+    '@id': `${siteUrl}/#website`,
+  },
+  about: {
+    '@type': 'Person',
+    '@id': `${siteUrl}/#person`,
+    name: 'Jairo Cereceda Berciano',
+  },
 };

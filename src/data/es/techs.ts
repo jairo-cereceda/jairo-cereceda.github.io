@@ -1,3 +1,5 @@
+import { siteUrl } from '@data/consts';
+
 export const techs = {
   items: [
     {
@@ -73,4 +75,29 @@ export const techs = {
         'Lenguaje de servidor utilizado para desarrollar aplicaciones web dinámicas y conectar interfaces con sistemas backend.',
     },
   ],
+};
+
+export const pageTitle =
+  'Tecnologías | Jairo Cereceda Berciano - Portfolio de UI/UX';
+
+export const pageDescription =
+  'Descubre las tecnologías y herramientas que utilizo para diseñar y desarrollar experiencias digitales accesibles, atractivas y funcionales.';
+
+export const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Tecnologías | Jairo Cereceda Berciano - Portfolio de UI/UX',
+  description:
+    'Descubre las tecnologías y herramientas que utilizo para diseñar y desarrollar experiencias digitales accesibles, atractivas y funcionales.',
+  url: `${siteUrl}/tecnologias`,
+  inLanguage: 'es',
+  isPartOf: {
+    '@type': 'WebSite',
+    '@id': `${siteUrl}/#website`,
+  },
+  about: {
+    '@type': 'Person',
+    '@id': `${siteUrl}/#person`,
+    name: 'Jairo Cereceda Berciano',
+  },
 };

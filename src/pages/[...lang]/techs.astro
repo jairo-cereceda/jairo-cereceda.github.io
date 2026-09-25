@@ -3,7 +3,13 @@ import Heading from '@components/atoms/Heading.astro';
 import ActionSheet from '@components/molecules/ActionSheet.astro';
 import BubbleItemList from '@components/organisms/BubbleItemList.astro';
 import PortfolioLayout from '@layouts/PortfolioLayout.astro';
-import { getTechsData, type Lang } from '@data/index';
+import {
+  getTechsData,
+  getTechsDescription,
+  getTechsSchema,
+  getTechsTitle,
+} from '@data/index';
+import type { Lang } from '@data/consts';
 
 export function getStaticPaths() {
   return [
@@ -15,9 +21,17 @@ export function getStaticPaths() {
 const { lang } = Astro.props;
 
 const techs = getTechsData(lang);
+const pageTitle = getTechsTitle(lang);
+const pageDescription = getTechsDescription(lang);
+const schema = getTechsSchema(lang);
 ---
 
-<PortfolioLayout isScrollable={true}>
+<PortfolioLayout
+  isScrollable={true}
+  pageTitle={pageTitle}
+  pageDescription={pageDescription}
+  schema={schema}
+>
   <Heading
     slot="header-bubble"
     text={lang === 'es' ? 'Tecnologías' : 'Techs'}

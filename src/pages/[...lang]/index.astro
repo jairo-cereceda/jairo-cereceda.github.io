@@ -9,8 +9,11 @@ import {
   getContentListData,
   getFactSliderData,
   getContactData,
-  type Lang,
+  getIndexTitle,
+  getIndexDescription,
+  getIndexSchema,
 } from '@data/index';
+import type { Lang } from '@data/consts';
 
 export function getStaticPaths() {
   return [
@@ -25,9 +28,16 @@ const mainCard = getMainCardData(lang);
 const contentList = getContentListData(lang);
 const factSlider = getFactSliderData(lang);
 const contactData = getContactData(lang);
+const pageTitle = getIndexTitle(lang);
+const pageDescription = getIndexDescription(lang);
+const schema = getIndexSchema(lang);
 ---
 
-<PortfolioLayout>
+<PortfolioLayout
+  pageTitle={pageTitle}
+  pageDescription={pageDescription}
+  schema={schema}
+>
   <div class="w-full h-full lg:hidden flex gap-4 flex-col">
     <MainCard data={mainCard} />
     <div class="absolute lg:hidden">

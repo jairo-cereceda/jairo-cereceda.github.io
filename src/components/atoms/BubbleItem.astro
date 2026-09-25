@@ -2,7 +2,7 @@
 import { getImageMetadata } from '@utils/getImage';
 import { Image } from 'astro:assets';
 import Button from './Button.astro';
-import type { Lang } from '@data/index';
+import type { Lang } from '@data/consts';
 
 const lang = (Astro.currentLocale ??
   (Astro.url.pathname.startsWith('/en') ? 'en' : 'es')) as Lang;

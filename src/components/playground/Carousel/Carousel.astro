@@ -1,13 +1,13 @@
 ---
 import Slide from './Slide.astro';
 import { Icon } from 'astro-icon/components';
-import type { Lang } from '@data/index';
 
 /*Import images */
 import cadizImg from './img/cadiz.webp';
 import mobileImg from './img/mobile.webp';
 import oldUsingMobile from './img/old-using-mobile.webp';
 import ActionSheetCarousel from './ActionSheetCarousel.astro';
+import type { Lang } from '@data/consts';
 
 const lang = (Astro.currentLocale ??
   (Astro.url.pathname.startsWith('/en') ? 'en' : 'es')) as Lang;

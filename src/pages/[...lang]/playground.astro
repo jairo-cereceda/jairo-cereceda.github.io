@@ -2,7 +2,13 @@
 import Heading from '@components/atoms/Heading.astro';
 import ComponentCardList from '@components/organisms/ComponentCardList.astro';
 import PortfolioLayout from '@layouts/PortfolioLayout.astro';
-import { getComponentsData, type Lang } from '@data/index';
+import {
+  getComponentsData,
+  getPlaygroundDescription,
+  getPlaygroundSchema,
+  getPlaygroundTitle,
+} from '@data/index';
+import type { Lang } from '@data/consts';
 
 export function getStaticPaths() {
   return [
@@ -14,9 +20,17 @@ export function getStaticPaths() {
 const { lang } = Astro.props;
 
 const components = getComponentsData(lang);
+const pageTitle = getPlaygroundTitle(lang);
+const pageDescription = getPlaygroundDescription(lang);
+const schema = getPlaygroundSchema(lang);
 ---
 
-<PortfolioLayout isScrollable={true}>
+<PortfolioLayout
+  isScrollable={true}
+  pageTitle={pageTitle}
+  pageDescription={pageDescription}
+  schema={schema}
+>
   <Heading
     slot="header-bubble"
     text={lang === 'es' ? 'Laboratorio' : 'Playground'}

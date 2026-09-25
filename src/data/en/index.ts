@@ -1,3 +1,5 @@
+import { siteUrl } from '@data/consts';
+
 export const mainCard = {
   img: 'img/pfp.png',
   imgAlt: '',
@@ -64,6 +66,41 @@ export const contactData = {
       url: 'mailto:',
       text: 'Mail',
       icon: 'mail',
+    },
+  ],
+};
+
+export const pageTitle = 'Jairo Cereceda Berciano | UI/UX Portfolio';
+export const pageDescription =
+  'Portfolio of Jairo Cereceda Berciano. UI/UX designer and developer specializing in creating accessible, engaging, and functional digital experiences.';
+export const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': `${siteUrl}#person`,
+      name: 'Jairo Cereceda Berciano',
+      url: siteUrl,
+      jobTitle: 'UI/UX Designer & Developer',
+      description:
+        'UI/UX designer and developer specializing in creating accessible, engaging, and functional digital experiences.',
+      image: new URL('/profile.png', siteUrl).toString(), //ToDO (METER IMAGEN DE PERFIL)
+      sameAs: [
+        'https://github.com/jairo-cereceda',
+        'https://www.linkedin.com/in/jairo-cereceda-berciano/',
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}#website`,
+      url: `${siteUrl}/en`,
+      inLanguage: 'en',
+      name: 'Jairo Cereceda Berciano — UI/UX Designer & Developer',
+      description:
+        'Portfolio of Jairo Cereceda Berciano, UI & UX designer & developer',
+      publisher: {
+        '@id': `${siteUrl}#person`,
+      },
     },
   ],
 };

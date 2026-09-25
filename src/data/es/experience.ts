@@ -1,3 +1,5 @@
+import { siteUrl } from '@data/consts';
+
 export const timelineData = {
   items: [
     {
@@ -66,4 +68,24 @@ export const imageCardData = {
   img: 'img/mock.png',
   imgAlt: 'Foto de cuando era pequeño con ordenadores',
   text: 'Pasión por la tecnología desde pequeño',
+};
+
+export const pageTitle =
+  'Experiencia | Jairo Cereceda Berciano - Portfolio de UI/UX';
+export const pageDescription =
+  'Conoce mi experiencia como diseñador y desarrollador UI/UX, creando interfaces digitales accesibles, atractivas y funcionales para productos y experiencias web.';
+export const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  name: 'Experiencia | Jairo Cereceda Berciano - Portfolio de UI/UX',
+  description:
+    'Conoce mi experiencia como diseñador y desarrollador UI/UX, creando experiencias digitales accesibles, atractivas y funcionales.',
+  url: `${siteUrl}/experience`,
+  inLanguage: 'es',
+  mainEntity: {
+    '@type': 'Person',
+    name: 'Jairo Cereceda Berciano',
+    jobTitle: 'Diseñador y desarrollador UI/UX',
+    url: siteUrl,
+  },
 };

@@ -1,6 +1,6 @@
 ---
 import SliderThumb from '@components/atoms/SliderThumb.astro';
-import type { Lang } from '@data/index';
+import type { Lang } from '@data/consts';
 
 const lang = (Astro.currentLocale ??
   (Astro.url.pathname.startsWith('/en') ? 'en' : 'es')) as Lang;

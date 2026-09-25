@@ -1,7 +1,7 @@
 ---
+import type { Lang } from '@data/consts';
 import { getImageMetadata } from '@utils/getImage';
 import { Image } from 'astro:assets';
-import type { Lang } from '@data/index';
 
 const lang = (Astro.currentLocale ??
   (Astro.url.pathname.startsWith('/en') ? 'en' : 'es')) as Lang;

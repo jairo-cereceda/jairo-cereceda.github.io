@@ -1,3 +1,5 @@
+import { siteUrl } from '@data/consts';
+
 export const timelineData = {
   items: [
     {
@@ -63,4 +65,26 @@ export const imageCardData = {
   img: 'img/mock.png',
   imgAlt: 'Photo from when I was little with computers',
   text: 'A passion for technology since childhood',
+};
+
+export const pageTitle =
+  'Experience | Jairo Cereceda Berciano - UI/UX Portfolio';
+
+export const pageDescription =
+  'Explore my experience as a UI/UX designer and developer, creating accessible, engaging, and functional digital interfaces for web products and experiences.';
+
+export const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  name: 'Experience | Jairo Cereceda Berciano',
+  description:
+    'Explore my experience as a UI/UX designer and developer, creating accessible, engaging, and functional digital experiences.',
+  url: `${siteUrl}/en/experience`,
+  inLanguage: 'en',
+  mainEntity: {
+    '@type': 'Person',
+    name: 'Jairo Cereceda Berciano',
+    jobTitle: 'UI/UX Designer & Developer',
+    url: siteUrl,
+  },
 };

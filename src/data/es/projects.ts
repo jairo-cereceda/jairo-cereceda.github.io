@@ -1,3 +1,5 @@
+import { siteUrl } from '@data/consts';
+
 export const projects = {
   slides: [
     {
@@ -130,5 +132,25 @@ export const projects = {
         title: 'SushiCount',
       },
     ],
+  },
+};
+
+export const pageTitle =
+  'Proyectos | Jairo Cereceda Berciano - Portfolio de UI/UX';
+export const pageDescription =
+  'Explora mis proyectos de diseño y desarrollo UI/UX, creando interfaces accesibles, atractivas y funcionales para productos y experiencias digitales.';
+export const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Proyectos | Jairo Cereceda Berciano - Portfolio de UI/UX',
+  description:
+    'Explora mis proyectos de diseño y desarrollo UI/UX, creando interfaces accesibles, atractivas y funcionales para productos y experiencias digitales.',
+  url: `${siteUrl}/proyectos`,
+  inLanguage: 'es',
+  isPartOf: { '@type': 'WebSite', '@id': `${siteUrl}/#website` },
+  about: {
+    '@type': 'Person',
+    '@id': `${siteUrl}/#person`,
+    name: 'Jairo Cereceda Berciano',
   },
 };

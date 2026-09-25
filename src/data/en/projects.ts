@@ -1,3 +1,5 @@
+import { siteUrl } from '@data/consts';
+
 export const projects = {
   slides: [
     {
@@ -130,5 +132,24 @@ export const projects = {
         title: 'SushiCount',
       },
     ],
+  },
+};
+
+export const pageTitle = 'Projects | Jairo Cereceda Berciano - UI/UX Portfolio';
+export const pageDescription =
+  'Explore my UI/UX design and development projects, creating accessible, engaging, and functional interfaces for digital products and experiences.';
+export const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Projects | Jairo Cereceda Berciano - UI/UX Portfolio',
+  description:
+    'Explore my UI/UX design and development projects, creating accessible, engaging, and functional interfaces for digital products and experiences.',
+  url: `${siteUrl}/en/projects`,
+  inLanguage: 'en',
+  isPartOf: { '@type': 'WebSite', '@id': `${siteUrl}/#website` },
+  about: {
+    '@type': 'Person',
+    '@id': `${siteUrl}/#person`,
+    name: 'Jairo Cereceda Berciano',
   },
 };

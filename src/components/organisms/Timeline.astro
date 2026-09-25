@@ -2,8 +2,8 @@
 import DefaultCard from '@components/molecules/DefaultCard.astro';
 import type { timelineDotData } from '@components/molecules/TimelineDot.astro';
 import TimelineDot from '@components/molecules/TimelineDot.astro';
+import type { Lang } from '@data/consts';
 import { Icon } from 'astro-icon/components';
-import type { Lang } from '@data/index';
 
 const lang = (Astro.currentLocale ??
   (Astro.url.pathname.startsWith('/en') ? 'en' : 'es')) as Lang;

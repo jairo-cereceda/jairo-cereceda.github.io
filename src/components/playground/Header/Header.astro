@@ -1,8 +1,8 @@
 ---
+import type { Lang } from '@data/consts';
 import HeaderBar from './HeaderBar.astro';
 import HeaderNavigation from './HeaderNavigation.astro';
 import './styles/header.css';
-import type { Lang } from '@data/index';
 
 const lang = (Astro.currentLocale ??
   (Astro.url.pathname.startsWith('/en') ? 'en' : 'es')) as Lang;

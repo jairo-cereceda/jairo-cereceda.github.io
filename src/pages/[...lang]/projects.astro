@@ -3,7 +3,13 @@ import Heading from '@components/atoms/Heading.astro';
 
 import ProjectSlider from '@components/organisms/ProjectSlider.astro';
 import PortfolioLayout from '@layouts/PortfolioLayout.astro';
-import { getProjectsData, type Lang } from '@data/index';
+import {
+  getProjectsData,
+  getProjectsDescription,
+  getProjectsSchema,
+  getProjectsTitle,
+} from '@data/index';
+import type { Lang } from '@data/consts';
 
 export function getStaticPaths() {
   return [
@@ -15,9 +21,16 @@ export function getStaticPaths() {
 const { lang } = Astro.props;
 
 const projects = getProjectsData(lang);
+const pageTitle = getProjectsTitle(lang);
+const pageDescription = getProjectsDescription(lang);
+const schema = getProjectsSchema(lang);
 ---
 
-<PortfolioLayout>
+<PortfolioLayout
+  pageTitle={pageTitle}
+  pageDescription={pageDescription}
+  schema={schema}
+>
   <Heading
     slot="header-bubble"
     text={lang === 'es' ? 'Proyectos' : 'Projects'}

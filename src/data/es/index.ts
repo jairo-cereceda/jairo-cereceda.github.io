@@ -1,3 +1,5 @@
+import { siteUrl } from '@data/consts';
+
 export const mainCard = {
   img: 'img/pfp.png',
   imgAlt: '',
@@ -64,6 +66,42 @@ export const contactData = {
       url: 'mailto:',
       text: 'Mail',
       icon: 'mail',
+    },
+  ],
+};
+
+export const pageTitle = 'Jairo Cereceda Berciano | Portfolio de UI/UX';
+export const pageDescription =
+  'Portfolio de Jairo Cereceda Berciano. Diseñador y desarrollador UI/UX especializado en crear experiencias digitales accesibles, atractivas y funcionales.';
+export const schema = {
+  '@context': 'https://schema.org',
+
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': `${siteUrl}#person`,
+      name: 'Jairo Cereceda Berciano',
+      url: siteUrl,
+      jobTitle: 'Diseñador y desarrollador UI/UX',
+      description:
+        'Diseñador y desarrollador UI/UX especializado en crear experiencias digitales intuitivas, atractivas y funcionales.',
+      image: new URL('/profile.png', siteUrl).toString(), //ToDO (METER IMAGEN DE PERFIL)
+      sameAs: [
+        'https://github.com/jairo-cereceda',
+        'https://www.linkedin.com/in/jairo-cereceda-berciano/',
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}#website`,
+      url: siteUrl,
+      inLanguage: 'es',
+      name: 'Jairo Cereceda Berciano — Diseñador y desarrollador UI/UX',
+      description:
+        'Portfolio de Jairo Cereceda Berciano, diseñador y desarrollador UI/UX.',
+      publisher: {
+        '@id': `${siteUrl}#person`,
+      },
     },
   ],
 };

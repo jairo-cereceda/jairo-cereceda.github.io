@@ -1,7 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import DefaultCard from './DefaultCard.astro';
-import type { Lang } from '@data/index';
+import type { Lang } from '@data/consts';
 
 const lang = (Astro.currentLocale ??
   (Astro.url.pathname.startsWith('/en') ? 'en' : 'es')) as Lang;

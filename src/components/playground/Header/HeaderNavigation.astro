@@ -2,7 +2,7 @@
 import type { headerItemData } from './HeaderItem.astro';
 import { Icon } from 'astro-icon/components';
 import HeaderItemList from './HeaderItemList.astro';
-import type { Lang } from '@data/index';
+import type { Lang } from '@data/consts';
 
 const lang = (Astro.currentLocale ??
   (Astro.url.pathname.startsWith('/en') ? 'en' : 'es')) as Lang;
