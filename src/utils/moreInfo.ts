@@ -112,13 +112,13 @@ export function controlMoreInfo() {
       content.classList.remove('max-h-96');
 
       btn.setAttribute('aria-expanded', 'false');
-      btn.textContent = lang === 'es' ? 'Ver más' : 'Show more';
+      btn.textContent = lang === 'es-ES' ? 'Ver más' : 'Show more';
     } else {
       content.classList.remove('max-h-0');
       content.classList.add('max-h-96');
 
       btn.setAttribute('aria-expanded', 'true');
-      btn.textContent = lang === 'es' ? 'Ver menos' : 'Show less';
+      btn.textContent = lang === 'es-ES' ? 'Ver menos' : 'Show less';
     }
   }
 }
