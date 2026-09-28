@@ -46,6 +46,8 @@ const isEn = Astro.currentLocale === 'en' || currentPath.startsWith('/en');
 
 const parentPath = currentPath.substring(0, currentPath.lastIndexOf('/'));
 
+const backAriaLabel = isEn ? "Go back" : "Volver a atrás" ;
+
 const backHref = parentPath || (isEn ? '/en' : '/');
 ---
 
@@ -64,6 +66,7 @@ const backHref = parentPath || (isEn ? '/en' : '/');
   : 
   <a
   href={backHref}
+  aria-label={backAriaLabel}
   class=`${baseStyles} mx-2 flex items-center justify-center left-0 absolute`
   {...backButtonAttributes}
   >

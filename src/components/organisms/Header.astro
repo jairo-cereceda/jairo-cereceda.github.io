@@ -1,6 +1,10 @@
 ---
 import HeaderItemList from '@components/molecules/HeaderItemList.astro';
 import { Icon } from 'astro-icon/components';
+import type { Lang } from '@data/consts';
+
+const lang = (Astro.currentLocale ??
+  (Astro.url.pathname.startsWith('/en') ? 'en' : 'es')) as Lang;
 
 const headerItemList = {
   items: [
@@ -23,11 +27,18 @@ const headerItemList = {
     <p id="clock"></p>
     <div class="flex gap-4 items-center">
       <div class="flex gap-1 items-center">
-        <button id="volume-button">
+        <button
+          id="volume-button"
+          aria-label={lang === 'es' ? 'Activar música' : 'Play music'}
+        >
           <Icon name="volumex" size="16" id="volume-off" />
           <Icon name="volume1" size="16" class="hidden" id="volume-on" />
           <Icon name="volume2" size="16" class="hidden" id="volume-max" />
         </button>
+
+        <label for="volume" class="sr-only"
+          >{lang === 'es' ? 'Volumen de la música' : 'Music volume'}</label
+        >
         <input
           type="range"
           name=""

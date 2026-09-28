@@ -19,7 +19,10 @@ const { pageTitle, pageDescription, schema, noIndex } = Astro.props;
   noIndex={noIndex}
 >
   <Header />
-  <main class="w-full h-full min-h-0 flex-1 flex flex-col gap-2 items-start">
+  <main
+    id="main"
+    class="w-full h-full min-h-0 flex-1 flex flex-col gap-2 items-start"
+  >
     <slot />
   </main>
 </FirstLayout>

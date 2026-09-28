@@ -10,6 +10,7 @@ export function musicControl() {
   const volumeOnIcon = document.getElementById('volume-on');
   const volumeMaxIcon = document.getElementById('volume-max');
   const volumeOffIcon = document.getElementById('volume-off');
+  const lang = navigator.language;
 
   if (!music || !volumeInput || !volumeButton) return;
 
@@ -45,11 +46,16 @@ export function musicControl() {
 
     if (vol >= 75) {
       volumeMaxIcon.classList.remove('hidden');
+      volumeButton.ariaLabel =
+        lang === 'es-ES' ? 'Silenciar música' : 'Mute music';
     } else if (vol > 0) {
       volumeOnIcon.classList.remove('hidden');
+      volumeButton.ariaLabel =
+        lang === 'es-ES' ? 'Silenciar música' : 'Mute music';
     } else {
-      // Si el volumen es 0, icono OFF
       volumeOffIcon.classList.remove('hidden');
+      volumeButton.ariaLabel =
+        lang === 'es-ES' ? 'Activar música' : 'Play music';
     }
   };
 

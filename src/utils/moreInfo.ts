@@ -39,6 +39,7 @@ export function controlMoreInfo() {
 
     isInitialized = true;
   }
+  disableTabElements();
 
   const openActionSheet = (btn: HTMLButtonElement) => {
     const { actionSheet, wrapper, closer, title, description } = getElements();
@@ -59,6 +60,7 @@ export function controlMoreInfo() {
 
     focusTrap(wrapper);
 
+    enableTabElements();
     lastActiveButton = btn;
   };
 
@@ -78,6 +80,7 @@ export function controlMoreInfo() {
     document.body.classList.remove('overflow-y-hidden');
     document.body.classList.remove('mr-[10px]');
 
+    disableTabElements();
     lastActiveButton?.focus();
   };
 
@@ -120,5 +123,29 @@ export function controlMoreInfo() {
       btn.setAttribute('aria-expanded', 'true');
       btn.textContent = lang === 'es-ES' ? 'Ver menos' : 'Show less';
     }
+  }
+
+  function disableTabElements() {
+    const { wrapper } = getElements();
+
+    const tabElements = wrapper?.querySelectorAll(
+      'button, a[href], input, textarea, select, [tabindex]:not([tabindex="-1"])'
+    );
+
+    tabElements?.forEach((element) => {
+      element.setAttribute('tabindex', '-1');
+    });
+  }
+
+  function enableTabElements() {
+    const { wrapper } = getElements();
+
+    const tabElements = wrapper?.querySelectorAll(
+      'button, a[href], input, textarea, select, [tabindex="-1"]'
+    );
+
+    tabElements?.forEach((element) => {
+      element.removeAttribute('tabindex');
+    });
   }
 }
