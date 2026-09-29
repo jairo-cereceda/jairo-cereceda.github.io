@@ -14,15 +14,15 @@ const { data } = Astro.props;
 const { imgs } = data;
 ---
 
-<DefaultCard isFullheight={false}>
-  <div class="overflow-hidden" data-slider-wrapper>
+<DefaultCard isFullheight={true} class="max-h-[50%] xl:max-h-[60%]">
+  <div class="overflow-hidden h-full" data-slider-wrapper>
     <div
       class="overflow-hidden snap-x snap-mandatory scrollbar-none [&::-webkit-scrollbar]:hidden h-full w-full flex"
       data-slider
       data-is-autoplayable="true"
     >
       <div
-        class="w-full shrink-0 flex snap-center snap-always justify-center"
+        class="w-full h-full shrink-0 flex snap-center snap-always justify-center"
         data-slide
       >
         <Image data={imgs[imgs.length - 1]} />
@@ -30,7 +30,7 @@ const { imgs } = data;
       {
         imgs.map((img) => (
           <div
-            class="w-full shrink-0  snap-center snap-always flex justify-center"
+            class="w-full h-full shrink-0  snap-center snap-always flex justify-center"
             data-slide
           >
             <Image data={img} />
@@ -38,7 +38,7 @@ const { imgs } = data;
         ))
       }
       <div
-        class="w-full shrink-0 snap-center snap-always flex justify-center"
+        class="w-full h-full shrink-0 snap-center snap-always flex justify-center"
         data-slide
       >
         <Image data={imgs[0]} />

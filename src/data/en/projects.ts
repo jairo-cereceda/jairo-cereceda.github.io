@@ -5,14 +5,23 @@ export const projects = {
     {
       imgs: [
         {
-          img: 'img/pfp.png',
-          imgAlt: '',
+          img: 'img/projects/portfolio-ilustradora/portfolio-1.png',
+          imgAlt: 'Portfolio homepage',
         },
         {
-          img: 'img/mock.png',
-          imgAlt: '',
+          img: 'img/projects/portfolio-ilustradora/portfolio-2.png',
+          imgAlt: 'Artwork gallery',
+        },
+        {
+          img: 'img/projects/portfolio-ilustradora/portfolio-3.png',
+          imgAlt: 'Portfolio "About Me" section',
+        },
+        {
+          img: 'img/projects/portfolio-ilustradora/portfolio-4.png',
+          imgAlt: 'Portfolio contact section',
         },
       ],
+
       info: {
         title: 'Ilustrator Portfolio',
         description: [
@@ -27,12 +36,24 @@ export const projects = {
     {
       imgs: [
         {
-          img: 'img/pfp.png',
-          imgAlt: '',
+          img: 'img/projects/lily-pub/lily-pub-mobile-1.png',
+          imgAlt: 'Lily Pub website intro',
         },
         {
-          img: 'img/mock.png',
-          imgAlt: '',
+          img: 'img/projects/lily-pub/lily-pub-mobile-2.png',
+          imgAlt: 'About Lily Pub section',
+        },
+        {
+          img: 'img/projects/lily-pub/lily-pub-mobile-3.png',
+          imgAlt: 'Lily Pub menu',
+        },
+        {
+          img: 'img/projects/lily-pub/lily-pub-mobile-4.png',
+          imgAlt: 'Lily Pub brands carousel and location',
+        },
+        {
+          img: 'img/projects/lily-pub/lily-pub-mobile-5.png',
+          imgAlt: 'Lily Pub contact section',
         },
       ],
       info: {
@@ -48,12 +69,20 @@ export const projects = {
     {
       imgs: [
         {
-          img: 'img/pfp.png',
-          imgAlt: '',
+          img: 'img/projects/agora-apartments/agora-1.png',
+          imgAlt: 'Agora Apartment website intro',
         },
         {
-          img: 'img/mock.png',
-          imgAlt: '',
+          img: 'img/projects/agora-apartments/agora-2.png',
+          imgAlt: 'About Agora Apartment section',
+        },
+        {
+          img: 'img/projects/agora-apartments/agora-3.png',
+          imgAlt: 'Services included at Agora Apartment section',
+        },
+        {
+          img: 'img/projects/agora-apartments/agora-4.png',
+          imgAlt: 'Agora Apartment contact section',
         },
       ],
       info: {
@@ -69,12 +98,20 @@ export const projects = {
     {
       imgs: [
         {
-          img: 'img/pfp.png',
-          imgAlt: '',
+          img: 'img/projects/my-chat/mychat-1.png',
+          imgAlt: 'MyChat home screen',
         },
         {
-          img: 'img/mock.png',
-          imgAlt: '',
+          img: 'img/projects/my-chat/mychat-2.png',
+          imgAlt: 'MyChat sidebar menu',
+        },
+        {
+          img: 'img/projects/my-chat/mychat-3.png',
+          imgAlt: 'MyChat message management menu',
+        },
+        {
+          img: 'img/projects/my-chat/mychat-4.png',
+          imgAlt: 'MyChat featured messages section',
         },
       ],
       info: {
@@ -90,12 +127,16 @@ export const projects = {
     {
       imgs: [
         {
-          img: 'img/pfp.png',
-          imgAlt: '',
+          img: 'img/projects/sushi-count/sushi-count-1.png',
+          imgAlt: 'Sushi Count home screen',
         },
         {
-          img: 'img/mock.png',
-          imgAlt: '',
+          img: 'img/projects/sushi-count/sushi-count-2.png',
+          imgAlt: 'Sushi Count active session',
+        },
+        {
+          img: 'img/projects/sushi-count/sushi-count-3.png',
+          imgAlt: 'Sushi Count session summary section',
         },
       ],
       info: {

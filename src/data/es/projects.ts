@@ -5,12 +5,20 @@ export const projects = {
     {
       imgs: [
         {
-          img: 'img/pfp.png',
-          imgAlt: '',
+          img: 'img/projects/portfolio-ilustradora/portfolio-1.png',
+          imgAlt: 'Inicio del portfolio',
         },
         {
-          img: 'img/mock.png',
-          imgAlt: '',
+          img: 'img/projects/portfolio-ilustradora/portfolio-2.png',
+          imgAlt: 'Galería de obras',
+        },
+        {
+          img: 'img/projects/portfolio-ilustradora/portfolio-3.png',
+          imgAlt: 'Sección "Sobre mí" del portfolio',
+        },
+        {
+          img: 'img/projects/portfolio-ilustradora/portfolio-4.png',
+          imgAlt: 'Sección de contacto del portfolio',
         },
       ],
       info: {
@@ -27,12 +35,24 @@ export const projects = {
     {
       imgs: [
         {
-          img: 'img/pfp.png',
-          imgAlt: '',
+          img: 'img/projects/lily-pub/lily-pub-mobile-1.png',
+          imgAlt: 'Presentación de la web de Lily Pub',
         },
         {
-          img: 'img/mock.png',
-          imgAlt: '',
+          img: 'img/projects/lily-pub/lily-pub-mobile-2.png',
+          imgAlt: 'Sección con información sobre Lily Pub',
+        },
+        {
+          img: 'img/projects/lily-pub/lily-pub-mobile-3.png',
+          imgAlt: 'Carta de Lily Pub',
+        },
+        {
+          img: 'img/projects/lily-pub/lily-pub-mobile-4.png',
+          imgAlt: 'Carrusel de marcas y ubicación de Lily Pub',
+        },
+        {
+          img: 'img/projects/lily-pub/lily-pub-mobile-5.png',
+          imgAlt: 'Sección de contacto de Lily Pub',
         },
       ],
       info: {
@@ -48,12 +68,20 @@ export const projects = {
     {
       imgs: [
         {
-          img: 'img/pfp.png',
-          imgAlt: '',
+          img: 'img/projects/agora-apartments/agora-1.png',
+          imgAlt: 'Presentación de la web de Apartamento Agora',
         },
         {
-          img: 'img/mock.png',
-          imgAlt: '',
+          img: 'img/projects/agora-apartments/agora-2.png',
+          imgAlt: 'Sección con información sobre Apartamento Agora',
+        },
+        {
+          img: 'img/projects/agora-apartments/agora-3.png',
+          imgAlt: 'Sección con los servicios incluidos en Apartamento Agora',
+        },
+        {
+          img: 'img/projects/agora-apartments/agora-4.png',
+          imgAlt: 'Sección de contacto de Apartamento Agora',
         },
       ],
       info: {
@@ -69,12 +97,20 @@ export const projects = {
     {
       imgs: [
         {
-          img: 'img/pfp.png',
-          imgAlt: '',
+          img: 'img/projects/my-chat/mychat-1.png',
+          imgAlt: 'Comienzo de MyChat',
         },
         {
-          img: 'img/mock.png',
-          imgAlt: '',
+          img: 'img/projects/my-chat/mychat-2.png',
+          imgAlt: 'Menú lateral de MyChat',
+        },
+        {
+          img: 'img/projects/my-chat/mychat-3.png',
+          imgAlt: 'Menú de gestión de mensajes de MyChat',
+        },
+        {
+          img: 'img/projects/my-chat/mychat-4.png',
+          imgAlt: 'Sección de mensajes destacados de MyChat',
         },
       ],
       info: {
@@ -90,12 +126,16 @@ export const projects = {
     {
       imgs: [
         {
-          img: 'img/pfp.png',
-          imgAlt: '',
+          img: 'img/projects/sushi-count/sushi-count-1.png',
+          imgAlt: 'Pantalla de inicio de Sushi Count',
         },
         {
-          img: 'img/mock.png',
-          imgAlt: '',
+          img: 'img/projects/sushi-count/sushi-count-2.png',
+          imgAlt: 'Sesión activa de Sushi Count',
+        },
+        {
+          img: 'img/projects/sushi-count/sushi-count-3.png',
+          imgAlt: 'Sección de resumen de sesión de Sushi Count',
         },
       ],
       info: {

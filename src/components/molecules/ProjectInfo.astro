@@ -21,7 +21,7 @@ const { data } = Astro.props;
 const { title, description, projectUrl, repositoryUrl } = data;
 ---
 
-<div class="absolute z-10 w-full top-[40%] bottom-0">
+<div class="absolute z-10 h-full w-full max-h-[55%] bottom-0 xl:max-h-[45%]">
   <DefaultCard>
     <div class="flex items-center justify-between gap-2">
       <h2 class="font-extrabold text-lg">{title}</h2>
