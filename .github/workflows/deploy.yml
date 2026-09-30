@@ -6,13 +6,11 @@ on:
       - main
   workflow_dispatch:
 
-# Permisos necesarios para publicar en GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Permite solo un despliegue concurrente para evitar colisiones
 concurrency:
   group: 'pages'
   cancel-in-progress: false
@@ -40,7 +38,6 @@ jobs:
       - name: Run Playwright tests
         run: npm test
 
-      # Guarda el reporte HTML si algún test falla para poder inspeccionarlo
       - name: Upload test report
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4

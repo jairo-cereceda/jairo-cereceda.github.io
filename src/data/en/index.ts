@@ -84,7 +84,7 @@ export const schema = {
       jobTitle: 'UI/UX Designer & Developer',
       description:
         'UI/UX designer and developer specializing in creating accessible, engaging, and functional digital experiences.',
-      image: new URL('/profile.png', siteUrl).toString(), //ToDO (METER IMAGEN DE PERFIL)
+      image: new URL('/profile.jpeg', siteUrl).toString(),
       sameAs: [
         'https://github.com/jairo-cereceda',
         'https://www.linkedin.com/in/jairo-cereceda-berciano/',
