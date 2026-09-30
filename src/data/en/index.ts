@@ -1,7 +1,7 @@
 import { siteUrl } from '@data/consts';
 
 export const mainCard = {
-  img: 'img/pfp.png',
+  img: 'img/profile.jpeg',
   imgAlt: '',
   name: 'Jairo Cereceda Berciano',
   profession: 'UI/UX Developer',
