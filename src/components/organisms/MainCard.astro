@@ -26,7 +26,11 @@ const contactButton = {
   moreInfoTitle: 'Contacto',
 };
 
-const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
+const isHome =
+  Astro.url.pathname === '/' ||
+  Astro.url.pathname === '/en' ||
+  Astro.url.pathname === '/en/' ||
+  Astro.url.pathname === '';
 
 const titleStyles = {
   class: 'font-bold drop-shadow-[0_0_1px_rgba(255,255,255,1)] filter',
@@ -47,9 +51,13 @@ const titleStyles = {
       <div class="flex flex-col gap-2">
         {
           isHome ? (
-            <h1 {...titleStyles}>{name}</h1>
+            <h1 data-main-card-heading {...titleStyles}>
+              {name}
+            </h1>
           ) : (
-            <h2 {...titleStyles}>{name}</h2>
+            <h2 data-main-card-heading {...titleStyles}>
+              {name}
+            </h2>
           )
         }
 
@@ -68,3 +76,17 @@ const titleStyles = {
     </div>
   </DefaultCard>
 </section>
+
+<script>
+  document.addEventListener('astro:before-swap', (e) => {
+    const event = e as any;
+    const currentHeading = document.querySelector('[data-main-card-heading]');
+    const newHeading = event.newDocument?.querySelector(
+      '[data-main-card-heading]'
+    );
+
+    if (currentHeading && newHeading) {
+      currentHeading.replaceWith(newHeading.cloneNode(true));
+    }
+  });
+</script>
