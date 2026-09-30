@@ -67,7 +67,7 @@ const backHref = parentPath || (isEn ? '/en' : '/');
   <a
   href={backHref}
   aria-label={backAriaLabel}
-  class=`${baseStyles} mx-2 flex items-center justify-center left-0 absolute`
+  class=`${baseStyles} mx-2 flex items-center justify-center left-0 absolute transition duration-200 hover:drop-shadow-[0_0_1px_rgba(255,255,255,0.25)] hover:filter`
   {...backButtonAttributes}
   >
   <Icon name="arrow-left"/>
