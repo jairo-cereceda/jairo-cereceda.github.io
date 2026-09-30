@@ -141,21 +141,30 @@ const enHref = new URL(
       import { startPage } from '@utils/startPage';
       import { generateAnimations } from '@utils/animation';
 
+      const normalizePath = (path: string) => path.replace(/\/+$/, '') || '/';
+
       document.addEventListener(
         'click',
         (event) => {
           const target = event.target;
-
           if (!(target instanceof Element)) return;
 
           const link = target.closest('a');
-
           if (!(link instanceof HTMLAnchorElement)) return;
 
-          const currentUrl = new URL(window.location.href);
-          const targetUrl = new URL(link.href);
+          if (
+            link.origin !== window.location.origin ||
+            link.target === '_blank'
+          )
+            return;
 
-          if (currentUrl.href === targetUrl.href) {
+          const currentPath = normalizePath(window.location.pathname);
+          const targetPath = normalizePath(link.pathname);
+
+          if (
+            currentPath === targetPath &&
+            window.location.hash === link.hash
+          ) {
             event.preventDefault();
             event.stopImmediatePropagation();
           }
@@ -163,8 +172,10 @@ const enHref = new URL(
         true
       );
 
-      document.addEventListener('astro:page-load', startPage);
-      document.addEventListener('DOMContentLoaded', generateAnimations);
+      document.addEventListener('astro:page-load', () => {
+        generateAnimations();
+        startPage();
+      });
     </script>
   </body>
 </html>
