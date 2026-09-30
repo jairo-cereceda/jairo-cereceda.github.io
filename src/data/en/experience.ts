@@ -62,7 +62,7 @@ export const certificateScroller = {
 };
 
 export const imageCardData = {
-  img: 'img/mock.png',
+  img: 'img/coding.jpg',
   imgAlt: 'Photo from when I was little with computers',
   text: 'A passion for technology since childhood',
 };

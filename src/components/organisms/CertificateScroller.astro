@@ -27,8 +27,8 @@ for (const img of imgs) {
 }
 ---
 
-<section class="w-full xl:max-w-medium-small" data-scroller-wrapper>
-  <DefaultCard isFullheight={false}>
+<section class="w-full sm:h-full lg:h-auto" data-scroller-wrapper>
+  <DefaultCard isFullheight={false} class="sm:h-full">
     {
       title ? (
         <h2 class="font-bold drop-shadow-[0_0_1px_rgba(255,255,255,0.5)] filter text-lg">
@@ -38,20 +38,38 @@ for (const img of imgs) {
         ''
       )
     }
-    <div class="overflow-hidden">
+    <div class="overflow-hidden sm:h-full">
       <SliderTrack
         data={{ quantity: imgMetadatas.length, position: 'verticalMiddle' }}
       />
       <div class="flex w-full h-full touch-none" data-scroller>
         {
           imgMetadatas.map((img) => (
-            <div class="flex-none w-full" data-slide>
+            <div
+              class="flex-none w-full sm:h-full relative overflow-hidden rounded-xl"
+              data-slide
+            >
+              <Image
+                src={img.img}
+                width={img.img.width}
+                height={img.img.height}
+                alt=""
+                aria-hidden="true"
+                class="hidden sm:max-lg:block absolute inset-0 w-full h-full object-cover blur-md scale-110 brightness-90"
+              />
+
               <Image
                 src={img.img}
                 width={img.img.width}
                 height={img.img.height}
                 alt={img.imgAlt}
-                class="rounded-xl w-full aspect-video object-cover"
+                class={`
+            w-full aspect-video object-cover sm:h-full
+            sm:max-lg:aspect-auto
+            sm:max-lg:object-contain
+            sm:max-lg:object-center
+            relative z-10
+          `}
               />
             </div>
           ))

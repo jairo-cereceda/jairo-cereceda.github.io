@@ -65,7 +65,7 @@ export const certificateScroller = {
 };
 
 export const imageCardData = {
-  img: 'img/mock.png',
+  img: 'img/coding.jpg',
   imgAlt: 'Foto de cuando era pequeño con ordenadores',
   text: 'Pasión por la tecnología desde pequeño',
 };

@@ -39,9 +39,7 @@ export function createScroller() {
     }
 
     function updateScroller() {
-      const width = slides[0].clientWidth;
-
-      scroller.style.transform = `translate3d(-${currentPosition * width}px, 0, 0)`;
+      scroller.style.transform = `translate3d(-${currentPosition * 100}%, 0, 0)`;
 
       updateThumbs();
     }
